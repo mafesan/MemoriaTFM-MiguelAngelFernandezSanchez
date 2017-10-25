@@ -12,3 +12,9 @@ Una buena práctica es, una vez realizado el fork, cambiar el nombre de tu repos
 Esta plantilla no está terminada, por lo que se puede considerar trabajo en curso. Si tienes algun comentario o sugerencia, estaré encantado de recibirlo. Agradezco especialmente <i>pull-requests</i>.
 
 Para otras cuestiones, mándame un correo a grex (arroba) gsyc.urjc.es.
+
+## Dependecias e instalación
+
+```
+$ sudo apt install texlive-latex-base texlive-lang-spanish texmaker
+```
