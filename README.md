@@ -16,5 +16,11 @@ Para otras cuestiones, mándame un correo a grex (arroba) gsyc.urjc.es.
 ## Dependecias e instalación
 
 ```
-$ sudo apt install texlive-latex-base texlive-lang-spanish texmaker
+$ sudo apt install texlive-latex-base texlive-lang-spanish texmaker pdflatex
+```
+
+## Compilar fichero TEX y producir PDF
+
+```
+$ pdflatex <tex_file>
 ```
