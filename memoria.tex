@@ -3,17 +3,17 @@
 %%
 %% Por Gregorio Robles <grex arroba gsyc.urjc.es>
 %%     Grupo de Sistemas y Comunicaciones
-%%     Escuela Técnica Superior de Ingenieros de Telecomunicación
+%%     Escuela TÃ©cnica Superior de Ingenieros de TelecomunicaciÃ³n
 %%     Universidad Rey Juan Carlos
 %% (muchas ideas tomadas de Internet, colegas del GSyC, antiguos alumnos...
 %%  etc. Muchas gracias a todos)
 %%
-%% La última versión de esta plantilla está siempre disponible en:
+%% La Ãºltima versiÃ³n de esta plantilla estÃ¡ siempre disponible en:
 %%     https://github.com/gregoriorobles/plantilla-memoria
 %%
 %% Para obtener PDF, ejecuta en la shell:
 %%   make
-%% (las imágenes deben ir en PNG o JPG)
+%% (las imÃ¡genes deben ir en PNG o JPG)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -23,23 +23,23 @@
 \usepackage[a4paper, left=2.5cm, right=2.5cm, top=3cm, bottom=3cm]{geometry}
 \usepackage{times}
 \usepackage[latin1]{inputenc}
-\usepackage[spanish]{babel} % Comenta esta línea si tu memoria es en inglés
+\usepackage[spanish]{babel} % Comenta esta lï¿½nea si tu memoria es en inglï¿½s
 \usepackage{url}
 %\usepackage[dvipdfm]{graphicx}
 \usepackage{graphicx}
 \usepackage{float}  %% H para posicionar figuras
-\usepackage[nottoc, notlot, notlof, notindex]{tocbibind} %% Opciones de índice
+\usepackage[nottoc, notlot, notlof, notindex]{tocbibind} %% Opciones de ï¿½ndice
 \usepackage{latexsym}  %% Logo LaTeX
 
 \title{Memoria del Proyecto}
-\author{Miguel Ángel Fernández Sánchez}
+\author{Miguel Ãngel FernÃ¡ndez SÃ¡nchez}
 
 \renewcommand{\baselinestretch}{1.5}  %% Interlineado
 
 \begin{document}
 
-\renewcommand{\refname}{Bibliografía}  %% Renombrando
-\renewcommand{\appendixname}{Apéndice}
+\renewcommand{\refname}{BibliografÃ­a}  %% Renombrando
+\renewcommand{\appendixname}{ApÃ©ndice}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PORTADA
@@ -61,12 +61,12 @@
 \vspace{3cm}
 
 \Large
-GRADO INGENIERÍA SISTEMAS AUDIOVISUALES Y MULTIMEDIA
+GRADO INGENIERÃ­A SISTEMAS AUDIOVISUALES Y MULTIMEDIA
 
 \vspace{0.4cm}
 
 \large
-Curso Académico 2016/2017
+Curso Acadï¿½mico 2016/2017
 
 \vspace{0.8cm}
 
@@ -80,7 +80,7 @@ HERRAMIENTA PARA ANALIZAR PROYECTOS FLOSS EN GITHUB (prov.)
 \vspace{4cm}
 
 \large
-Autor : Miguel Ángel Fernández Sánchez \\
+Autor : Miguel ï¿½ngel Fernï¿½ndez Sï¿½nchez \\
 Tutor : Dr. Gregorio Robles
 \end{center}
 \end{titlepage}
@@ -94,7 +94,7 @@ Tutor : Dr. Gregorio Robles
 %%%% Para firmar
 \clearpage
 \pagenumbering{gobble}
-\chapter*{Evaluación}
+\chapter*{Evaluation}
 
 \vspace{-4cm}
 \begin{center}
@@ -103,17 +103,17 @@ Tutor : Dr. Gregorio Robles
 
 \vspace{1cm}
 \large
-Herramienta para la extracción y el análisis de proyectos FLOSS en GitHub (provisional)
+Herramienta para la extracciÃ³n y el anÃ¡lisis de proyectos FLOSS en GitHub (provisional)
 
 \vspace{1cm}
 \large
-\textbf{Autor :} Miguel Ángel Fernández Sánchez \\
-\textbf{Tutor :} Dr. Gregorio Robles Martínez
+\textbf{Autor :} Miguel Ãngel FernÃ¡ndez SÃ¡nchez \\
+\textbf{Tutor :} Dr. Gregorio Robles MartÃ­nez
 
 \end{center}
 
 \vspace{1cm}
-La defensa del presente Trabajo Fin de Grado se realizó el día \qquad$\;\,$ de \qquad\qquad\qquad\qquad \newline de 20XX, siendo calificada por el siguiente tribunal:
+La defensa del presente Trabajo Fin de Grado se realizÃ³ el dÃ­a \qquad$\;\,$ de \qquad\qquad\qquad\qquad \newline de 20XX, siendo calificada por el siguiente tribunal:
 
 
 \vspace{0.5cm}
@@ -127,10 +127,10 @@ La defensa del presente Trabajo Fin de Grado se realizó el día \qquad$\;\,$ de \
 
 
 \vspace{1.2cm}
-y habiendo obtenido la siguiente calificación:
+y habiendo obtenido la siguiente calificaciÃ³n:
 
 \vspace{1cm}
-\textbf{Calificación:}
+\textbf{Calificaciï¿½n:}
 
 
 \vspace{1cm}
@@ -141,7 +141,7 @@ Fuenlabrada, a \qquad$\;\,$ de \qquad\qquad\qquad\qquad de 20XX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Dedicatoria
 
-\chapter*{Dedicatorias}
+\chapter*{Dedications}
 \pagenumbering{Roman} % para comenzar la numeracion de paginas en numeros romanos
 \begin{flushright}
 \textit{Dedicado a \\
@@ -151,40 +151,21 @@ mi familia / mi abuelo / mi abuela}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Agradecimientos
 
-\chapter*{Agradecimientos}
-%\addcontentsline{toc}{chapter}{Agradecimientos} % si queremos que aparezca en el índice
-\markboth{AGRADECIMIENTOS}{AGRADECIMIENTOS} % encabezado 
+\chapter*{Acknowledgements}
+%\addcontentsline{toc}{chapter}{Agradecimientos} % si queremos que aparezca en el ï¿½ndice
+\markboth{AGRADECIMIENTOS}{AGRADECIMIENTOS} % encabezado
 
-Aquí vienen los agradecimientos\ldots Aunque está bien acordarse de la pareja,
-no hay que olvidarse de dar las gracias a tu madre, que aunque a veces no lo 
-parezca disfrutará tanto de tus logros como tú\ldots Además, la pareja quizás
-no sea para siempre, pero tu madre sí.
+Aquï¿½ vienen los agradecimientos\ldots Aunque estï¿½ bien acordarse de la pareja,
+no hay que olvidarse de dar las gracias a tu madre, que aunque a veces no lo
+parezca disfrutarï¿½ tanto de tus logros como tï¿½\ldots Ademï¿½s, la pareja quizï¿½s
+no sea para siempre, pero tu madre sï¿½.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%% Resumen
-
-\chapter*{Resumen}
-%\addcontentsline{toc}{chapter}{Resumen} % si queremos que aparezca en el índice
-\markboth{RESUMEN}{RESUMEN} % encabezado
-
-Aquí viene un resumen del proyecto. Ha de constar de tres o cuatro párrafos,
-donde se presente de manera clara y concisa de qué va el proyecto. Han
-de quedar respondidas las siguientes preguntas:
-
-\begin{itemize}
-  \item ¿De qué va este proyecto? ¿Cuál es su objetivo principal?
-  \item ¿Cómo se ha realizado? ¿Qué tecnologías están involucradas?
-  \item ¿En qué contexto se ha realizado el proyecto? ¿Es un proyecto
-dentro de un marco general?
-\end{itemize}
-
-Lo mejor es escribir el resumen al final.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%% Resumen en inglés
+%%%% Resumen en inglï¿½s
 
 \chapter*{Summary}
-%\addcontentsline{toc}{chapter}{Summary} % si queremos que aparezca en el índice
+%\addcontentsline{toc}{chapter}{Summary} % si queremos que aparezca en el ï¿½ndice
 \markboth{SUMMARY}{SUMMARY} % encabezado
 
 Here comes a translation of the ``Resumen'' into English. Please, double check
@@ -194,21 +175,44 @@ just before submitting.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Resumen
+
+\chapter*{Resumen}
+%\addcontentsline{toc}{chapter}{Resumen} % si queremos que aparezca en el ï¿½ndice
+\markboth{RESUMEN}{RESUMEN} % encabezado
+
+Aquï¿½ viene un resumen del proyecto. Ha de constar de tres o cuatro pï¿½rrafos,
+donde se presente de manera clara y concisa de quï¿½ va el proyecto. Han
+de quedar respondidas las siguientes preguntas:
+
+\begin{itemize}
+  \item ï¿½De quï¿½ va este proyecto? ï¿½Cuï¿½l es su objetivo principal?
+  \item ï¿½Cï¿½mo se ha realizado? ï¿½Quï¿½ tecnologï¿½as estï¿½n involucradas?
+  \item ï¿½En quï¿½ contexto se ha realizado el proyecto? ï¿½Es un proyecto
+dentro de un marco general?
+\end{itemize}
+
+Lo mejor es escribir el resumen al final.
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ÍNDICES %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ï¿½NDICES %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Las buenas noticias es que los índices se generan automáticamente.
-% Lo único que tienes que hacer es elegir cuáles quieren que se generen,
-% y comentar/descomentar esa instrucción de LaTeX.
+% Las buenas noticias es que los ï¿½ndices se generan automï¿½ticamente.
+% Lo ï¿½nico que tienes que hacer es elegir cuï¿½les quieren que se generen,
+% y comentar/descomentar esa instrucciï¿½n de LaTeX.
 
-%%%% Índice de contenidos
-\tableofcontents 
-%%%% Índice de figuras
+%%%% ï¿½ndice de contenidos
+\tableofcontents
+%%%% ï¿½ndice de figuras
 \cleardoublepage
 %\addcontentsline{toc}{chapter}{Lista de figuras} % para que aparezca en el indice de contenidos
 \listoffigures % indice de figuras
-%%%% Índice de tablas
+%%%% ï¿½ndice de tablas
 %\cleardoublepage
 %\addcontentsline{toc}{chapter}{Lista de tablas} % para que aparezca en el indice de contenidos
 %\listoftables % indice de tablas
@@ -216,81 +220,34 @@ just before submitting.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% INTRODUCCIÓN %
+% INTRODUCCIï¿½N %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cleardoublepage
-\chapter{Introducción}
+\chapter{Introduction}
 \label{sec:intro} % etiqueta para poder referenciar luego en el texto con ~\ref{sec:intro}
-\pagenumbering{arabic} % para empezar la numeración de página con números
+\pagenumbering{arabic} % para empezar la numeraciï¿½n de pï¿½gina con nï¿½meros
 
-En este capítulo se introduce el proyeto. Debería tener información general sobre 
-el mismo, dando la información sobre el contexto en el que se ha desarrollado.
+% En este capï¿½tulo se introduce el proyeto. Deberï¿½a tener informaciï¿½n general sobre
+% el mismo, dando la informaciï¿½n sobre el contexto en el que se ha desarrollado.
 
-No te olvides de echarle un ojo a la página con los cinco errores de escritura más frecuentes\footnote{\url{http://www.tallerdeescritores.com/errores-de-escritura-frecuentes}}.
+% No te olvides de echarle un ojo a la pï¿½gina con los cinco errores de escritura mï¿½s frecuentes\footnote{\url{http://www.tallerdeescritores.com/errores-de-escritura-frecuentes}}.
 
-\section{}
+
+
+\section{Free/Libre/Open-Source Software}
 \label{sec:}
 
-\subsection{Estilo}
-\label{subsec:estilo}
+\section{Motivation}
+\label{sec:}
 
-Sobre el uso de las comas\footnote{\url{http://narrativabreve.com/2015/02/opiniones-de-un-corrector-de-estilo-11-recetas-para-escribir-correctamente-la-coma.html}}
 
- \begin{figure}
-    \centering
-    \includegraphics[bb=0 0 800 600, width=12cm, keepaspectratio]{img/foro1}
-    \caption{Página con enlaces a hilos}
-    \label{figura:foro_hilos}
- \end{figure}
-
-{\footnotesize
-\begin{verbatim}
-    From gaurav at gold-solutions.co.uk  Fri Jan 14 14:51:11 2005
-    From: gaurav at gold-solutions.co.uk (gaurav_gold)
-    Date: Fri Jan 14 19:25:51 2005
-    Subject: [Mailman-Users] mailman issues
-    Message-ID: <003c01c4fa40$1d99b4c0$94592252@gaurav7klgnyif>
-
-    Dear Sir/Madam,
-    How can people reply to the mailing list?  How do i turn off
-    this feature? How can i also enable a feature where if someone
-    replies the newsletter the email gets deleted?
-    Thanks
-
-    From msapiro at value.net  Fri Jan 14 19:48:51 2005
-    From: msapiro at value.net (Mark Sapiro)
-    Date: Fri Jan 14 19:49:04 2005
-    Subject: [Mailman-Users] mailman issues
-    In-Reply-To: <003c01c4fa40$1d99b4c0$94592252@gaurav7klgnyif>
-    Message-ID: <PC173020050114104851057801b04d55@msapiro>
-
-    gaurav_gold wrote:
-    >How can people reply to the mailing list?  How do i turn off
-    this feature? How can i also enable a feature where if someone
-    replies the newsletter the email gets deleted?
-
-    See the FAQ
-    >Mailman FAQ: http://www.python.org/cgi-bin/faqw-mm.py
-    article 3.11
-\end{verbatim}
-}
-
-\section{Estructura de la memoria}
+\section{Structure of the dissertation}
 \label{sec:estructura}
 
-En esta sección se debería introducir la esctura de la memoria. Así:
+During this dissertation I'm going to explain the diffferent objectives, the technology I've used and explain an use case with the limitations and issues we encountered, and how did we managed to solve them.
 
-\begin{itemize}
-  \item En el primer capítulo se hace una intro al proyecto.
-  
-  \item En el capítulo~\ref{chap:objetivos} se muestran los objetivos del proyecto.
-  
-  \item A continuación se presenta el estado del arte.
-  
-  \item \ldots
-\end{itemize}
-
+And some results and conclusions, also future work.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -299,18 +256,18 @@ En esta sección se debería introducir la esctura de la memoria. Así:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cleardoublepage
-\chapter{Objetivos}
+\chapter{Objectives}
 \label{chap:objetivos}
 
-\section{Objetivo general}
+\section{General objectives}
 label{sec:objetivo-general}
 
 
-\section{Objetivos específicos}
+\section{Specific objectives}
 label{sec:objetivos-especificos}
 
 
-\section{Planificación temporal}
+\section{Time planning}
 label{sec:planificacion-temporal}
 
 
@@ -323,16 +280,16 @@ label{sec:planificacion-temporal}
 \cleardoublepage
 \chapter{State of the art}
 
-%Descripción de las tecnologías que utilizas en tu trabajo. Con dos o tres párrafos por cada tecnología, %vale.
-%Puedes citar libros, como el de Bonabeau et al. sobre procesos estigmérgicos~\cite{bonabeau:_swarm}.
- % Nota que el ~ añade un espacio en blanco, pero no deja que exista un salto de línea. Imprescindible ponerlo para las citas.
+%Descripciï¿½n de las tecnologï¿½as que utilizas en tu trabajo. Con dos o tres pï¿½rrafos por cada tecnologï¿½a, %vale.
+%Puedes citar libros, como el de Bonabeau et al. sobre procesos estigmï¿½rgicos~\cite{bonabeau:_swarm}.
+ % Nota que el ~ aï¿½ade un espacio en blanco, pero no deja que exista un salto de lï¿½nea. Imprescindible ponerlo para las citas.
 
-%También existe la posibilidad de poner notas al pie de página, por ejemplo, 
-%una para indicarte que visite la página de 
+%Tambiï¿½n existe la posibilidad de poner notas al pie de pï¿½gina, por ejemplo,
+%una para indicarte que visite la pï¿½gina de
 %LibreSoft\footnote{\url{http://www.libresoft.es}}.
 
 
-\section{Python} 
+\section{Python}
 \label{sec:python}
 Python\footnote{\url{https://www.python.org/}} is an interpreted, object-oriented, high-level, open source programming language for general-purpose programming created by Guido van Rossum in 1991 (Nowadays, the most recent version is 3.6, from December, 2016).\ Its design is focused on code readability and clear syntax, making possible to program using fewer lines of code comparing to other programming languages as C++ or Ada.\
 %Python is widely used over the world, for example: Numeric and Scientific Programming, ... \\
@@ -341,6 +298,9 @@ Python features a large standard library, which includes many different tasks fr
 Other remarkable features are portability, as Python interpreters are available for many operating systems; and the component integration, as Python scripts can easily communicate with other parts of an application or code, like C++ libraries, MySQL databases, etc.\\
 %As a downside to Python is that its execution speed may not always be as fast as a compiled, lower-level
 %slanguages such as C and C++.\\
+
+\subsection{PyGithub module}
+\label{sec:pygithub}
 
 \section{Git}
 \label{sec:git}
@@ -362,29 +322,26 @@ For each release, you can download a MySQL (full database, using one CSV file pe
 \section{Perceval}
 \label{sec:perceval}
 
-\section{PyGithub module}
-\label{sec:pygithub} 
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% DISEÑO E IMPLEMENTACIÓN %
+% DISEï¿½O E IMPLEMENTACIï¿½N %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cleardoublepage
-\chapter{Diseño e implementación}
+\chapter{Design and implementation}
 
-\section{Arquitectura general} 
+\section{General architechture}
 \label{sec:arquitectura}
 
-figura~\ref{fig:arquitectura}.
+\section{Preliminary phase}
+\label{sec:fase-preliminar}
 
-\begin{figure}
-  \centering
-  \includegraphics[width=9cm, keepaspectratio]{img/arquitectura}
-  \caption{Estructura del parser básico}
-  \label{fig:arquitectura}
-\end{figure}
+\section{Data extraction}
+\label{sec:extraccion-datos}
+
+\section{Data analysis}
+\label{sec:analisis-datos}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -393,9 +350,10 @@ figura~\ref{fig:arquitectura}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cleardoublepage
-\chapter{Resultados}
+\chapter{Results}
 
-
+\section{Case of study: UML}
+\label{sec:caso-estudio-uml}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -404,43 +362,43 @@ figura~\ref{fig:arquitectura}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cleardoublepage
-\chapter{Conclusiones}
+\chapter{Conclusions}
 \label{chap:conclusiones}
 
 
-\section{Consecución de objetivos}
+\section{Achieved objectives}
 \label{sec:consecucion-objetivos}
 
-Esta sección es la sección espejo de las dos primeras del capítulo de objetivos,
-donde se planteaba el objetivo general y se elaboraban los específicos.
+Esta secciï¿½n es la secciï¿½n espejo de las dos primeras del capï¿½tulo de objetivos,
+donde se planteaba el objetivo general y se elaboraban los especï¿½ficos.
 
-Es aquí donde hay que debatir qué se ha conseguido y qué no. Cuando algo no
-se ha conseguido, se ha de justificar, en términos de qué problemas se han
-encontrado y qué medidas se han tomado para mitigar esos problemas.
+Es aquï¿½ donde hay que debatir quï¿½ se ha conseguido y quï¿½ no. Cuando algo no
+se ha conseguido, se ha de justificar, en tï¿½rminos de quï¿½ problemas se han
+encontrado y quï¿½ medidas se han tomado para mitigar esos problemas.
 
 
-\section{Aplicación de lo aprendido}
+\section{Knowledge application}
 \label{sec:aplicacion}
 
-Aquí viene lo que has aprendido durante el Grado/Máster y que has aplicado
-en el TFG/TFM. Una buena idea es poner las asignaturas más relacionadas y
-comentar en un párrafo los conocimientos y habilidades puestos en práctica.
+Aquï¿½ viene lo que has aprendido durante el Grado/Mï¿½ster y que has aplicado
+en el TFG/TFM. Una buena idea es poner las asignaturas mï¿½s relacionadas y
+comentar en un pï¿½rrafo los conocimientos y habilidades puestos en prï¿½ctica.
 
-\subsection{Asignaturas relacionadas}
+\subsection{Related courses}
 \begin{itemize}
-  \item Informática 1
-  \item Informática 2 
+  \item Informï¿½tica 1
+  \item Informï¿½tica 2
   \item Arquitectura de Internet
-  \item Sistemas Telemáticos para medios audiovisuales
-  \item Protocolos de Transmisión de Audio y Video en Internet
-  \item Laboratorio de Tecnologías Audiovisuales en la Web
+  \item Sistemas Telemï¿½ticos para medios audiovisuales
+  \item Protocolos de Transmisiï¿½n de Audio y Video en Internet
+  \item Laboratorio de Tecnologï¿½as Audiovisuales en la Web
 \end{itemize}
 
 
-\section{Lecciones aprendidas}
+\section{Learning outcomes}
 \label{sec:lecciones_aprendidas}
 
-Aquí viene lo que has aprendido en el Trabajo Fin de Grado/Máster.
+Aquï¿½ viene lo que has aprendido en el Trabajo Fin de Grado/Mï¿½ster.
 
 \begin{enumerate}
   \item a
@@ -448,35 +406,36 @@ Aquí viene lo que has aprendido en el Trabajo Fin de Grado/Máster.
 \end{enumerate}
 
 
-\section{Trabajos futuros}
+\section{Future work}
 \label{sec:trabajos_futuros}
 
-Ningún software se termina, así que aquí vienen ideas y funcionalidades
-que estaría bien tener implementadas en el futuro.
+Ningï¿½n software se termina, asï¿½ que aquï¿½ vienen ideas y funcionalidades
+que estarï¿½a bien tener implementadas en el futuro.
 
 Es un apartado que sirve para dar ideas de cara a futuros TFGs/TFMs.
 
 
-\section{Valoración personal}
+\section{Personal assessment}
 \label{sec:valoracion}
 
 Finalmente (y de manera opcional), hay gente que se anima a dar su punto de
-vista sobre el proyecto, lo que ha aprendido, lo que le gustaría haber aprendido,
-las tecnologías utilizadas y demás.
+vista sobre el proyecto, lo que ha aprendido, lo que le gustarï¿½a haber aprendido,
+las tecnologï¿½as utilizadas y demï¿½s.
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% APÉNDICE(S) %
+% APï¿½NDICE(S) %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cleardoublepage
 \appendix
-\chapter{Manual de usuario}
+\chapter{User manual}
 \label{app:manual}
 
-
+\chapter{Published papers}
+\label{app:papers}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BIBLIOGRAFIA %
@@ -488,11 +447,11 @@ las tecnologías utilizadas y demás.
 % para incluir las citas en la memoria
 \bibliographystyle{abbrv}
 \bibliography{memoria}  % memoria.bib es el nombre del fichero que contiene
-% las referencias bibliográficas. Abre ese fichero y mira el formato que tiene,
+% las referencias bibliogrï¿½ficas. Abre ese fichero y mira el formato que tiene,
 % que se conoce como BibTeX. Hay muchos sitios que exportan referencias en
 % formato BibTeX. Prueba a buscar en http://scholar.google.com por referencias
-% y verás que lo puedes hacer de manera sencilla.
-% Más información: 
+% y verï¿½s que lo puedes hacer de manera sencilla.
+% Mï¿½s informaciï¿½n:
 % http://texblog.org/2014/04/22/using-google-scholar-to-download-bibtex-citations/
 
 \end{document}
