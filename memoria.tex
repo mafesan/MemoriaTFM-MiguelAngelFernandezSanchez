@@ -30,6 +30,7 @@
 \usepackage{float}  %% H para posicionar figuras
 \usepackage[nottoc, notlot, notlof, notindex]{tocbibind} %% Opciones de �ndice
 \usepackage{latexsym}  %% Logo LaTeX
+\usepackage{csquotes}  %% Paquete para citas (displayquote)
 
 \title{Memoria del Proyecto}
 \author{Miguel Ángel Fernández Sánchez}
@@ -66,7 +67,7 @@ GRADO INGENIERíA SISTEMAS AUDIOVISUALES Y MULTIMEDIA
 \vspace{0.4cm}
 
 \large
-Curso Acad�mico 2016/2017
+Curso Acad�mico 2017/2018
 
 \vspace{0.8cm}
 
@@ -103,17 +104,17 @@ Tutor : Dr. Gregorio Robles
 
 \vspace{1cm}
 \large
-Herramienta para la extracción y el análisis de proyectos FLOSS en GitHub (provisional)
+Herramienta para la extraccion y el analisis de proyectos FLOSS en GitHub (provisional)
 
 \vspace{1cm}
 \large
-\textbf{Autor :} Miguel Ángel Fernández Sánchez \\
+\textbf{Autor :} Miguel Angel Fernandez Sanchez \\
 \textbf{Tutor :} Dr. Gregorio Robles Martínez
 
 \end{center}
 
 \vspace{1cm}
-La defensa del presente Trabajo Fin de Grado se realizó el día \qquad$\;\,$ de \qquad\qquad\qquad\qquad \newline de 20XX, siendo calificada por el siguiente tribunal:
+La defensa del presente Trabajo Fin de Grado se realizo el dia \qquad$\;\,$ de \qquad\qquad\qquad\qquad \newline de 20XX, siendo calificada por el siguiente tribunal:
 
 
 \vspace{0.5cm}
@@ -127,7 +128,7 @@ La defensa del presente Trabajo Fin de Grado se realizó el día \qquad$\;\,$ de
 
 
 \vspace{1.2cm}
-y habiendo obtenido la siguiente calificación:
+y habiendo obtenido la siguiente calificacion:
 
 \vspace{1cm}
 \textbf{Calificaci�n:}
@@ -194,9 +195,6 @@ dentro de un marco general?
 
 Lo mejor es escribir el resumen al final.
 
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % �NDICES %
@@ -227,34 +225,98 @@ Lo mejor es escribir el resumen al final.
 \chapter{Introduction}
 \label{sec:intro} % etiqueta para poder referenciar luego en el texto con ~\ref{sec:intro}
 \pagenumbering{arabic} % para empezar la numeraci�n de p�gina con n�meros
-
 % En este cap�tulo se introduce el proyeto. Deber�a tener informaci�n general sobre
-% el mismo, dando la informaci�n sobre el contexto en el que se ha desarrollado.
-
+% el mismo, dando la informaci�n sobre el contexto en el �que se ha desarrollado.
 % No te olvides de echarle un ojo a la p�gina con los cinco errores de escritura m�s frecuentes\footnote{\url{http://www.tallerdeescritores.com/errores-de-escritura-frecuentes}}.
-
-
+% #TODO Ask for resources to back this data:
+The way people develop software has evolved during these years: there is an extended social perception of developers to
+be ingoing, solitary people, with very few social skills. But this sense is outdated: the paradigm has changed,
+as coding has become almost a social activity. Developers who work collaborating with others produce better software [], as they
+are continuosly reading other developers' code, getting feedback about their contributions and consequently
+widening their knowledge with new procedures and ideas. It turns out that this is how most of the software is produced nowadays,
+so it is very difficult to become a succesful developer without having good social skills.\\
+If we think on social, virtual interactions among people, the first thing that probably come to our minds will be
+"Social networks". It is clear that those so-called social networks have produced a huge impact among a big part of the
+population; changing daily habits, affecting real-life relationships, etc. As individuals, we share personal information every
+day using interactive applications which allows us to participate somehow into a social network. As a result of handle these
+applications, we make specific interactions as users. \\
+Let's see some examples. If we focus on Twitter, some of these interactions can be:
+\begin{itemize}
+    \item Follow a Twitter user.
+    \item Retweet a tweet (propagate a message among all followers of the person who retwitted).
+    \item Use a hashtag (a word preceeded by a hash \# to label or classify a message into a topic).
+\end{itemize}
+Whereas on Facebook, we have other kinds of interactions:
+\begin{itemize}
+    \item React to a post.
+    \item Tag a person in a picture.
+    \item Write a comment on someone's profile.
+\end{itemize}
+Talking about coding, in the last few years we've seen how this social trend came to software with the
+emergence of social coding platforms, such as GitHub, BitBucket, GitLab, etc. Social interactions in these platforms are about how
+software is developed and maintained but also how contributions are managed (code review, continuous ingratation, etc.).\\
+So for example, on GitHub\footnote{\url{https://github.com}} we can find interactions like:
+\begin{itemize}
+    \item Fork a repository (create an editable copy of a project).
+    \item See changes from last commit (difference between most recent version and last version of the project).
+    \item Watch the contributors of a repository.
+    \item Submit a Pull Request (proposal to merge changes in a project).
+\end{itemize}
+These interactions that were mentioned, no matter their source, leaves traces which remain stored in some computer on Earth.
+This means we can obtain these data (though not all of it is publicly available) through the Internet;
+and once this information is retrieved, we can analyse it and extract conclusions about it.
 
 \section{Free/Libre/Open-Source Software}
-\label{sec:}
+\label{sec:floss-definition}
+In this project we are going to talk about software and its development process, focused on FLOSS (Free/Libre, Open-source
+software) projects, so it is inevitable to describe briefly what is this about.\\
+(Personal reasons, importance of FLS),(Libre software definition)\\\\
+According to the \textbf{Free Software Foundation}\footnote{https://www.gnu.org/philosophy/free-sw.html}:
+\begin{displayquote}
+    Free software means software that respects users' freedom and community. Roughly, it means that the users have the freedom
+    to run, copy, distribute, study, change and improve the software. Thus, free software is a matter of liberty, not price.\\
+    \ldots\\
+    A program is free software if the program's users have the four essential freedoms:
+       \begin{itemize}
+           \item The freedom to run the program as you wish, for any purpose (freedom 0).
+           \item The freedom to study how the program works, and change it so it does your computing as you wish (freedom 1).
+           \item The freedom to redistribute copies (freedom 2).
+           \item The freedom to distribute copies of your modified versions to others (freedom 3).
+       \end{itemize}
+    A program is free software if it gives users adequately all of these freedoms. Otherwise, it is nonfree.
+\end{displayquote}
+(Open source definition)
+
+%Example code: \begin{verbatim}
 
 \section{Motivation}
-\label{sec:}
-
+\label{sec:motivation}
+I was working as a Researcher Assistant in GSyC/LibreSoft\footnote{\url{http://www.libresoft.es}} department when I started to
+deepen into Free/Libre software and the world of metrics. Then I had the great luck of start participating in a study that
+Gregorio Robles was doing with researchers from Chalmers University in Gothenburg, Sweden. The main aim of their research was to
+learn how UML models are used in public FLOSS projects (particularly, projects hosted on GitHub), as most of the previous studies
+focused only on its industrial use.\\
+Given the large size of GitHub as a platform and its access limitations, this research motivated to build a tool which allows to
+extract data from all the existing repositories on GitHub, then filter those repositories which may include at least one
+UML model and finally analyse more in-depth the set of projects that meet this condition.\\\\
+Since early stages of this research, this tool was designed and built using a modular structure, thought to be re-used
+and adaptable (according to the kind of files that have to be found and the way GitHub provides data) hoping to be useful
+for other researches or any other person who might be interested on extract this information. Besides, the scale of this project
+presented to me as a personal challenge which provided me the opportunity to extend my knowledge and obtain a valuable point of
+view about research and large-scope projects.
 
 \section{Structure of the dissertation}
 \label{sec:estructura}
 
-During this dissertation I'm going to explain the diffferent objectives, the technology I've used and explain an use case with the limitations and issues we encountered, and how did we managed to solve them.
-
-And some results and conclusions, also future work.
+% During this dissertation I'm going to explain the different objectives, the technology I've used and explain an use case with
+% the limitations and issues which arose during this project, and how they were solved.
+% And some results and conclusions, also future work.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % OBJETIVOS %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \cleardoublepage
 \chapter{Objectives}
 \label{chap:objetivos}
