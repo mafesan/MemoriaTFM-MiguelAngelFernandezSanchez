@@ -3,7 +3,7 @@
 %%
 %% Por Gregorio Robles <grex arroba gsyc.urjc.es>
 %%     Grupo de Sistemas y Comunicaciones
-%%     Escuela Tecnica Superior de Ingenieros de Telecomunicación
+%%     Escuela Técnica Superior de Ingenieros de Telecomunicación
 %%     Universidad Rey Juan Carlos
 %% (muchas ideas tomadas de Internet, colegas del GSyC, antiguos alumnos...
 %%  etc. Muchas gracias a todos)
@@ -270,7 +270,7 @@ Once this information is retrieved, we can analyse it and extract conclusions ab
 
 \section{Free/Libre/Open-Source Software}
 \label{sec:floss-definition}
-In the following sections we are going to talk about software and its development process, focused on \emph{FLOSS} (Free/Libre, Open-source
+In the following sections we are going to talk about software and its development process, focusing on \emph{FLOSS} (Free/Libre, Open-source
 software) projects, so it is inevitable to describe briefly what is this about.
 During my degree, I was fortunate to be taught within \emph{FLOSS} values, as most of my professors plead
 for Free/Libre software as their teaching model, by which I have obtained a distinctive knowledge and perspective as a professional but also as a individual.\\\\\\
@@ -301,7 +301,7 @@ category are small: nearly all free software is open source, and nearly all open
 %Example code: \begin{verbatim}
 \section{Motivation}
 \label{sec:motivation}
-I was working as a Researcher Assistant in GSyC/LibreSoft\footnote{\url{http://www.libresoft.es}} department at Rey Juan Carlos University when I started to
+I was working as a Researcher Assistant in \emph{GSyC/LibreSoft}\footnote{\url{http://www.libresoft.es}} department at Rey Juan Carlos University when I started to
 deepen into Free/Libre software and the world of metrics. Then I had the great luck of start participating in a study that
 Dr. Gregorio Robles was doing with researchers from Chalmers University in Gothenburg, Sweden. The main aim of their research was to
 learn how \emph{UML} models\footnote{\url{http://uml.org/what-is-uml.htm}} are used in public \emph{FLOSS} projects (particularly, projects hosted on GitHub),
@@ -310,7 +310,7 @@ Given the large size of GitHub as a platform and its access limitations, this re
 extract data from all the existing repositories on GitHub, then filter those repositories which may include at least one
 \emph{UML} model and finally analyze more in-depth the set of projects that meet this condition.\\\\
 Since early stages of this research, this tool was designed and built using a modular structure, thought to be re-used
-and adaptable (according to the kind of files that have to be found and the way GitHub provides data) hoping to be useful
+and adaptable to any kind of files that have to be found but also the way GitHub provides data; hoping to be useful
 for other researches or any other person who might be interested on extract this information. Besides, the scale of this project
 presented to me as a personal challenge which provided me the opportunity to extend my knowledge and obtain a valuable point of
 view about research and large-scope projects.
@@ -349,21 +349,13 @@ label{sec:planificacion-temporal}
 
 \cleardoublepage
 \chapter{State of the art}
-
-%Descripci�n de las tecnolog�as que utilizas en tu trabajo. Con dos o tres p�rrafos por cada tecnolog�a, %vale.
 %Puedes citar libros, como el de Bonabeau et al. sobre procesos estigm�rgicos~\cite{bonabeau:_swarm}.
  % Nota que el ~ a�ade un espacio en blanco, pero no deja que exista un salto de l�nea. Imprescindible ponerlo para las citas.
-
-%Tambi�n existe la posibilidad de poner notas al pie de p�gina, por ejemplo,
-%una para indicarte que visite la p�gina de
-%LibreSoft\footnote{\url{http://www.libresoft.es}}.
-
-
 \section{Python}
 \label{sec:python}
 Python\footnote{\url{https://www.python.org/}} is an interpreted, object-oriented, high-level, open source
 programming language for general-purpose programming created by Guido van Rossum in 1991 (Nowadays, the most
-recent version is 3.6, from December, 2016).\ Its design is focused on code readability and clear syntax, making
+recent version is 3.6.4, from December, 2017).\ Its design is focused on code readability and clear syntax, making
 possible to program using fewer lines of code comparing to other programming languages as C++ or Ada.\
 %Python is widely used over the world, for example: Numeric and Scientific Programming, ... \\
 
@@ -375,19 +367,37 @@ like C++ libraries, MySQL databases, etc.\\
 %As a downside to Python is that its execution speed may not always be as fast as a compiled, lower-level
 %slanguages such as C and C++.\\
 
-\subsection{PyGithub module}
-\label{sec:pygithub}
-
 \section{Git}
 \label{sec:git}
-Git is an open source version control system originally developed in 2005 by Linus Torvalds. \
-It's by far, the most used VSC in the world\footnote{\url{http://stackoverflow.com/research/developer-survey-2015}}
-
-\section{Github}
+%source: https://git-scm.com/book/en/v2/Getting-Started-Git-Basics
+\emph{Git} is an open-source Version Control System (\emph{VCS}), originally developed in 2005 by Linus Torvalds.\
+As any \emph{VCS}, \emph{Git} is a system that records changes to a file or set of files over time
+so that you can recall specific versions later.
+It's by far, the most used \emph{VCS} in the world\footnote{\url{http://stackoverflow.com/research/developer-survey-2015}}.\\\\
+The major difference between \emph{Git} and any other VCS is the way \emph{Git} thinks about its data.
+Conceptually, most other systems store information as a list of file-based changes. Other systems like \textit{Subversion},
+\textit{Perforce}, \textit{Bazaar}, etc. think of the information they store as a set of files and the changes made to each
+file over time.\\
+Instead, \emph{Git} thinks of its data more like a series of snapshots of a miniature filesystem.
+With \emph{Git}, every time you commit or save the state of your project, \emph{Git} basically takes a picture of what all
+your files look like at that moment and stores a reference to that snapshot. To be efficient, if files have not changed,
+\emph{Git} doesn't store the file again, just a link to the previous identical file it has already stored.
+\section{GitHub}
 \label{sec:github}
-
-\subsection{Github API}
-
+\emph{GitHub} is a \emph{Git} repository hosting service, but it adds many of its own features. While \emph{Git} is a command
+line tool, \emph{GitHub} provides a Web-based graphical interface. It also provides access control and several collaboration features,
+such as a wikis and basic task management tools for every project.\\
+Each user on \emph{GitHub} has their own profile that acts like a resume of sorts, showing your past work and contributions to
+other projects via \textit{pull requests}. Project revisions can be discussed publicly, so a mass of experts can contribute knowledge
+and collaborate to advance a project forward.
+\subsection{GitHub API}
+\label{sec_gh-api}
+%Should this deffinition be within a Glossary?
+An \emph{API} (\textit{Application Programming Interface}) is a set of subroutine definitions, protocols, and tools for building
+application software. In general terms, it is a set of clearly defined methods of communication between various software components.\\\\
+\emph{GitHub API} allows to access GitHub data, since own \emph{GitHub} types like \textit{pull-requests}, \textit{issues} or \textit{forks}
+to \emph{Git}-related data, such as \textit{commits}, \textit{branches} or \textit{trees} using \textit{HTTP} requests and
+returning information using \emph{JSON}(\textit{JavaScript Object Notation}) format.
 \section{GH Torrent}
 \label{sec:ghtorrent}
 GH Torrent is a project based on create a scalable, queriable, offline mirror of data offered through the Github REST API.\\
@@ -396,72 +406,49 @@ For each event, it retrieves its contents and their dependencies, exhaustively. 
 database, while also extracting their structure in a MySQL database.\
 For each release, you can download a MySQL (full database, using one CSV file per table) or a MongoDB dump (incremental database).\\
 
-
-\section{Perceval}
-\label{sec:perceval}
-
-
+\section{GrimoireLab}
+\label{sec:grimoire}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DISE�O E IMPLEMENTACI�N %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \cleardoublepage
 \chapter{Design and implementation}
-
 \section{General architechture}
 \label{sec:arquitectura}
-
 \section{Preliminary phase}
 \label{sec:fase-preliminar}
-
 \section{Data extraction}
 \label{sec:extraccion-datos}
-
 \section{Data analysis}
 \label{sec:analisis-datos}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % RESULTADOS %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \cleardoublepage
 \chapter{Results}
-
 \section{Case of study: UML}
 \label{sec:caso-estudio-uml}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CONCLUSIONES %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \cleardoublepage
 \chapter{Conclusions}
 \label{chap:conclusiones}
-
-
 \section{Achieved objectives}
 \label{sec:consecucion-objetivos}
-
 Esta secci�n es la secci�n espejo de las dos primeras del cap�tulo de objetivos,
 donde se planteaba el objetivo general y se elaboraban los espec�ficos.
-
 Es aqu� donde hay que debatir qu� se ha conseguido y qu� no. Cuando algo no
 se ha conseguido, se ha de justificar, en t�rminos de qu� problemas se han
 encontrado y qu� medidas se han tomado para mitigar esos problemas.
-
-
 \section{Knowledge application}
 \label{sec:aplicacion}
-
 Aqu� viene lo que has aprendido durante el Grado/M�ster y que has aplicado
 en el TFG/TFM. Una buena idea es poner las asignaturas m�s relacionadas y
 comentar en un p�rrafo los conocimientos y habilidades puestos en pr�ctica.
-
 \subsection{Related courses}
 \begin{itemize}
   \item Inform�tica 1
@@ -471,56 +458,38 @@ comentar en un p�rrafo los conocimientos y habilidades puestos en pr�ctica.
   \item Protocolos de Transmisi�n de Audio y Video en Internet
   \item Laboratorio de Tecnolog�as Audiovisuales en la Web
 \end{itemize}
-
-
 \section{Learning outcomes}
 \label{sec:lecciones_aprendidas}
-
 Aqu� viene lo que has aprendido en el Trabajo Fin de Grado/M�ster.
-
 \begin{enumerate}
   \item a
   \item b
 \end{enumerate}
-
-
 \section{Future work}
 \label{sec:trabajos_futuros}
-
 Ning�n software se termina, as� que aqu� vienen ideas y funcionalidades
 que estar�a bien tener implementadas en el futuro.
-
 Es un apartado que sirve para dar ideas de cara a futuros TFGs/TFMs.
-
-
 \section{Personal assessment}
 \label{sec:valoracion}
-
 Finalmente (y de manera opcional), hay gente que se anima a dar su punto de
 vista sobre el proyecto, lo que ha aprendido, lo que le gustar�a haber aprendido,
 las tecnolog�as utilizadas y dem�s.
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % AP�NDICE(S) %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \cleardoublepage
 \appendix
 \chapter{User manual}
 \label{app:manual}
-
 \chapter{Published papers}
 \label{app:papers}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BIBLIOGRAFIA %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \cleardoublepage
-
 % Las siguientes dos instrucciones es todo lo que necesitas
 % para incluir las citas en la memoria
 \bibliographystyle{abbrv}
@@ -531,5 +500,4 @@ las tecnolog�as utilizadas y dem�s.
 % y ver�s que lo puedes hacer de manera sencilla.
 % M�s informaci�n:
 % http://texblog.org/2014/04/22/using-google-scholar-to-download-bibtex-citations/
-
 \end{document}
