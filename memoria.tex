@@ -3,7 +3,7 @@
 %%
 %% Por Gregorio Robles <grex arroba gsyc.urjc.es>
 %%     Grupo de Sistemas y Comunicaciones
-%%     Escuela Técnica Superior de Ingenieros de Telecomunicación
+%%     Escuela Tecnica Superior de Ingenieros de Telecomunicación
 %%     Universidad Rey Juan Carlos
 %% (muchas ideas tomadas de Internet, colegas del GSyC, antiguos alumnos...
 %%  etc. Muchas gracias a todos)
@@ -23,7 +23,7 @@
 \usepackage[a4paper, left=2.5cm, right=2.5cm, top=3cm, bottom=3cm]{geometry}
 \usepackage{times}
 \usepackage[latin1]{inputenc}
-\usepackage[spanish]{babel} % Comenta esta l�nea si tu memoria es en ingl�s
+%\usepackage[spanish]{babel} % Comenta esta l�nea si tu memoria es en ingl�s
 \usepackage{url}
 %\usepackage[dvipdfm]{graphicx}
 \usepackage{graphicx}
@@ -39,8 +39,8 @@
 
 \begin{document}
 
-\renewcommand{\refname}{Bibliografía}  %% Renombrando
-\renewcommand{\appendixname}{Apéndice}
+%\renewcommand{\refname}{Bibliografía}  %% Renombrando
+%\renewcommand{\appendixname}{Apéndice}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PORTADA
@@ -231,10 +231,10 @@ Lo mejor es escribir el resumen al final.
 % #TODO Ask for resources to back this data:
 The way people develop software has evolved during these years: there is an extended social perception of developers to
 be ingoing, solitary people, with very few social skills. But this sense is outdated: the paradigm has changed,
-as coding has become almost a social activity. Developers who work collaborating with others produce better software [], as they
-are continuosly reading other developers' code, getting feedback about their contributions and consequently
+as coding has become almost a social activity. Developers who work collaborating with others produce better software [resource], as they
+are continuously reading code from other developers, getting feedback about their contributions and consequently
 widening their knowledge with new procedures and ideas. It turns out that this is how most of the software is produced nowadays,
-so it is very difficult to become a succesful developer without having good social skills.\\
+so it is very difficult to become a successful developer without having good social skills.\\
 If we think on social, virtual interactions among people, the first thing that probably come to our minds will be
 "Social networks". It is clear that those so-called social networks have produced a huge impact among a big part of the
 population; changing daily habits, affecting real-life relationships, etc. As individuals, we share personal information every
@@ -243,8 +243,8 @@ applications, we make specific interactions as users. \\
 Let's see some examples. If we focus on Twitter, some of these interactions can be:
 \begin{itemize}
     \item Follow a Twitter user.
-    \item Retweet a tweet (propagate a message among all followers of the person who retwitted).
-    \item Use a hashtag (a word preceeded by a hash \# to label or classify a message into a topic).
+    \item \textit{Retweet} a \textit{tweet} (propagate a message among all followers of the person who retwitted).
+    \item Use a \textit{hashtag} (a word preceded by a hash \# to label or classify a message into a topic).
 \end{itemize}
 Whereas on Facebook, we have other kinds of interactions:
 \begin{itemize}
@@ -253,27 +253,30 @@ Whereas on Facebook, we have other kinds of interactions:
     \item Write a comment on someone's profile.
 \end{itemize}
 Talking about coding, in the last few years we've seen how this social trend came to software with the
-emergence of social coding platforms, such as GitHub, BitBucket, GitLab, etc. Social interactions in these platforms are about how
-software is developed and maintained but also how contributions are managed (code review, continuous ingratation, etc.).\\
+emergence of social coding platforms, such as GitHub, BitBucket, GitLab, etc.\\
+Social interactions in these platforms are about how software is developed and maintained but also how
+contributions are managed (code review, continuous integration, etc.).\\
 So for example, on GitHub\footnote{\url{https://github.com}} we can find interactions like:
 \begin{itemize}
-    \item Fork a repository (create an editable copy of a project).
-    \item See changes from last commit (difference between most recent version and last version of the project).
+    \item \textit{Fork} a repository (create an editable copy of a project).
+    \item See changes from last \textit{commit} (difference between most recent version and last version of the project).
     \item Watch the contributors of a repository.
-    \item Submit a Pull Request (proposal to merge changes in a project).
+    \item Submit a \textit{Pull Request} (proposal to merge changes in a project).
 \end{itemize}
-These interactions that were mentioned, no matter their source, leaves traces which remain stored in some computer on Earth.
-This means we can obtain these data (though not all of it is publicly available) through the Internet;
-and once this information is retrieved, we can analyse it and extract conclusions about it.
+These interactions that were mentioned, no matter their source, leave traces which remain stored in some computer on Earth.
+This means we can obtain these data (though not all of it is publicly available) through the Internet using an \emph{API}
+(\textit{Application programming interface}).\\
+Once this information is retrieved, we can analyse it and extract conclusions about it.
 
 \section{Free/Libre/Open-Source Software}
 \label{sec:floss-definition}
-In this project we are going to talk about software and its development process, focused on FLOSS (Free/Libre, Open-source
-software) projects, so it is inevitable to describe briefly what is this about.\\
-(Personal reasons, importance of FLS),(Libre software definition)\\\\
-According to the \textbf{Free Software Foundation}\footnote{https://www.gnu.org/philosophy/free-sw.html}:
+In the following sections we are going to talk about software and its development process, focused on \emph{FLOSS} (Free/Libre, Open-source
+software) projects, so it is inevitable to describe briefly what is this about.
+During my degree, I was fortunate to be taught within \emph{FLOSS} values, as most of my professors plead
+for Free/Libre software as their teaching model, by which I have obtained a distinctive knowledge and perspective as a professional but also as a individual.\\\\\\
+According to the \textbf{Free Software Foundation}\footnote{\url{https://www.gnu.org/philosophy/free-sw.html}}:
 \begin{displayquote}
-    Free software means software that respects users' freedom and community. Roughly, it means that the users have the freedom
+    \emph{Free software} means software that respects users' freedom and community. Roughly, it means that the users have the freedom
     to run, copy, distribute, study, change and improve the software. Thus, free software is a matter of liberty, not price.\\
     \ldots\\
     A program is free software if the program's users have the four essential freedoms:
@@ -283,22 +286,29 @@ According to the \textbf{Free Software Foundation}\footnote{https://www.gnu.org/
            \item The freedom to redistribute copies (freedom 2).
            \item The freedom to distribute copies of your modified versions to others (freedom 3).
        \end{itemize}
-    A program is free software if it gives users adequately all of these freedoms. Otherwise, it is nonfree.
+    A program is free software if it gives users adequately all of these freedoms. Otherwise, it is \textit{nonfree}.
 \end{displayquote}
-(Open source definition)
-
+% #TODO:
+Due to the connotations which the word \emph{Free} has in english language (mentioned before), there is a definition
+for \emph{Open source} software by the \textbf{Open Source Initiative}\footnote{\url{https://opensource.org/osd}} which
+slighly varies from the \emph{FSF} definition. About this difference Richard Stallman, founder of the \emph{FSF}, comments:
+\begin{displayquote}
+The term \emph{open source} software is used by some people to mean more or less the same category as free software.
+It is not exactly the same class of software: they accept some licences that we consider too restrictive,
+and there are free software licences they have not accepted. However, the differences in extension of the
+category are small: nearly all free software is open source, and nearly all open source software is free.
+\end{displayquote}
 %Example code: \begin{verbatim}
-
 \section{Motivation}
 \label{sec:motivation}
-I was working as a Researcher Assistant in GSyC/LibreSoft\footnote{\url{http://www.libresoft.es}} department when I started to
+I was working as a Researcher Assistant in GSyC/LibreSoft\footnote{\url{http://www.libresoft.es}} department at Rey Juan Carlos University when I started to
 deepen into Free/Libre software and the world of metrics. Then I had the great luck of start participating in a study that
-Gregorio Robles was doing with researchers from Chalmers University in Gothenburg, Sweden. The main aim of their research was to
-learn how UML models are used in public FLOSS projects (particularly, projects hosted on GitHub), as most of the previous studies
-focused only on its industrial use.\\
+Dr. Gregorio Robles was doing with researchers from Chalmers University in Gothenburg, Sweden. The main aim of their research was to
+learn how \emph{UML} models\footnote{\url{http://uml.org/what-is-uml.htm}} are used in public \emph{FLOSS} projects (particularly, projects hosted on GitHub),
+as most of the previous studies focused only on its industrial use.\\
 Given the large size of GitHub as a platform and its access limitations, this research motivated to build a tool which allows to
 extract data from all the existing repositories on GitHub, then filter those repositories which may include at least one
-UML model and finally analyse more in-depth the set of projects that meet this condition.\\\\
+\emph{UML} model and finally analyze more in-depth the set of projects that meet this condition.\\\\
 Since early stages of this research, this tool was designed and built using a modular structure, thought to be re-used
 and adaptable (according to the kind of files that have to be found and the way GitHub provides data) hoping to be useful
 for other researches or any other person who might be interested on extract this information. Besides, the scale of this project
@@ -307,12 +317,10 @@ view about research and large-scope projects.
 
 \section{Structure of the dissertation}
 \label{sec:estructura}
-
-% During this dissertation I'm going to explain the different objectives, the technology I've used and explain an use case with
-% the limitations and issues which arose during this project, and how they were solved.
-% And some results and conclusions, also future work.
-
-
+During this dissertation I'm going to explain the different objectives that were stated for this project, the technology
+which have been used and explain an use case, taking into account the limitations and issues which arose
+during this project and how they were solved.\\Then, discuss about results from the use case and general conclusions
+and to finish, consider future work and further steps for this project.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % OBJETIVOS %
@@ -353,11 +361,17 @@ label{sec:planificacion-temporal}
 
 \section{Python}
 \label{sec:python}
-Python\footnote{\url{https://www.python.org/}} is an interpreted, object-oriented, high-level, open source programming language for general-purpose programming created by Guido van Rossum in 1991 (Nowadays, the most recent version is 3.6, from December, 2016).\ Its design is focused on code readability and clear syntax, making possible to program using fewer lines of code comparing to other programming languages as C++ or Ada.\
+Python\footnote{\url{https://www.python.org/}} is an interpreted, object-oriented, high-level, open source
+programming language for general-purpose programming created by Guido van Rossum in 1991 (Nowadays, the most
+recent version is 3.6, from December, 2016).\ Its design is focused on code readability and clear syntax, making
+possible to program using fewer lines of code comparing to other programming languages as C++ or Ada.\
 %Python is widely used over the world, for example: Numeric and Scientific Programming, ... \\
 
-Python features a large standard library, which includes many different tasks from text pattern matching to network scripting, in addition to a vast collection of third-party application libraries.
-Other remarkable features are portability, as Python interpreters are available for many operating systems; and the component integration, as Python scripts can easily communicate with other parts of an application or code, like C++ libraries, MySQL databases, etc.\\
+Python features a large standard library, which includes many different tasks from text pattern matching to network
+scripting, in addition to a vast collection of third-party application libraries.
+Other remarkable features are portability, as Python interpreters are available for many operating systems;
+and the component integration, as Python scripts can easily communicate with other parts of an application or code,
+like C++ libraries, MySQL databases, etc.\\
 %As a downside to Python is that its execution speed may not always be as fast as a compiled, lower-level
 %slanguages such as C and C++.\\
 
@@ -377,7 +391,9 @@ It's by far, the most used VSC in the world\footnote{\url{http://stackoverflow.c
 \section{GH Torrent}
 \label{sec:ghtorrent}
 GH Torrent is a project based on create a scalable, queriable, offline mirror of data offered through the Github REST API.\\
-As they explain in their website\footnote{\url{http://ghtorrent.org/}}, GHTorrent monitors the Github public event time line. For each event, it retrieves its contents and their dependencies, exhaustively. It then stores the raw JSON responses to a MongoDB database, while also extracting their structure in a MySQL database.\
+As they explain in their website\footnote{\url{http://ghtorrent.org/}}, GHTorrent monitors the Github public event time line.
+For each event, it retrieves its contents and their dependencies, exhaustively. It then stores the raw JSON responses to a MongoDB
+database, while also extracting their structure in a MySQL database.\
 For each release, you can download a MySQL (full database, using one CSV file per table) or a MongoDB dump (incremental database).\\
 
 
