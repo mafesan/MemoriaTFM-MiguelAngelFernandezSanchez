@@ -328,32 +328,32 @@ and to finish, consider future work and further steps for this project.
 \cleardoublepage
 \chapter{Objectives}
 \label{chap:objetivos}
-It is widely known that GitHub allows to filter projects by a certain programming language (e.g.
-Python, C++, etc.), but GitHub does not offer a mechanism through which you can identify projects
+It is widely known that \emph{GitHub} allows to filter projects by a certain programming language (e.g.
+\emph{Python}, \emph{C++}, etc.), but \emph{GitHub} does not offer a mechanism through which you can identify projects
 containing files with a certain extension or how many files match with some word or pattern in their
 filename in a repository. The fundamental research questions that motivated the creation of this tool were:
 \begin{itemize}
-  \item RQ1: How many GitHub repositories contains at least one file with a certain extension or a certain
+  \item RQ1: How many \emph{GitHub} repositories contains at least one file with a certain extension or a certain
         pattern in its filename?
-  \item RQ2: What’s the history of those files in the life-span of the project?
+  \item RQ2: What's the history of those files in the life-span of the project?
 \end{itemize}
 Therefore, the main goal of this tool is to extract and analyse data from a set of GitHub projects in a scalable,
 semi-automated way in order to obtain quantitative information about the usage of a certain file type, programming language
 or/and any search that can be expressed into patterns and heuristics.\\\\
 Thus far, many studies focused in one single project or in a limited dataset when software development is analysed, so
-the next goal to define is to obtain the whole dataset of repositories hosted on all GitHub at a certain date.\\
-For analyse the data from all GitHub in a proper way, we needed an static, reliable and updated source of this platform.\
-This source is produced by the GHTorrent project by a queriable, offline database with most of the information which GitHub REST API can provide.\\
-\section{Time planning}
-label{sec:planificacion-temporal}
-
-
-
+the next goal to define is to obtain the whole dataset of repositories hosted on all \emph{GitHub} at a certain date.\\
+For analyse the data from all \emph{GitHub} in a proper way, we needed an static, reliable and updated source of this platform.\
+This source is produced by the \emph{GHTorrent} project by a queriable, offline database with most of the information which the
+\emph{GitHub} \textit{API} can provide.\\
+To finish answering \emph{RQ1}, we need to extract the list of files from the main branch [definition] of each repository so
+it can be applied the different filters.\\\\
+To answer to \emph{RQ2}, we need to analyze more in-depth marking those repositories with at least one possitive result
+after applying the filter, and then build a database with this extended data to extract useful information from it in a
+systematic way.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ESTADO DEL ARTE %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \cleardoublepage
 \chapter{State of the art}
 %Puedes citar libros, como el de Bonabeau et al. sobre procesos estigm�rgicos~\cite{bonabeau:_swarm}.
