@@ -26,7 +26,7 @@
 %\usepackage[latin1]{inputenc}
 %\usepackage[spanish]{babel} % Comenta esta l�nea si tu memoria es en ingl�s
 \usepackage{url}
-%\usepackage[dvipdfm]{graphicx}
+\usepackage[dvipdfm]{graphicx}
 \usepackage{graphicx}
 \usepackage{float}  %% H para posicionar figuras
 \usepackage[nottoc, notlot, notlof, notindex]{tocbibind} %% Opciones de �ndice
@@ -337,7 +337,7 @@ filename in a repository. The fundamental research questions that motivated the 
   \item RQ2: What's the history of those files in the life-span of the project?
 \end{itemize}
 Therefore, the main goal of this tool is to extract and analyse data from a set of GitHub projects in a scalable,
-semi-automated way in order to obtain quantitative information about the usage of a certain file type, programming language
+automated way in order to obtain quantitative information about the usage of a certain file type, programming language
 or/and any search that can be expressed into patterns and heuristics.\\\\
 Thus far, many studies focused in one single project or in a limited dataset when software development is analysed, so
 the next goal to define is to obtain the whole dataset of repositories hosted on all \emph{GitHub} at a certain date.\\
@@ -424,16 +424,40 @@ or \emph{Bugzilla}, including messaging systems such as \emph{IRC}, \emph{Slack}
 \newline \emph{GrimoireLab} is now part of \emph{CHAOSS}\footnote{\url{https://chaoss.community/}}, a project by \emph{The Linux Foundation}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% DISE�O E IMPLEMENTACI�N %
+% DISEÑO E IMPLEMENTACIÓN %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
 \chapter{Design and implementation}
 \section{General architechture}
 \label{sec:arquitectura}
+This tool has a modular design, to ease its adaptability to future updates, changes on it dependencies or other needs which may appear.
+The tool is divided into several Python scripts, which can be grouped into three main phases.
+
+Before going into detail in each
+of these stages, let's enumerate them and briefly explain every script functionality:
+\begin{itemize}
+  \item Preliminary phase
+    \begin{itemize}
+      \item gh-projects-exporter.py
+    \end{itemize}
+  \item Data extraction
+    \begin{itemize}
+      \item github-api.py
+      \item github-tree.py
+      \item hits2urls.py
+    \end{itemize}
+  \item Data analysis
+    \begin{itemize}
+      \item perceval-handler.py
+      \item sql-projects-info.py
+    \end{itemize}
+\end{itemize}
 \section{Preliminary phase}
 \label{sec:fase-preliminar}
 \section{Data extraction}
 \label{sec:extraccion-datos}
+\section{Data filtering}
+\label{sec:filtro-datos}
 \section{Data analysis}
 \label{sec:analisis-datos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
