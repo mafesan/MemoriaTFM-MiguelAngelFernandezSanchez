@@ -237,12 +237,12 @@ so it is very difficult to become a successful developer without having good soc
 If we think on social, virtual interactions among people, the first thing that probably come to our minds will be
 "Social networks". It is clear that those so-called social networks have produced a huge impact among a big part of the
 population; changing daily habits, affecting real-life relationships, etc. As individuals, we share personal information every
-day using interactive applications which allows us to participate somehow into a social network. As a result of handling these
+day using interactive applications which allows us to participate somehow into a social network. Because of handling these
 applications, we make specific interactions as users. \\
 Let's see some examples. If we focus on Twitter, some of these interactions can be:
 \begin{itemize}
     \item Follow a Twitter user.
-    \item \textit{Retweet} a \textit{tweet} (propagate a message among all followers of the person who \textit{retwitted}).
+    \item \textit{Retweet} a \textit{tweet} (propagate a message among all followers of the person who \textit{retweetted}).
     \item Use a \textit{hashtag} (a word preceded by a hash \# to label or classify a message into a topic).
 \end{itemize}
 Whereas on Facebook, we have other kinds of interactions:
@@ -255,21 +255,21 @@ Talking about coding, in the last few years we've seen how this social trend cam
 emergence of social coding platforms, such as GitHub, BitBucket, GitLab, etc.\\
 Social interactions in these platforms are about how software is developed and maintained but also how
 contributions are managed (code review, continuous integration, etc.).\\
-So for example, on GitHub\footnote{\url{https://github.com}} we can find interactions like:
+So, for example, on GitHub\footnote{\url{https://github.com}} we can find interactions like:
 \begin{itemize}
     \item \textit{Fork} a repository (create an editable copy of a project).
     \item See changes from last \textit{commit} (difference between most recent version and last version of the project).
-    \item Watch the contributors of a repository.
+    \item Check the contributors of a repository.
     \item Submit a \textit{Pull Request} (proposal to merge changes in a project).
 \end{itemize}
 These interactions that were mentioned, no matter their source, leave traces which remain stored in some computer on Earth.
 This means we can obtain these data (though not all of it is publicly available) through the Internet using an \emph{API}
 (\textit{Application programming interface}).\\
-Once this information is retrieved, we can analyse it and extract conclusions about it.
+Once this information is retrieved, we can analyze it and extract conclusions about it.
 
 \section{Free/Libre/Open-Source Software}
 \label{sec:floss-definition}
-In the following sections we are going to talk about software and its development process, focusing on \emph{FLOSS} (Free/Libre, Open-source
+In the following sections, we are going to talk about software and its development process, focusing on \emph{FLOSS} (Free/Libre, Open-source
 software) projects, so it is inevitable to describe briefly what is this about.
 During my degree, I was fortunate to be taught within \emph{FLOSS} values, as most of my professors plead
 for Free/Libre software as their teaching model, by which I have obtained a distinctive knowledge and perspective as a professional but also as an individual.\\\\\\
@@ -288,13 +288,13 @@ According to the \textbf{Free Software Foundation}\footnote{\url{https://www.gnu
     A program is free software if it gives users adequately all of these freedoms. Otherwise, it is \textit{nonfree}.
 \end{displayquote}
 % #TODO:
-Due to the connotations which the word \emph{Free} has in english language (mentioned before), there is a definition
+Due to the connotations which the word \emph{Free} has in English language (mentioned before), there is a definition
 for \emph{Open source} software by the \textbf{Open Source Initiative}\footnote{\url{https://opensource.org/osd}} which
-slighly varies from the \emph{FSF} definition. About this difference Richard Stallman, founder of the \emph{FSF}, comments:
+slighly varies from the \emph{FSF} definition. About this difference, Richard Stallman (founder of the \emph{FSF}) comments:
 \begin{displayquote}
 The term \emph{open source} software is used by some people to mean more or less the same category as free software.
-It is not exactly the same class of software: they accept some licences that we consider too restrictive,
-and there are free software licences they have not accepted. However, the differences in extension of the
+It is not exactly the same class of software: they accept some licenses that we consider too restrictive,
+and there are free software licenses they have not accepted. However, the differences in extension of the
 category are small: nearly all free software is open source, and nearly all open source software is free.
 \end{displayquote}
 %Example code: \begin{verbatim}
@@ -305,10 +305,10 @@ deepen into Free/Libre software and the world of metrics. Then I had the great l
 Dr. Gregorio Robles was doing with researchers from Chalmers University in Gothenburg, Sweden. The main aim of their research was to
 learn how \emph{UML} models\footnote{\url{http://uml.org/what-is-uml.htm}} are used in public \emph{FLOSS} projects (particularly, projects hosted on GitHub),
 as most of the previous studies focused only on its industrial use.\\
-Given the large size of GitHub as a platform and its access limitations, this research motivated to build a tool which allows to
-extract data from all the existing repositories on GitHub, then filter those repositories which may include at least one
+Given the large size of GitHub as a platform and its access limitations, this research motivated to build a tool which extracts
+data from all the existing repositories on GitHub, then filter those repositories which may include at least one
 \emph{UML} model and finally analyze more in-depth the set of projects that meet this condition.\\\\
-Since early stages of this research, this tool was designed and built using a modular structure, thought to be re-used
+Since early stages of this research, this tool was designed and built using a modular structure, thought to be reusable
 and adaptable to any kind of files that have to be found but also the way GitHub provides data; hoping to be useful
 for other researches or any other person who might be interested on extract this information. Besides, the scale of this project
 presented a personal challenge which provided me the opportunity to extend my knowledge and obtain a valuable point of
@@ -316,10 +316,10 @@ view about research and large-scope projects.
 \section{Structure of the dissertation}
 \label{sec:estructura}
 (Work in progress)
-During this dissertation I'm going to explain the different objectives that were stated for this project, the technology
+During this dissertation, I'm going to explain the different objectives that were stated for this project, the technology
 which have been used to make it happen.\\
-After that, I'll detail the designing process and the tool architechture, itemizing on each one of its sections. Then,
-we'll explore the performanc of the tool within an use case, taking into account the limitations and issues which arose
+After that, I'll detail the designing process and the tool architecture, itemizing on each one of its sections. Then,
+we'll explore the performance of the tool within a use case, taking into account the limitations and issues which arose
 during it and how they were solved.\\Then, discuss about results from the use case and general conclusions
 and to finish, consider future work and further steps for this project.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -334,21 +334,21 @@ It is widely known that \emph{GitHub} allows to filter projects by a certain pro
 containing files with a certain extension or how many files match with some word or pattern in their
 filename in a repository. The fundamental research questions that motivated the creation of this tool were:
 \begin{itemize}
-  \item RQ1: How many \emph{GitHub} repositories contains at least one file with a certain extension or a certain
+  \item RQ1: How many \emph{GitHub} repositories contain at least one file with a certain extension or a certain
         pattern in its filename?
   \item RQ2: What's the history of those files in the life-span of the project?
 \end{itemize}
 Therefore, the main goal of this tool is to extract and analyse data from a set of GitHub projects in a scalable,
 automated way in order to obtain quantitative information about the usage of a certain file type, programming language
 or/and any search that can be expressed into patterns and heuristics.\\\\
-Thus far, many studies focused in one single project or in a limited dataset when software development is analysed, so
+Thus far, many studies focused in one single project or in a limited dataset when software development is analyzed, so
 the next goal to define is to obtain the whole dataset of repositories hosted on all \emph{GitHub} at a certain date.\\
-For analyse the data from all \emph{GitHub} in a proper way, we needed an static, reliable and updated source of this platform.\
+For analyze the data from all \emph{GitHub} in a proper way, we needed an static, reliable and updated source of this platform.\
 This source is produced by the \emph{GHTorrent} project by a queriable, offline database with most of the information which the
 \emph{GitHub} \textit{API} can provide.\\
 To finish answering \emph{RQ1}, we need to extract the list of files from the main branch [definition] of each repository so
 it can be applied the different filters.\\\\
-To answer to \emph{RQ2}, we need to analyze more in-depth marking those repositories with at least one possitive result
+To answer to \emph{RQ2}, we need to analyze more in-depth marking those repositories with at least one positive result
 after applying the filter, and then build a database with this extended data to extract useful information from it in a
 systematic way.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -400,7 +400,7 @@ other projects via \textit{pull requests}. Project revisions can be discussed pu
 and collaborate to advance a project forward.
 \subsection{GitHub API}
 \label{sec_gh-api}
-%Should this deffinition be within a Glossary?
+%Should this definition be within a Glossary?
 An \emph{API} (\textit{Application Programming Interface}) is a set of subroutine definitions, protocols, and tools for building
 application software. In general terms, it is a set of clearly defined methods of communication between various software components.\\\\
 \emph{GitHub API} allows to access GitHub data, since own \emph{GitHub} types like \textit{pull-requests}, \textit{issues} or \textit{forks}
@@ -416,11 +416,11 @@ For each release, you can download a MySQL (full database, using one CSV file pe
 \section{GrimoireLab and Perceval}
 \label{sec:grimoire}
 \emph{GrimoireLab}\footnote{\url{http://grimoirelab.github.io/}} is a free, open source toolset for software development analytics
-mainly developed by the spanish company \emph{Bitergia}\footnote{\url{https://bitergia.com/}}.
+mainly developed by the Spanish company \emph{Bitergia}\footnote{\url{https://bitergia.com/}}.
 It allows you to retrieve data from many kinds of systems with information related to software development, and produce
 analysis and visualizations with it.\\
 We are focusing on a particular tool of \emph{GrimoireLab} called \textbf{Perceval}. This tool can retrieve data from more
-than 20 different kinds of data sources, from \emph{git} reposiories or \emph{GitHub} projects, to issue trackers such as \emph{Jira}
+than 20 different kinds of data sources, from \emph{git} repositories or \emph{GitHub} projects, to issue trackers such as \emph{Jira}
 or \emph{Bugzilla}, including messaging systems such as \emph{IRC}, \emph{Slack} or mailing lists, or other types of systems such as
 \emph{StackOverflow} or \emph{Jenkins} in a regular and incremental way, allowing to produce uniform sets of information.
 \newline \emph{GrimoireLab} is now part of \emph{CHAOSS}\footnote{\url{https://chaoss.community/}}, a project by \emph{The Linux Foundation}.
@@ -430,7 +430,7 @@ or \emph{Bugzilla}, including messaging systems such as \emph{IRC}, \emph{Slack}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
 \chapter{Design and implementation}
-\section{General architechture}
+\section{General architecture}
 \label{sec:arquitectura}
 This tool has a modular design, to ease its adaptability to future updates, changes on it dependencies or other needs which may appear.
 The tool is divided into several Python scripts, which can be grouped into three main phases.
