@@ -411,9 +411,17 @@ As they explain in their website\footnote{\url{http://ghtorrent.org/}}, GHTorren
 For each event, it retrieves its contents and their dependencies, exhaustively. It then stores the raw JSON responses to a MongoDB
 database, while also extracting their structure in a MySQL database.\
 For each release, you can download a MySQL (full database, using one CSV file per table) or a MongoDB dump (incremental database).\\
-
-\section{GrimoireLab}
+\section{GrimoireLab and Perceval}
 \label{sec:grimoire}
+\emph{GrimoireLab}\footnote{\url{http://grimoirelab.github.io/}} is a free, open source toolset for software development analytics
+mainly developed by the spanish company \emph{Bitergia}\footnote{\url{https://bitergia.com/}}.
+It allows you to retrieve data from many kinds of systems with information related to software development, and produce
+analysis and visualizations with it.\\
+We are focusing on a particular tool of \emph{GrimoireLab} called \textbf{Perceval}. This tool can retrieve data from more
+than 20 different kinds of data sources, from \emph{git} reposiories or \emph{GitHub} projects, to issue trackers such as \emph{Jira}
+or \emph{Bugzilla}, including messaging systems such as \emph{IRC}, \emph{Slack} or mailing lists, or other types of systems such as
+\emph{StackOverflow} or \emph{Jenkins} in a regular and incremental way, allowing to produce uniform sets of information.
+\newline \emph{GrimoireLab} is now part of \emph{CHAOSS}\footnote{\url{https://chaoss.community/}}, a project by \emph{The Linux Foundation}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DISE�O E IMPLEMENTACI�N %
