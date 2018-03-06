@@ -433,27 +433,40 @@ or \emph{Bugzilla}, including messaging systems such as \emph{IRC}, \emph{Slack}
 \section{General architecture}
 \label{sec:arquitectura}
 This tool has a modular design, to ease its adaptability to future updates, changes on it dependencies or other needs which may appear.
-The tool is divided into several Python scripts, which can be grouped into three main phases.
-
-Before going into detail in each
-of these stages, let's enumerate them and briefly explain every script functionality:
-\begin{itemize}
-  \item Preliminary phase
+The tool is divided into several sections with a set of Python scripts, which can be grouped into three
+main phases (See figure~\ref{fig:arquitectura}).
+\begin{figure}
+  \centering
+  \includegraphics[width=12cm, keepaspectratio]{img/generic-tool-diagram-sections}
+  \caption{General architecture of the tool}
+  \label{fig:arquitectura}
+\end{figure}
+Before going into detail in each of these stages, let's introduce them briefly:
+\begin{enumerate}
+  \item \textbf{Preliminary phase}
     \begin{itemize}
-      \item gh-projects-exporter.py
+      \item \textbf{Extract project list}:
+            In this preliminary phase is where the list of GitHub repositories is retrieved. Using an offline dump of
+            the \emph{GHTorrent} database, we get the file containing all GitHub repositories from one of its tables
+            and use a filter to choose among projects by their fields, like a major programming language,
+            \textit{forked} or not, etc.
     \end{itemize}
-  \item Data extraction
+  \item \textbf{Data extraction}
     \begin{itemize}
-      \item github-api.py
-      \item github-tree.py
-      \item hits2urls.py
+      \item \textbf{Extract file list}:
+            This is the most critical section, because is where we obtain the main \textit{branch} and the file list
+            (for each repository in the list from last section) quering the \emph{GitHub} \textit{API}.
+      \item \textbf{Filter projects}:
+            It consists on iterating over the extracted file lists applying the corresponding patterns and heuristics.
+            Then, a file is produced with the positive results (repositories with at least one match).
     \end{itemize}
-  \item Data analysis
+  \item \textbf{Data analysis}
     \begin{itemize}
-      \item perceval-handler.py
-      \item sql-projects-info.py
+      \item \textbf{Analyze positive projects}:
+            Its function is to execute \emph{Perceval} with every project on the list of positive repositories
+            building a database which can be queried to extract information.
     \end{itemize}
-\end{itemize}
+\end{enumerate}
 \section{Preliminary phase}
 \label{sec:fase-preliminar}
 \section{Data extraction}
