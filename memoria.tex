@@ -235,9 +235,9 @@ as coding has become almost a social activity. Developers who work collaborating
 are continuously reading code from other developers, getting feedback about their contributions and consequently
 widening their knowledge with new procedures and ideas. It turns out that this is how most of the software is produced nowadays,
 so it is very difficult to become a successful developer without having good social skills.\\
-If we think on social, virtual interactions among people, the first thing that probably come to our minds will be
-"Social networks". It is clear that those so-called social networks have produced a huge impact among a big part of the
-population; changing daily habits, affecting real-life relationships, etc. As individuals, we share personal information every
+If we think on social, virtual interactions among people, the first term that probably come to our minds will be
+``\emph{Social networks}''. It is clear that those so-called social networks have produced a huge impact among a big part of the
+population changing daily habits or affecting real-life relationships, just to name a few examples. As individuals, we share personal information every
 day using interactive applications which allows us to participate somehow into a social network. Because of handling these
 applications, we make specific interactions as users. \\
 Let's see some examples. If we focus on Twitter, some of these interactions can be:
@@ -414,8 +414,7 @@ returning information using \emph{JSON}(\textit{JavaScript Object Notation}) for
 \label{sec:ghtorrent}
 \textbf{GHTorrent} is a project based on create a scalable, queriable, offline mirror of data offered through the \emph{GitHub} \textit{API}.\\
 As they explain in their website\footnote{\url{http://ghtorrent.org/}}, \emph{GHTorrent} monitors the \emph{GitHub} public event time line.
-For each event, it retrieves its contents and their dependencies, exhaustively. Then, it stores the raw responses to a \emph{MongoDB} database.
-database, while also extracting their structure in a MySQL database.\
+For each event, it retrieves its contents and their dependencies, exhaustively. Then, it stores the raw responses to a database.\
 For each release, you can choose the \textit{dump} (a raw copy of a database) you want to download: either a \emph{MySQL} dump
 (the full database, using one file per table) or a \emph{MongoDB} one (an incremental database).\\
 \section{GrimoireLab and Perceval}
@@ -425,7 +424,7 @@ mainly developed by the Spanish company \emph{Bitergia}\footnote{\url{https://bi
 It allows you to retrieve data from many kinds of systems with information related to software development, and produce
 analysis and visualizations with it.\\
 We are focusing on a particular tool of \emph{GrimoireLab} called \textbf{Perceval}. This tool can retrieve data from more
-than 20 different kinds of data sources, from \emph{git} repositories or \emph{GitHub} projects, to issue trackers such as \emph{Jira}
+than 20 different kinds of data sources, from \emph{Git} repositories or \emph{GitHub} projects, to issue trackers such as \emph{Jira}
 or \emph{Bugzilla}, including messaging systems such as \emph{IRC}, \emph{Slack} or mailing lists, or other types of systems such as
 \emph{StackOverflow} or \emph{Jenkins} in a regular and incremental way, allowing to produce uniform sets of information.
 \newline \emph{GrimoireLab} is now part of \emph{CHAOSS}\footnote{\url{https://chaoss.community/}}, a project by \emph{The Linux Foundation}.
@@ -435,10 +434,9 @@ or \emph{Bugzilla}, including messaging systems such as \emph{IRC}, \emph{Slack}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
 \chapter{Design and implementation}
-\section{General architecture}
 \label{sec:arquitectura}
 This tool has a modular design, to ease its adaptability to future updates, changes on it dependencies or other needs which may appear.
-The tool is divided into several sections with a set of Python scripts, which can be grouped into three
+The tool is divided into several sections with a set of \emph{Python} scripts, which can be grouped into three
 main phases (See figure~\ref{fig:arquitectura}).
 \begin{figure}
   \centering
@@ -452,7 +450,7 @@ Before going into detail in each of these stages, let's introduce them briefly:
     \begin{itemize}
       \item \textbf{Extract project list}:
             In this preliminary phase is where the list of GitHub repositories is retrieved. Using an offline dump of
-            the \emph{GHTorrent} database, we get the file containing all GitHub repositories from one of its tables
+            the \emph{GHTorrent} database, we get the \emph{project list} file containing all GitHub repositories from one of its tables
             and use a filter to choose among projects by their fields, like a major programming language,
             \textit{forked} or not, etc.
     \end{itemize}
@@ -463,13 +461,13 @@ Before going into detail in each of these stages, let's introduce them briefly:
             (for each repository in the list from last section) quering the \emph{GitHub} \textit{API}.
       \item \textbf{Filter projects}:
             It consists on iterating over the extracted file lists applying the corresponding patterns and heuristics.
-            Then, a file is produced with the positive results (repositories with at least one match).
+            Then, it produces a \emph{list of positive results} file (repositories with at least one match).
     \end{itemize}
   \item \textbf{Data analysis}
     \begin{itemize}
       \item \textbf{Analyze positive projects}:
             Its function is to execute \emph{Perceval} with every project on the list of positive repositories
-            building a database which can be queried to extract information.
+            building a \emph{projects database} which can be queried to extract information.
     \end{itemize}
 \end{enumerate}
 \section{Preliminary phase}
@@ -496,15 +494,15 @@ Before going into detail in each of these stages, let's introduce them briefly:
 \emph{GitHub} is the largest host of source code in the world (See figure~\ref{fig:total-repo-number} for a quantitative
 estimation of \emph{GitHub} scale evolution across time). Actually, the main problem we face is that there isn't a direct way
 of obtaining the amount of \emph{GitHub} repositories neither getting a list of them using its \textit{API}, so it is
-very difficult to have quantitative and reliable data. For example, to build the graph like the one showed at
-~\ref{fig:total-repo-number}, its numbers had to be obtained directly from articles written by the \emph{GitHub} team itself [\textcolor{red}{Source}]
+very difficult to have quantitative and reliable data. For example, to build the graph like the one showed at~\ref{fig:total-repo-number},
+its numbers had to be obtained directly from articles written by the \emph{GitHub} team itself [\textcolor{red}{Source}]
 and other people's estimations [\textcolor{red}{Source}].\\\\
 At this point is where \emph{GHTorrent} project has its role in this story, as they provide an offline database dump with most
 of the data which \emph{GitHub} \textit{API} can provide at a certain date. This great collavorative effort is a huge advantage
-for researchers, otherwise it would be practically non-viable retrieving full-scale \emph{GitHub} data. Nevertheless, it is important
-to mark that \emph{GHTorrent} database dump \underline{does not contain} \textit{Git trees} (file-related) information:
-if this information was included, a major part of this tool (and by extension, this project) wouldn't be necessary, as we could
-query and filter the data of our interest directly from the database which the \emph{GHTorrent} project provides.\\
+for researchers, otherwise it would be practically non-viable retrieving full-scale \emph{GitHub} data in a systematic way.
+Nevertheless, it is important to mark that \emph{GHTorrent} database dump \underline{does not contain} \textit{Git trees}
+(file-related) information: if this information was included, a major part of this tool (and by extension, this project) wouldn't
+be necessary, as we could query and filter the data of our interest directly from the database which the \emph{GHTorrent} project provides.\\
 If we have a look at how \emph{GHTorrent} database is structured (Figure~\ref{fig:ghtorrent-schema}), we can observe that
 there is almost one table per \emph{GitHub} object (\textit{users}, \textit{projects}, \textit{pull requests}, \textit{issues}, etc.).
 Looking closer on these table's structure, we realize the table we need is the \emph{Projects} table
