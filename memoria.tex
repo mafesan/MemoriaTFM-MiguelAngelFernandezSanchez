@@ -242,26 +242,26 @@ day using interactive applications which allows us to participate somehow into a
 applications, we make specific interactions as users. \\
 Let's see some examples. If we focus on Twitter, some of these interactions can be:
 \begin{itemize}
-    \item Follow a Twitter user.
-    \item \textit{Retweet} a \textit{tweet} (propagate a message among all followers of the person who \textit{retweetted}).
-    \item Use a \textit{hashtag} (a word preceded by a hash \# to label or classify a message into a topic).
+    \item Following a Twitter user.
+    \item \textit{Retweeting} a \textit{tweet} (propagate a message among all followers of the person who \textit{retweetted}).
+    \item Using a \textit{hashtag} (a word preceded by a hash \# to label or classify a message into a topic).
 \end{itemize}
 \pagebreak Whereas on Facebook, we have other kinds of interactions:
 \begin{itemize}
-    \item React to a post.
-    \item Tag a person in a picture.
-    \item Write a comment on someone's profile.
+    \item Reacting to a post.
+    \item Tagging a person in a picture.
+    \item Writing a comment on someone's profile.
 \end{itemize}
-Talking about coding, in the last few years we've seen how this social trend came to software with the
+Talking about coding, in the last few years we have seen how this social trend came to software with the
 emergence of social coding platforms, such as GitHub, BitBucket, GitLab, etc.\\
 Social interactions in these platforms are about how software is developed and maintained but also how
 contributions are managed (code review, continuous integration, etc.).\\
 So, for example, on GitHub\footnote{\url{https://github.com}} we can find interactions like:
 \begin{itemize}
-    \item \textit{Fork} a repository (create an editable copy of a project).
-    \item See changes from last \textit{commit} (difference between most recent version and last version of the project).
-    \item Check the contributors of a repository.
-    \item Submit a \textit{Pull Request} (proposal to merge changes in a project).
+    \item \textit{Forking} a repository (create an editable copy of a project).
+    \item Seeing changes from last \textit{commit} (difference between most recent version and last version of the project).
+    \item Checking the contributors of a repository.
+    \item Submiting a \textit{Pull Request} (proposal to merge changes in a project).
 \end{itemize}
 These interactions that were mentioned, no matter their source, leave traces which remain stored in some computer on Earth.
 This means we can obtain these data (though not all of it is publicly available) through the Internet using an \emph{API}
@@ -317,10 +317,10 @@ view about research and large-scope projects.
 \section{Structure of the dissertation}
 \label{sec:estructura}
 \textcolor{red}{(Work in progress)}\newline
-During this dissertation, I'm going to explain the different objectives that were stated for this project, the technology
+During this dissertation, I am going to explain the different objectives that were stated for this project, the technology
 which have been used to make it happen.\\
-After that, I'll detail the designing process and the tool architecture, itemizing on each one of its sections. Then,
-we'll explore the performance of the tool within a use case, taking into account the limitations and issues which arose
+After that, I will detail the designing process and the tool architecture, itemizing on each one of its sections. Then,
+we will explore the performance of the tool within a use case, taking into account the limitations and issues which arose
 during it and how they were solved.\\Then, discuss about results from the use case and general conclusions
 and to finish, consider future work and further steps for this project.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -337,7 +337,7 @@ filename in a repository. The fundamental research questions that motivated the 
 \begin{itemize}
   \item RQ1: How many \emph{GitHub} repositories contain at least one file with a certain extension or a certain
         pattern in its filename?
-  \item RQ2: What's the history of those files in the life-span of the project?
+  \item RQ2: What is the history of those files in the life-span of the project?
 \end{itemize}
 Therefore, the main goal of this tool is to extract and analyse data from a set of GitHub projects in a scalable,
 automated way in order to obtain quantitative information about the usage of a certain file type, programming language
@@ -380,7 +380,7 @@ like \emph{C++} libraries, \emph{MySQL} databases, etc.\\
 \textbf{Git} is an open-source Version Control System (\emph{VCS}), originally developed in 2005 by Linus Torvalds.\
 As any \emph{VCS}, \emph{Git} is a system that records changes to a file or set of files over time
 so that you can recall specific versions later.
-It's by far, the most used \emph{VCS} in the world\footnote{\url{http://stackoverflow.com/research/developer-survey-2015}}.\\\\
+It is by far, the most used \emph{VCS} in the world\footnote{\url{http://stackoverflow.com/research/developer-survey-2015}}.\\\\
 The major difference between \emph{Git} and any other VCS is the way \emph{Git} thinks about its data.
 Conceptually, most other systems store information as a list of file-based changes. Other systems like \textit{Subversion},
 \textit{Perforce}, \textit{Bazaar}, etc. think of the information they store as a set of files and the changes made to each
@@ -451,8 +451,7 @@ Before going into detail in each of these stages, let's introduce them briefly:
       \item \textbf{Extract project list}:
             In this preliminary phase is where the list of GitHub repositories is retrieved. Using an offline dump of
             the \emph{GHTorrent} database, we get the \emph{project list} file containing all GitHub repositories from one of its tables
-            and use a filter to choose among projects by their fields, like a major programming language,
-            \textit{forked} or not, etc.
+            and use a filter to choose among projects by their fields, like a major programming language, \textit{forked} or not, etc.
     \end{itemize}
   \item \textbf{Data extraction}
     \begin{itemize}
@@ -494,7 +493,7 @@ Before going into detail in each of these stages, let's introduce them briefly:
 \emph{GitHub} is the largest host of source code in the world (See figure~\ref{fig:total-repo-number} for a quantitative
 estimation of \emph{GitHub} scale evolution across time). Actually, the main problem we face is that there isn't a direct way
 of obtaining the amount of \emph{GitHub} repositories neither getting a list of them using its \textit{API}, so it is
-very difficult to have quantitative and reliable data. For example, to build the graph like the one showed at~\ref{fig:total-repo-number},
+very difficult to have quantitative and reliable data. For example, for building a graph like ~\ref{fig:total-repo-number},
 its numbers had to be obtained directly from articles written by the \emph{GitHub} team itself [\textcolor{red}{Source}]
 and other people's estimations [\textcolor{red}{Source}].\\\\
 At this point is where \emph{GHTorrent} project has its role in this story, as they provide an offline database dump with most
