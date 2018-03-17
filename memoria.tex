@@ -33,6 +33,8 @@
 \usepackage{latexsym}  %% Logo LaTeX
 \usepackage{csquotes}  %% Paquete para citas (displayquote)
 \usepackage{color}  %% Paquete para texto en color
+\usepackage[normalem]{ulem}  %% Para tablas
+\useunder{\uline}{\ul}{}  %% Para tablas
 
 \title{Memoria del Proyecto}
 \author{Miguel Ángel Fernández Sánchez}
@@ -507,7 +509,34 @@ there is almost one table per \emph{GitHub} object (\textit{users}, \textit{proj
 Looking closer on these table's structure, we realize the table we need is the \emph{Projects} table
 (see figure~\ref{fig:ghtorrent-schema-detail}), as it contains crucial repository-wise information including every project's name
 and \textit{URL} but also other complementary information which could be used as a primary filter, like \texttt{language} (project's main language,
-code-wise) or \texttt{forked\_from} (True is the repository is a \textit{fork} from another project), etc.
+code-wise) or \texttt{forked\_from} (Empty if the repository isn't a \textit{fork} from another project), etc.\\\\
+To obtain the actual data, the procedure to follow is:
+\begin{enumerate}
+  \item Download from emph{GHTorrent} website a particular \emph{MySQL dump} which is provided as a compressed file in \texttt{tar.gz}
+        format\footnote{To give an estimation of the current file sizes, the last dump available (2018, Mar 1st) sizes 71025 \texttt{MB}}.
+  \item Uncompress the \texttt{tar.gz} file, which contains one \emph{CSV} file per table in the database.
+  \item Get the file \texttt{projects.csv}, whose data corresponds to \emph{Projects} table (See an example of this file in table~\ref{table:projects-table-example}).
+  \item Run the Python script \textcolor{red}{[reference to script]} with the corresponding filters to obtain the main
+        \emph{project list} file, which will be the input for the next stage.
+\end{enumerate}
+Note that the filtering we establish in this phase is going to condition the results of our analysis. To make this task easier,
+I decided to use a configuration file (See figure \textcolor{red}{[reference]}) to set basic filters and parameters. \textcolor{red}{(WIP)}\\
+Finally, we obtain a filtered \emph{project list} file, which keeps the same format as \texttt{projects.csv} from the database dump.
+\begin{table}[]
+\centering
+\caption{Extract from \texttt{projects.csv} file, formatted as a table}
+\label{table:projects-table-example}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{id} & \textbf{url} & \textbf{owner\_id} & \textbf{name} & \textbf{descriptor} & \textbf{language} & \textbf{created\_at} & \textbf{forked\_from} & \textbf{deleted} & \textbf{updated\_at} \\ \hline
+20 & chrisjaure/git-lava & 80 & git-lava & Branching metaphor for git & Shell & 2012-02-27 02:45:44 &  -  & 0 & 2015-10-18 01:39:38 \\ \hline
+21 & ES-DOC/django-cim-forms & 82 & django-cim-forms & - & Python & 2012-03-23 14:20:28 &  -  & 1 & 0000-00-00 00:00:00 \\ \hline
+23 & adammark/Markup.js & 86 & Markup.js & Powerful JavaScript templates & JavaScript & 2011-08-23 00:30:04 &  -  & 0 & 2015-10-12 10:46:04 \\ \hline
+24 & leoamigood/1stdibs\_V2.1 & 88 & 1stdibs\_V2.1 & Initial setup with mule-pull project & Java & 2012-05-03 11:43:31 &  -  & 1 & 0000-00-00 00:00:00 \\ \hline
+\end{tabular}%
+}
+\end{table}
 \section{Data extraction}
 \label{sec:extraccion-datos}
 \section{Data filtering}
