@@ -482,7 +482,7 @@ or \emph{Bugzilla}, including messaging systems such as \emph{IRC}, \emph{Slack}
 \chapter{Design and implementation}
 \label{sec:arquitectura}
 This tool has a modular design, to ease its adaptability to future updates, changes on it dependencies or other needs which may appear.
-The tool is divided into several sections with a set of \emph{Python} scripts, which can be grouped into three
+The tool is divided into several linear sections with a set of \emph{Python} scripts, which can be grouped into three
 main phases (See figure~\ref{fig:arquitectura}).
 \begin{figure}
   \centering
@@ -559,7 +559,8 @@ To obtain the actual data, the procedure to follow is:
   \item Download from emph{GHTorrent} website a particular \emph{MySQL dump} which is provided as a compressed file in \texttt{tar.gz}
         format\footnote{To give an estimation of the current file sizes, the last dump available (2018, Mar 1st) sizes 71025 \texttt{MB}}.
   \item Uncompress the \texttt{tar.gz} file, which contains one \emph{CSV} file per table in the database.
-  \item Get the file \texttt{projects.csv}, whose data corresponds to \emph{Projects} table (See an example of this file in table~\ref{table:projects-table-example}).
+  \item Get the file \texttt{projects.csv}, whose data corresponds to \emph{Projects} table (See an adapted\footnote{The field \emph{url} has been replaced by \emph{owner} to make the table more readable.}
+  example of this file in table~\ref{table:projects-table-example}).
   \item Run the Python script \textcolor{red}{[reference to script]} with the corresponding filters to obtain the main
         \emph{project list} file, which will be the input for the next stage.
 \end{enumerate}
@@ -568,16 +569,16 @@ I decided to use a configuration file (See figure \textcolor{red}{[reference]}) 
 Finally, we obtain a filtered \emph{project list} file, which keeps the same format as \texttt{projects.csv} from the database dump.
 \begin{table}[]
 \centering
-\caption{Extract from \texttt{projects.csv} file, formatted as a table}
+\caption{Adapted extract from \texttt{projects.csv} file, formatted as a table}
 \label{table:projects-table-example}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
 \hline
-\textbf{id} & \textbf{url} & \textbf{owner\_id} & \textbf{name} & \textbf{descriptor} & \textbf{language} & \textbf{created\_at} & \textbf{forked\_from} & \textbf{deleted} & \textbf{updated\_at} \\ \hline
-20 & chrisjaure/git-lava & 80 & git-lava & Branching metaphor for git & Shell & 2012-02-27 02:45:44 &  -  & 0 & 2015-10-18 01:39:38 \\ \hline
-21 & ES-DOC/django-cim-forms & 82 & django-cim-forms & - & Python & 2012-03-23 14:20:28 &  -  & 1 & 0000-00-00 00:00:00 \\ \hline
-23 & adammark/Markup.js & 86 & Markup.js & Powerful JavaScript templates & JavaScript & 2011-08-23 00:30:04 &  -  & 0 & 2015-10-12 10:46:04 \\ \hline
-24 & leoamigood/1stdibs\_V2.1 & 88 & 1stdibs\_V2.1 & Initial setup with mule-pull project & Java & 2012-05-03 11:43:31 &  -  & 1 & 0000-00-00 00:00:00 \\ \hline
+\textbf{id} & \textbf{owner} & \textbf{owner\_id} & \textbf{name} & \textbf{descriptor} & \textbf{language} & \textbf{created\_at} & \textbf{forked\_from} & \textbf{deleted} & \textbf{updated\_at} \\ \hline
+20 & chrisjaure & 80 & git-lava & Branching metaphor for git & Shell & 2012-02-27 02:45:44 &  -  & 0 & 2015-10-18 01:39:38 \\ \hline
+21 & ES-DOC & 82 & django-cim-forms & - & Python & 2012-03-23 14:20:28 &  -  & 1 & 0000-00-00 00:00:00 \\ \hline
+23 & adammark & 86 & Markup.js & Powerful JavaScript templates & JavaScript & 2011-08-23 00:30:04 &  -  & 0 & 2015-10-12 10:46:04 \\ \hline
+24 & leoamigood & 88 & 1stdibs\_V2.1 & Initial setup with mule-pull project & Java & 2012-05-03 11:43:31 &  -  & 1 & 0000-00-00 00:00:00 \\ \hline
 \end{tabular}%
 }
 \end{table}
