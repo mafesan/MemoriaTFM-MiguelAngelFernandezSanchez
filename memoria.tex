@@ -32,6 +32,7 @@
 \usepackage[nottoc, notlot, notlof, notindex]{tocbibind} %% Opciones de �ndice
 \usepackage{latexsym}  %% Logo LaTeX
 \usepackage{csquotes}  %% Paquete para citas (displayquote)
+\usepackage{amsthm}  %% Paquete para Teoremas
 \usepackage{color}  %% Paquete para texto en color
 \usepackage[normalem]{ulem}  %% Para tablas
 \useunder{\uline}{\ul}{}  %% Para tablas
@@ -386,11 +387,54 @@ It is by far, the most used \emph{VCS} in the world\footnote{\url{http://stackov
 The major difference between \emph{Git} and any other VCS is the way \emph{Git} thinks about its data.
 Conceptually, most other systems store information as a list of file-based changes. Other systems like \textit{Subversion},
 \textit{Perforce}, \textit{Bazaar}, etc. think of the information they store as a set of files and the changes made to each
-file over time.\\
-Instead, \emph{Git} thinks of its data more like a series of snapshots of a miniature filesystem.
+file over time (See figure~\ref{fig:info-not-git}).\\
+Instead, \emph{Git} thinks of its data more like a series of snapshots of a miniature filesystem (See figure~\ref{fig:info-not-git}).
 With \emph{Git}, every time you commit or save the state of your project, \emph{Git} basically takes a picture of what all
 your files look like at that moment and stores a reference to that snapshot. To be efficient, if files have not changed,
 \emph{Git} doesn't store the file again, just a link to the previous identical file it has already stored.
+All this information is stored in a key-value system as \emph{Git} objects, with a unique identity for each of them.
+\subsection{Git objects definitions}
+\label{ssec:git-definitions}
+It is necessary to define some \emph{Git} objects, as they are going to play a key role in this project.
+\subsubsection{Commit}
+A \textbf{commit} is a \emph{Git} object which contains a record of the changes made to the repository since last modified
+version of itself (last commit object). In the example in figure~\ref{fig:info-git}, each \textbf{commit} would be each different
+\textit{Version} (1, 2, 3...), meaning that there is a new version of the repository with every \textbf{commit}.
+\subsubsection{Tree}
+A \emph{Git} \textbf{tree} represents a directory and its structure (including filenames) in the repository, containing other possible
+sub-directories as other child \textbf{tree} objects. However, these objects do not contain any information about the file contents:
+that is stored in \textbf{blob} objects. In figure~\ref{fig:git-objs-example} there is an example of how \textbf{commits},
+\textbf{trees} and \textbf{blobs} are connected with each other.
+\subsubsection{Branch}
+A \emph{Git} \textbf{branch} is a pointer to a certain \emph{commit} object. All new commits
+created from this pointer will diverge from the previous commit-history of the repository in two distinct, independent paths.
+Branching is a very common and useful practice, as it allows to isolate different versions of the same files and directories
+(but also different) in the same repository, and later, those branches can be merged into any other branch (See in
+figure~\ref{fig:git-branches-example} a simplified example about the structure of a repository with sereval branches).
+\begin{figure}
+  \centering
+  \includegraphics[width=12cm, keepaspectratio]{img/deltas-not-git}
+  \caption{How other non-\emph{Git} \emph{VCS} store information (Source: Git documentation).}
+  \label{fig:info-not-git}
+\end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[width=12cm, keepaspectratio]{img/snapshots-git}
+  \caption{How \emph{Git} structures its information internally (Source: Git documentation).}
+  \label{fig:info-git}
+\end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[width=12cm, keepaspectratio]{img/git-objs-example}
+  \caption{Interaction among \textbf{commits}, \textbf{trees} and \textbf{blobs} (unique IDs above) (Source: Git documentation).}
+  \label{fig:git-objs-example}
+\end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[width=12cm, keepaspectratio]{img/branches-example-atlassian}
+  \caption{Abstraction of \emph{Git} \textbf{branches} structure in a repository (Source: Atlassian).}
+  \label{fig:git-branches-example}
+\end{figure}
 \section{GitHub}
 \label{sec:github}
 \textbf{GitHub} is a \emph{Git}, web-based repository hosting service founded back in 2008. While \emph{Git} is a command
@@ -405,7 +449,7 @@ with more than 124 million projects.
 %       https://www.howtogeek.com/180167/htg-explains-what-is-github-and-what-do-geeks-use-it-for/
 %       https://techcrunch.com/2012/07/14/what-exactly-is-github-anyway/
 \subsection{GitHub API}
-\label{sec_gh-api}
+\label{ssec:sec_gh-api}
 %Should this definition be within a Glossary?
 An \textbf{API} (\textit{Application Programming Interface}) is a set of subroutine definitions, protocols, and tools for building
 application software. In general terms, it is a set of clearly defined methods of communication between various software components.\\\\
