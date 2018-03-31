@@ -36,6 +36,32 @@
 \usepackage{color}  %% Paquete para texto en color
 \usepackage[normalem]{ulem}  %% Para tablas
 \useunder{\uline}{\ul}{}  %% Para tablas
+\usepackage{listings}  %% para código y comandos
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.82,0.82,0.82}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
 
 \title{Memoria del Proyecto}
 \author{Miguel Ángel Fernández Sánchez}
@@ -584,6 +610,71 @@ Finally, we obtain a filtered \emph{project list} file, which keeps the same for
 \end{table}
 \section{Data extraction}
 \label{sec:extraccion-datos}
+\begin{figure}
+  \centering
+  \includegraphics[width=13cm, keepaspectratio]{img/gh-api-master-json-example}
+  \caption{Example: \texttt{JSON} response to the query asking for master branch data}
+  \label{fig:gh-api-master-json}
+\end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[width=14cm, keepaspectratio]{img/github-api}
+  \caption{Flow-chart of \texttt{github-api.py} script}
+  \label{fig:gh-api-diagram}
+\end{figure}
+Once the \emph{project list} file is ready, we can proceed to extract the file list of the main \textit{branch} of each
+repository. To achieve this, we have to query the \emph{GitHub} \textit{API} several times for each project.
+It is important to mark this, as the \emph{GitHub} \textit{API} has a limitation of 5.000 queries per hour for every authenticated
+account, which caused a huge impact in the research and the data-obtention process, as it is detailed in section (\textcolor{red}{Section}).\\\\
+To make authenticated queries to the \emph{GitHub} \textit{API} we need an \textbf{API token}. A \textbf{token} is a unique
+identifier of an application requesting access to a service.
+In the case of \emph{GitHub}, they are long, alphanumeric strings of characters generated within a \emph{GitHub} account,
+so every executed action with that \textbf{token} is done on behalf of its owner's account.
+For instance, if I want to \textit{fork} a repository into my \emph{GitHub} account, I could do it either in two ways:
+\begin{itemize}
+  \item Login into my account, visit the repository \emph{URL} and press the \textbf{fork} button on \emph{GitHub}'s web interface.
+  \item Send an authenticated \textit{query}\footnote{From now on, every time I refer to a \emph{GitHub} \textit{API}
+  request I will ommit \texttt{https://api.github.com}.}
+  to the \emph{GitHub} \textit{API} like this one\footnote{On the requests, the parameters are marked with two dots (:).}:
+  \begin{lstlisting}[language=bash]
+  POST https://api.github.com/repos/:owner/:repo/forks?:token \end{lstlisting}
+\end{itemize}
+The script for this phase, \texttt{github-api.py} (See its diagram in figure~\ref{fig:gh-api-diagram}) has into account
+this API limitation, ensuring that this limit is not exceeded. It employs three different directories in order to classify its outputs:
+\textbf{master}, \textbf{default} and \textbf{trees}.
+Then, it reads the \emph{project list} file and, per line, executes the following actions:
+\begin{itemize}
+  \item Check if the repository corresponding to that line has been downloaded before by looking at the existing files
+  in the directories \textbf{master} or \textbf{default}.
+  \item If not, try to obtain data from the \emph{master} \textit{branch}, whose output will be saved into the directory
+  \textbf{master}.
+  The \textit{query} sent to the \emph{GitHub} \textit{API} to retrieve this data is:
+  \begin{lstlisting}[language=bash]
+  GET /repos/:owner/:repo/branches/master?:token \end{lstlisting}
+  If we obtain a successful response, we will have a \texttt{JSON} file similar to the one in figure~\ref{fig:gh-api-master-json}.
+  \item If the \emph{master} \textit{branch} is not found, we have to obtain the default \textit{branch} for that repository and
+  perform another \textit{query} to retrieve the data from that \textit{branch}, which will be saved into the directory \textbf{default}.
+  To retrieve the default \textit{branch} from a repository, we need to obtain metadata from the repository first and then keep the content
+  of the variable \texttt{default\_branch} to perform another \textit{query} to obtain data from that \textit{branch}:
+  \begin{lstlisting}[language=bash]
+  GET /repos/:owner/:repo?:token
+  GET /repos/:owner/:repo/branches/:default_branch?:token \end{lstlisting}
+  \item The last step is to read the obtained \texttt{JSON} data and get the tree objects recursively using the ID
+  (\textit{SHA hash}) of the first one found in the response:
+  \begin{lstlisting}[language=bash]
+  GET /repos/:owner/:repo/git/trees/:sha?recursive=1&:token \end{lstlisting}
+  This will be saved into the directory \textbf{trees}.
+\end{itemize}
+When this script finishes, we will have (assuming there were no errors) one \texttt{JSON} file per repository,
+with the file-list information for the \textit{tree} objects in each repository.\\\\
+\textcolor{red}{
+Note: Make section of possible errors. Maybe in the "Results - Use Case" section?
+\begin{itemize}
+  \item Private repository.
+  \item Truncated response.
+  \item Repository no longer exists.
+  \item Charset-related errors.
+\end{itemize}}
 \section{Data filtering}
 \label{sec:filtro-datos}
 \section{Data analysis}
