@@ -359,12 +359,12 @@ and to finish, consider future work and further steps for this project.
 \cleardoublepage
 \chapter{Objectives}
 \label{chap:objetivos}
-It is widely known that \emph{GitHub} allows to filter projects by a certain programming language (e.g.
-\emph{Python}, \emph{C++}, etc.), but \emph{GitHub} does not offer a mechanism through which you can identify projects
+It is widely known that GitHub allows to filter projects by a certain programming language (e.g.
+\emph{Python}, \emph{C++}, etc.), but GitHub does not offer a mechanism through which you can identify projects
 containing files with a certain extension or how many files match with some word or pattern in their
 filename in a repository. The fundamental research questions that motivated the creation of this tool were:
 \begin{itemize}
-  \item RQ1: How many \emph{GitHub} repositories contain at least one file with a certain extension or a certain
+  \item RQ1: How many GitHub repositories contain at least one file with a certain extension or a certain
         pattern in its filename?
   \item RQ2: What is the history of those files in the life-span of the project?
 \end{itemize}
@@ -372,10 +372,10 @@ Therefore, the main goal of this tool is to extract and analyse data from a set 
 automated way in order to obtain quantitative information about the usage of a certain file type, programming language
 or/and any search that can be expressed into patterns and heuristics.\\\\
 Thus far, many studies focused in one single project or in a limited dataset when software development is analyzed, so
-the next goal to define is to obtain the whole dataset of repositories hosted on all \emph{GitHub} at a certain date.\\
-For analyze the data from all \emph{GitHub} in a proper way, we needed an static, reliable and updated source of this platform.\
+the next goal to define is to obtain the whole dataset of repositories hosted on all GitHub at a certain date.\\
+For analyze the data from all GitHub in a proper way, we needed an static, reliable and updated source of this platform.\
 This source is produced by the \emph{GHTorrent} project by a queriable, offline database with most of the information which the
-\emph{GitHub} \textit{API} can provide.\\
+GitHub \textit{API} can provide.\\
 To finish answering \emph{RQ1}, we need to extract the list of files from the main branch [definition] of each repository so
 it can be applied the different filters.\\\\
 To answer to \emph{RQ2}, we need to analyze more in-depth marking those repositories with at least one positive result
@@ -407,32 +407,32 @@ like \emph{C++} libraries, \emph{MySQL} databases, etc.\\
 \label{sec:git}
 %source: https://git-scm.com/book/en/v2/Getting-Started-Git-Basics
 \textbf{Git} is an open-source Version Control System (\emph{VCS}), originally developed in 2005 by Linus Torvalds.\
-As any \emph{VCS}, \emph{Git} is a system that records changes to a file or set of files over time
+As any \emph{VCS}, \emph{git} is a system that records changes to a file or set of files over time
 so that you can recall specific versions later.
 It is by far, the most used \emph{VCS} in the world\footnote{\url{http://stackoverflow.com/research/developer-survey-2015}}.\\\\
-The major difference between \emph{Git} and any other VCS is the way \emph{Git} thinks about its data.
+The major difference between \emph{git} and any other VCS is the way \emph{git} thinks about its data.
 Conceptually, most other systems store information as a list of file-based changes. Other systems like \textit{Subversion},
 \textit{Perforce}, \textit{Bazaar}, etc. think of the information they store as a set of files and the changes made to each
 file over time (See figure~\ref{fig:info-not-git}).\\
-Instead, \emph{Git} thinks of its data more like a series of snapshots of a miniature filesystem (See figure~\ref{fig:info-not-git}).
-With \emph{Git}, every time you commit or save the state of your project, \emph{Git} basically takes a picture of what all
+Instead, \emph{git} thinks of its data more like a series of snapshots of a miniature filesystem (See figure~\ref{fig:info-not-git}).
+With \emph{git}, every time you commit or save the state of your project, \emph{git} basically takes a picture of what all
 your files look like at that moment and stores a reference to that snapshot. To be efficient, if files have not changed,
-\emph{Git} doesn't store the file again, just a link to the previous identical file it has already stored.
-All this information is stored in a key-value system as \emph{Git} objects, with a unique identity for each of them.
+\emph{git} doesn't store the file again, just a link to the previous identical file it has already stored.
+All this information is stored in a key-value system as \emph{git} objects, with a unique identity for each of them.
 \subsection{Git objects definitions}
 \label{ssec:git-definitions}
-It is necessary to define some \emph{Git} objects, as they are going to play a key role in this project.
+It is necessary to define some \emph{git} objects, as they are going to play a key role in this project.
 \subsubsection{Commit}
-A \textbf{commit} is a \emph{Git} object which contains a record of the changes made to the repository since last modified
+A \textbf{commit} is a \emph{git} object which contains a record of the changes made to the repository since last modified
 version of itself (last commit object). In the example in figure~\ref{fig:info-git}, each \textbf{commit} would be each different
 \textit{Version} (1, 2, 3...), meaning that there is a new version of the repository with every \textbf{commit}.
 \subsubsection{Tree}
-A \emph{Git} \textbf{tree} represents a directory and its structure (including filenames) in the repository, containing other possible
+A \emph{git} \textbf{tree} represents a directory and its structure (including filenames) in the repository, containing other possible
 sub-directories as other child \textbf{tree} objects. However, these objects do not contain any information about the file contents:
 that is stored in \textbf{blob} objects. In figure~\ref{fig:git-objs-example} there is an example of how \textbf{commits},
 \textbf{trees} and \textbf{blobs} are connected with each other.
 \subsubsection{Branch}
-A \emph{Git} \textbf{branch} is a pointer to a certain \emph{commit} object. All new commits
+A \emph{git} \textbf{branch} is a pointer to a certain \emph{commit} object. All new commits
 created from this pointer will diverge from the previous commit-history of the repository in two distinct, independent paths.
 Branching is a very common and useful practice, as it allows to isolate different versions of the same files and directories
 (but also different) in the same repository, and later, those branches can be merged into any other branch (See in
@@ -440,13 +440,13 @@ figure~\ref{fig:git-branches-example} a simplified example about the structure o
 \begin{figure}
   \centering
   \includegraphics[width=12cm, keepaspectratio]{img/deltas-not-git}
-  \caption{How other non-\emph{Git} \emph{VCS} store information (Source: Git documentation).}
+  \caption{How other non-\emph{git} \emph{VCS} store information (Source: Git documentation).}
   \label{fig:info-not-git}
 \end{figure}
 \begin{figure}
   \centering
   \includegraphics[width=12cm, keepaspectratio]{img/snapshots-git}
-  \caption{How \emph{Git} structures its information internally (Source: Git documentation).}
+  \caption{How \emph{git} structures its information internally (Source: Git documentation).}
   \label{fig:info-git}
 \end{figure}
 \begin{figure}
@@ -458,18 +458,18 @@ figure~\ref{fig:git-branches-example} a simplified example about the structure o
 \begin{figure}
   \centering
   \includegraphics[width=12cm, keepaspectratio]{img/branches-example-atlassian}
-  \caption{Abstraction of \emph{Git} \textbf{branches} structure in a repository (Source: Atlassian).}
+  \caption{Abstraction of \emph{git} \textbf{branches} structure in a repository (Source: Atlassian).}
   \label{fig:git-branches-example}
 \end{figure}
 \section{GitHub}
 \label{sec:github}
-\textbf{GitHub} is a \emph{Git}, web-based repository hosting service founded back in 2008. While \emph{Git} is a command
-line tool, \emph{GitHub} provides a graphical interface, adding its own collaboration features such as a wikis and basic task
+\textbf{GitHub} is a \emph{git}, web-based repository hosting service founded back in 2008. While \emph{git} is a command
+line tool, GitHub provides a graphical interface, adding its own collaboration features such as a wikis and basic task
 management tools for every project.\\
-Each user on \emph{GitHub} has their own profile, showing its past work and contributions to
+Each user on GitHub has their own profile, showing its past work and contributions to
 other projects via \textit{pull requests}, \textit{forking} (create editable copies into someone's account) other repositories, etc.
 Project revisions can be discussed publicly via \textit{issues} so many people can collaborate together to advance a project
-forward. Currenty, \emph{GitHub} is the largest host of source code in the world,
+forward. Currenty, GitHub is the largest host of source code in the world,
 with more than 124 million projects.
 % TODO: https://www.quora.com/How-many-repositories-are-there-on-GitHub
 %       https://www.howtogeek.com/180167/htg-explains-what-is-github-and-what-do-geeks-use-it-for/
@@ -479,13 +479,13 @@ with more than 124 million projects.
 %Should this definition be within a Glossary?
 An \textbf{API} (\textit{Application Programming Interface}) is a set of subroutine definitions, protocols, and tools for building
 application software. In general terms, it is a set of clearly defined methods of communication between various software components.\\\\
-\emph{GitHub} \textit{API} allows to access GitHub data, since own \emph{GitHub} types like \textit{pull-requests}, \textit{issues} or \textit{forks}
-to \emph{Git}-related data, such as \textit{commits}, \textit{branches} or \textit{trees} using \textit{HTTP} requests and
+GitHub \textit{API} allows to access GitHub data, since own GitHub types like \textit{pull-requests}, \textit{issues} or \textit{forks}
+to \emph{git}-related data, such as \textit{commits}, \textit{branches} or \textit{trees} using \textit{HTTP} requests and
 returning information using \emph{JSON}(\textit{JavaScript Object Notation}) format.
 \section{GHTorrent}
 \label{sec:ghtorrent}
-\textbf{GHTorrent} is a project based on create a scalable, queriable, offline mirror of data offered through the \emph{GitHub} \textit{API}.\\
-As they explain in their website\footnote{\url{http://ghtorrent.org/}}, \emph{GHTorrent} monitors the \emph{GitHub} public event time line.
+\textbf{GHTorrent} is a project based on create a scalable, queriable, offline mirror of data offered through the GitHub \textit{API}.\\
+As they explain in their website\footnote{\url{http://ghtorrent.org/}}, \emph{GHTorrent} monitors the GitHub public event time line.
 For each event, it retrieves its contents and their dependencies, exhaustively. Then, it stores the raw responses to a database.\
 For each release, you can choose the \textit{dump} (a raw copy of a database) you want to download: either a \emph{MySQL} dump
 (the full database, using one file per table) or a \emph{MongoDB} one (an incremental database).\\
@@ -496,7 +496,7 @@ mainly developed by the Spanish company \emph{Bitergia}\footnote{\url{https://bi
 It allows you to retrieve data from many kinds of systems with information related to software development, and produce
 analysis and visualizations with it.\\
 We are focusing on a particular tool of \emph{GrimoireLab} called \textbf{Perceval}. This tool can retrieve data from more
-than 20 different kinds of data sources, from \emph{Git} repositories or \emph{GitHub} projects, to issue trackers such as \emph{Jira}
+than 20 different kinds of data sources, from \emph{git} repositories or GitHub projects, to issue trackers such as \emph{Jira}
 or \emph{Bugzilla}, including messaging systems such as \emph{IRC}, \emph{Slack} or mailing lists, or other types of systems such as
 \emph{StackOverflow} or \emph{Jenkins} in a regular and incremental way, allowing to produce uniform sets of information.
 \newline \emph{GrimoireLab} is now part of \emph{CHAOSS}\footnote{\url{https://chaoss.community/}}, a project by \emph{The Linux Foundation}.
@@ -529,7 +529,7 @@ Before going into detail in each of these stages, let's introduce them briefly:
     \begin{itemize}
       \item \textbf{Extract file list}:
             This is the most critical section, because is where we obtain the main \textit{branch} and the file list
-            (for each repository in the list from last section) quering the \emph{GitHub} \textit{API}.
+            (for each repository in the list from last section) quering the GitHub \textit{API}.
       \item \textbf{Filter projects}:
             It consists on iterating over the extracted file lists applying the corresponding patterns and heuristics.
             Then, it produces a \emph{list of positive results} file (repositories with at least one match).
@@ -562,20 +562,20 @@ Before going into detail in each of these stages, let's introduce them briefly:
   \caption{\textit{Projects} table structure from GHTorrent database}
   \label{fig:ghtorrent-schema-detail}
 \end{figure}
-\emph{GitHub} is the largest host of source code in the world (See figure~\ref{fig:total-repo-number} for a quantitative
-estimation of \emph{GitHub} scale evolution across time). Actually, the main problem we face is that there isn't a direct way
-of obtaining the amount of \emph{GitHub} repositories neither getting a list of them using its \textit{API}, so it is
+GitHub is the largest host of source code in the world (See figure~\ref{fig:total-repo-number} for a quantitative
+estimation of GitHub scale evolution across time). Actually, the main problem we face is that there isn't a direct way
+of obtaining the amount of GitHub repositories neither getting a list of them using its \textit{API}, so it is
 very difficult to have quantitative and reliable data. For example, for building a graph like ~\ref{fig:total-repo-number},
-its numbers had to be obtained directly from articles written by the \emph{GitHub} team itself [\textcolor{red}{Source}]
+its numbers had to be obtained directly from articles written by the GitHub team itself [\textcolor{red}{Source}]
 and other people's estimations [\textcolor{red}{Source}].\\\\
 At this point is where \emph{GHTorrent} project has its role in this story, as they provide an offline database dump with most
-of the data which \emph{GitHub} \textit{API} can provide at a certain date. This great collavorative effort is a huge advantage
-for researchers, otherwise it would be practically non-viable retrieving full-scale \emph{GitHub} data in a systematic way.
+of the data which GitHub \textit{API} can provide at a certain date. This great collavorative effort is a huge advantage
+for researchers, otherwise it would be practically non-viable retrieving full-scale GitHub data in a systematic way.
 Nevertheless, it is important to mark that \emph{GHTorrent} database dump \underline{does not contain} \textit{Git trees}
 (file-related) information: if this information was included, a major part of this tool (and by extension, this project) wouldn't
 be necessary, as we could query and filter the data of our interest directly from the database which the \emph{GHTorrent} project provides.\\
 If we have a look at how \emph{GHTorrent} database is structured (Figure~\ref{fig:ghtorrent-schema}), we can observe that
-there is almost one table per \emph{GitHub} object (\textit{users}, \textit{projects}, \textit{pull requests}, \textit{issues}, etc.).
+there is almost one table per GitHub object (\textit{users}, \textit{projects}, \textit{pull requests}, \textit{issues}, etc.).
 Looking closer on these table's structure, we realize the table we need is the \emph{Projects} table
 (see figure~\ref{fig:ghtorrent-schema-detail}), as it contains crucial repository-wise information including every project's name
 and \textit{URL} but also other complementary information which could be used as a primary filter, like \texttt{language} (project's main language,
@@ -623,19 +623,19 @@ Finally, we obtain a filtered \emph{project list} file, which keeps the same for
   \label{fig:gh-api-diagram}
 \end{figure}
 Once the \emph{project list} file is ready, we can proceed to extract the file list of the main \textit{branch} of each
-repository. To achieve this, we have to query the \emph{GitHub} \textit{API} several times for each project.
-It is important to mark this, as the \emph{GitHub} \textit{API} has a limitation of 5.000 queries per hour for every authenticated
+repository. To achieve this, we have to query the GitHub \textit{API} several times for each project.
+It is important to mark this, as the GitHub \textit{API} has a limitation of 5.000 queries per hour for every authenticated
 account, which caused a huge impact in the research and the data-obtention process, as it is detailed in section (\textcolor{red}{Section}).\\\\
-To make authenticated queries to the \emph{GitHub} \textit{API} we need an \textbf{API token}. A \textbf{token} is a unique
+To make authenticated queries to the GitHub \textit{API} we need an \textbf{API token}. A \textbf{token} is a unique
 identifier of an application requesting access to a service.
-In the case of \emph{GitHub}, they are long, alphanumeric strings of characters generated within a \emph{GitHub} account,
+In the case of GitHub, they are long, alphanumeric strings of characters generated within a GitHub account,
 so every executed action with that \textbf{token} is done on behalf of its owner's account.
-For instance, if I want to \textit{fork} a repository into my \emph{GitHub} account, I could do it either in two ways:
+For instance, if I want to \textit{fork} a repository into my GitHub account, I could do it either in two ways:
 \begin{itemize}
-  \item Login into my account, visit the repository \emph{URL} and press the \textbf{fork} button on \emph{GitHub}'s web interface.
-  \item Send an authenticated \textit{query}\footnote{From now on, every time I refer to a \emph{GitHub} \textit{API}
+  \item Login into my account, visit the repository \emph{URL} and press the \textbf{fork} button on GitHub's web interface.
+  \item Send an authenticated \textit{query}\footnote{From now on, every time I refer to a GitHub \textit{API}
   request I will ommit \texttt{https://api.github.com}.}
-  to the \emph{GitHub} \textit{API} like this one\footnote{On the requests, the parameters are marked with two dots (:).}:
+  to the GitHub \textit{API} like this one\footnote{On the requests, the parameters are marked with two dots (:).}:
   \begin{lstlisting}[language=bash]
   POST https://api.github.com/repos/:owner/:repo/forks?:token \end{lstlisting}
 \end{itemize}
@@ -648,7 +648,7 @@ Then, it reads the \emph{project list} file and, per line, executes the followin
   in the directories \textbf{master} or \textbf{default}.
   \item If not, try to obtain data from the \emph{master} \textit{branch}, whose output will be saved into the directory
   \textbf{master}.
-  The \textit{query} sent to the \emph{GitHub} \textit{API} to retrieve this data is:
+  The \textit{query} sent to the GitHub \textit{API} to retrieve this data is:
   \begin{lstlisting}[language=bash]
   GET /repos/:owner/:repo/branches/master?:token \end{lstlisting}
   If we obtain a successful response, we will have a \texttt{JSON} file similar to the one in figure~\ref{fig:gh-api-master-json}.
@@ -707,9 +707,9 @@ where the \textit{tree} object contains under itself all the files (\textit{blob
   \item \textbf{path}: Absolute path of that file or folder inside the repository.
   \item \textbf{mode}: This number shows file mode information (file type, permissions, etc.) using UNIX notations.
   \item \textbf{type}: This value will be \texttt{blob} if it is a file, or \texttt{tree} if it is a folder.
-  \item \textbf{sha}: Unique identifier for that \emph{Git} object.
+  \item \textbf{sha}: Unique identifier for that \emph{git} object.
   \item \textbf{size}: File size in \textit{bytes}. Only \texttt{blob} objects contain this parameter.
-  \item \textbf{url}: Link to this object in \emph{GitHub} \textit{API}.
+  \item \textbf{url}: Link to this object in GitHub \textit{API}.
 \end{itemize}
 There is a simple example of the content of one of these files at figure~\ref{fig:gh-tree-json}.\\\\
 The corresponding scripts for this phase are \texttt{github-tree.py} and \texttt{hits2urls.py}
@@ -724,7 +724,7 @@ executing these simple instructions per file:
   \item Provide the positive results printing every matching object's \texttt{path} and \texttt{URL}.
 \end{itemize}
 \texttt{hits2urls.py} is a simple script which converts every \texttt{URL} from the last script (links to \texttt{blob} objects
-in the \emph{GitHub} \textit{API}), to the \texttt{URL} for the actual file which that object is representing to.
+in the GitHub \textit{API}), to the \texttt{URL} for the actual file which that object is representing to.
 Here is an example of one \texttt{URL} which belongs to a \texttt{blob} object (1) converted to the \texttt{URL} which points
 to the actual file (2):
 \begin{lstlisting}[language=bash]
