@@ -677,6 +677,60 @@ Note: Make section of possible errors. Maybe in the "Results - Use Case" section
 \end{itemize}}
 \section{Data filtering}
 \label{sec:filtro-datos}
+\begin{figure}
+  \centering
+  \includegraphics[width=13cm, keepaspectratio]{img/gh-api-trees-json-example}
+  \caption{Example: \texttt{JSON} file containing information about \textit{tree} objects}
+  \label{fig:gh-tree-json}
+\end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[width=11cm, keepaspectratio]{img/github-tree}
+  \caption{Flow-chart with the functioning of \texttt{github-tree.py} and \texttt{hits2urls.py} scripts.}
+  \label{fig:gh-tree-diagram}
+\end{figure}
+In this section is where the data we have obtained from the previous stage is filtered according to our search.
+The approach that have been followed to apply this filtering is to define three types of heuristics, related to
+file extensions and keywords:
+\begin{itemize}
+  \item \textbf{Level-1} file extensions, those which are a top priority in our search. They are inmediately considered
+   as positive results.
+  \item \textbf{Level-2} file extensions, marked as relevant only if they meet one or more additional conditions.
+  \item \textbf{Key-words}, specific words or groups of characters which a filename with a \textit{Level-2} extension
+  has to contain to be considered as a positive result.
+\end{itemize}
+From all \texttt{JSON} files which have been obtained before, we are interested only in those included into
+\textbf{trees} directory. Each of those files contains the file structure of the last version of its repository,
+where the \textit{tree} object contains under itself all the files (\textit{blob} objects) and sub-directories
+(other \textit{tree} objects). Every object, no matter if it is a \textit{tree} or a \textit{blob}, contains the following parameters:
+\begin{itemize}
+  \item \textbf{path}: Absolute path of that file or folder inside the repository.
+  \item \textbf{mode}: This number shows file mode information (file type, permissions, etc.) using UNIX notations.
+  \item \textbf{type}: This value will be \texttt{blob} if it is a file, or \texttt{tree} if it is a folder.
+  \item \textbf{sha}: Unique identifier for that \emph{Git} object.
+  \item \textbf{size}: File size in \textit{bytes}. Only \texttt{blob} objects contain this parameter.
+  \item \textbf{url}: Link to this object in \emph{GitHub} \textit{API}.
+\end{itemize}
+There is a simple example of the content of one of these files at figure~\ref{fig:gh-tree-json}.\\\\
+The corresponding scripts for this phase are \texttt{github-tree.py} and \texttt{hits2urls.py}
+(See a diagram for both of them in figure~\ref{fig:gh-tree-diagram}):\\
+\texttt{github-tree.py} iterates over all the \texttt{JSON} files in the \textbf{trees} directory,
+executing these simple instructions per file:
+\begin{itemize}
+  \item Load \texttt{JSON} data into a \emph{Python} \textit{dictionary}.
+  \item Obtain the \textit{parent} \texttt{tree} object.
+  \item Check the \texttt{type} field for every \textit{child} object.
+  \item If its type is ``\texttt{blob}'', check if it matches with the pre-defined patterns and heuristics.
+  \item Provide the positive results printing every matching object's \texttt{path} and \texttt{URL}.
+\end{itemize}
+\texttt{hits2urls.py} is a simple script which converts every \texttt{URL} from the last script (links to \texttt{blob} objects
+in the \emph{GitHub} \textit{API}), to the \texttt{URL} for the actual file which that object is representing to.
+Here is an example of one \texttt{URL} which belongs to a \texttt{blob} object (1) converted to the \texttt{URL} which points
+to the actual file (2):
+\begin{lstlisting}[language=bash]
+https://api.github.com/repos/mafesan/ptavi-pfinal/git/blobs/3eb76189a21a...
+https://raw.githubusercontent.com/mafesan/ptavi-pfinal/master/uaclient.py \end{lstlisting}
+
 \section{Data analysis}
 \label{sec:analisis-datos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
