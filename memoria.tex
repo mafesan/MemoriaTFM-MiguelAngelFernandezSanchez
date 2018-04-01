@@ -666,15 +666,25 @@ Then, it reads the \emph{project list} file and, per line, executes the followin
   This will be saved into the directory \textbf{trees}.
 \end{itemize}
 When this script finishes, we will have (assuming there were no errors) one \texttt{JSON} file per repository,
-with the file-list information for the \textit{tree} objects in each repository.\\\\
-\textcolor{red}{
-Note: Make section of possible errors. Maybe in the "Results - Use Case" section?
+with the file-list information for the \textit{tree} objects in each repository.\\
+However, the design of this script wouldn't be complete without considering all the possible errors and
+particularities that may appear. Below, it is shown the most relevant setbacks and, if possible, an alternative
+solution for every one of them:
 \begin{itemize}
-  \item Private repository.
-  \item Truncated response.
-  \item Repository no longer exists.
-  \item Charset-related errors.
-\end{itemize}}
+  \item \textbf{Private repository}. Some repositories in GitHub can be private hiring a plan to do so.
+  The only solution is to perform the request with a token with granted access permissions to that repository,
+  otherwise private repositories are ignored.
+  \item \textbf{Truncated response}. Some repositories are too large so their tree and blob information is not completely
+  sent within the response, but only a part of it and a Boolean field called \texttt{truncated} set to \texttt{True}.
+  This was something that the GitHub \textit{API} implemented while we were performing the data retrieval of our
+  use case, so we had to adapt the tool for it. The solution is to \textit{clone} (download) the repository,
+  so later the next script can iterate locally over its files and folders.
+  \item \textbf{Repository no longer exists}. There are repositories which existed at the time when that particular
+  dump of the GHTorrent database was created, but they don't exist anymore.
+  \item \textbf{\textit{Charset}-related errors}. Either the name of the repositories, owners, files, etc. can be written
+  using different types of characters (Japanese, for instance) or other unknown characters (using another encoding)
+  which sometimes caused encoding-decoding errors.
+\end{itemize}
 \section{Data filtering}
 \label{sec:filtro-datos}
 \begin{figure}
