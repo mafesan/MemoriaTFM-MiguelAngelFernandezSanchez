@@ -707,6 +707,12 @@ solution for every one of them:
 \label{sec:filtro-datos}
 \begin{figure}
   \centering
+  \includegraphics[width=13cm, keepaspectratio]{img/file-structure-example}
+  \caption{Example: File-structure of a project to apply filters.}
+  \label{fig:file-structure-example}
+\end{figure}
+\begin{figure}
+  \centering
   \includegraphics[width=13cm, keepaspectratio]{img/gh-api-trees-json-example}
   \caption{Example: \texttt{JSON} file containing information about \textit{tree} objects}
   \label{fig:gh-tree-json}
@@ -717,6 +723,32 @@ solution for every one of them:
   \caption{Flow-chart with the functioning of \texttt{github-tree.py} and \texttt{hits2urls.py} scripts.}
   \label{fig:gh-tree-diagram}
 \end{figure}
+\begin{table}[]
+\centering
+\caption{Example: definition of heuristics.}
+\label{table:heuristics-table-example}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Type of Heuristic} & \textbf{Pattern(s)}                                            \\ \hline
+Level-1                    & \textit{.html}, \textit{.css}, \textit{.js}                    \\ \hline
+Level-2                    & \textit{.py}                                                   \\ \hline
+Key-words                  & \textit{urls}, \textit{views}, \textit{forms}, \textit{models} \\ \hline
+\end{tabular}
+\end{table}
+\begin{table}[]
+\centering
+\caption{Positive results after applying heuristics filter.}
+\label{table:heuristics-positive-example}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Path}              & \textbf{Type of positive}   \\ \hline
+scripts/shorten\_urls.py & Level-2 + contains key-word \\ \hline
+scripts/views.py           & Level-2 + contains key-word \\ \hline
+style/template.css         & Level-1                     \\ \hline
+web/error.html             & Level-1                     \\ \hline
+web/index.html             & Level-1                     \\ \hline
+\end{tabular}
+\end{table}
 In this section is where the data we have obtained from the previous stage is filtered according to our search.
 The approach that have been followed to apply filters is to define three types of heuristics, related to
 file extensions and keywords:
@@ -727,8 +759,20 @@ file extensions and keywords:
   \item \textbf{Key-words}, specific words or groups of characters which a file-name with a \textit{Level-2} extension
   has to contain to be considered as a positive result.
 \end{itemize}
-From all \texttt{JSON} files which have been obtained before, we are interested only in those included into
-\textbf{trees} directory. Each of those files contains the file structure of the last version of its repository,
+Let's imagine a basic example where we are interested in projects related with web development. Defining the
+necessary heuristics as in table~\ref{table:heuristics-table-example}, we will keep any file whose extension
+is on Level-1 list, and those files whose extension is on Level-2 list \textbf{AND} whose file-name contains at least one
+of the words (or group of characters) defined in the key-word list.\\
+\begin{itemize}
+  \item \texttt{.html} is on \textbf{Level-1} list, so any file with \texttt{html} extension will be a positive result directly.
+  \item \texttt{.py} is on \textbf{Level-2} list, so only \texttt{.py} files containing at least one key-word in their file-name
+  (i.e. \textit{urls}) will be considered as a positive result.
+\end{itemize}
+To complete this example, if we apply this filter to a repository whose file structure is like the one in figure~\ref{fig:file-structure-example},
+we would obtain the set of positive results showed at table~\ref{table:heuristics-positive-example}.\\\\
+Now, the next step is applying these filters to the \texttt{JSON} files which have been obtained before.
+Specifically, we are interested only in those files included into the \textbf{trees} directory.
+Each of those files contains the file structure of the last version of its repository,
 where the \textit{tree} object contains under itself all the files (\textit{blob} objects) and sub-directories
 (other \textit{tree} objects). Every object, no matter if it is a \textit{tree} or a \textit{blob}, contains the following parameters:
 \begin{itemize}
@@ -748,13 +792,13 @@ executing these simple instructions per file:
   \item Load \texttt{JSON} data into a \emph{Python} \textit{dictionary} (a key-value data structure).
   \item Obtain the parent \texttt{tree} object (field \texttt{"tree"} in our \textit{dictionary}).
   \item Check the \texttt{"type"} field for every child object.
-  \item If its type is \texttt{"blob"}, check if it matches with the pre-defined patterns and heuristics.
+  \item If its type is \texttt{"blob"}, apply the pre-defined patterns and heuristics.
   \item Provide the positive results printing every matching object's \texttt{"path"} and \texttt{"URL"}.
 \end{itemize}
 \texttt{hits2urls.py} is a simple script which converts every \texttt{URL} from the last script (links to \texttt{blob} objects
 in the GitHub \textit{API}), to the \texttt{URL} for the actual file which that object is representing to.
-Here is an example of one \texttt{URL} which belongs to a \texttt{blob} object (L1) converted to the \texttt{URL}
-pointing to the actual file (L2):
+Here is an example of one \texttt{URL} which belongs to a \texttt{blob} object converted to the \texttt{URL}
+pointing to the actual file (see below lines 1 and 2, respectively):
 \begin{lstlisting}[language=bash]
 https://api.github.com/repos/mafesan/ptavi-pfinal/git/blobs/3eb76189a21a...
 https://raw.githubusercontent.com/mafesan/ptavi-pfinal/master/uaclient.py \end{lstlisting}
