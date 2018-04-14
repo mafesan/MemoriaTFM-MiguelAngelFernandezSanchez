@@ -362,7 +362,7 @@ for other researches or any other person who might be interested on extract this
 presented a personal challenge which provided me the opportunity to extend my knowledge and obtain a valuable point of
 view about research and large-scope projects.
 \section{Structure of the dissertation}
-\label{sec:estructura}
+\label{sec:structure}
 \textcolor{red}{(Work in progress)}\newline
 During this dissertation, I am going to explain the different objectives that were stated for this project, the technology
 which have been used to make it happen.\\
@@ -376,7 +376,7 @@ and to finish, consider future work and further steps for this project.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
 \chapter{Objectives}
-\label{chap:objetivos}
+\label{sec:objectives}
 It is widely known that GitHub allows to filter projects by a certain programming language (e.g.
 \emph{Python}, \emph{C++}, etc.), but GitHub does not offer a mechanism through which you can identify projects
 containing files with a certain extension or how many files match with some word or pattern in their
@@ -405,6 +405,7 @@ systematic way.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
 \chapter{State of the art}
+\label{sec:state-art}
 %Puedes citar libros, como el de Bonabeau et al. sobre procesos estigm�rgicos~\cite{bonabeau:_swarm}.
  % Nota que el ~ a�ade un espacio en blanco, pero no deja que exista un salto de l�nea. Imprescindible ponerlo para las citas.
 \section{Python}
@@ -524,7 +525,7 @@ or \emph{Bugzilla}, including messaging systems such as \emph{IRC}, \emph{Slack}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
 \chapter{Design and implementation}
-\label{sec:arquitectura}
+\label{sec:design-implementation}
 This tool has a modular design, to ease its adaptability to future updates, changes on it dependencies or other needs which may appear.
 The tool is divided into several linear sections with a set of \emph{Python} scripts, which can be grouped into three
 main phases (See figure~\ref{fig:arquitectura}).
@@ -560,7 +561,7 @@ Before going into detail in each of these stages, let's introduce them briefly:
     \end{itemize}
 \end{enumerate}
 \section{Preliminary phase}
-\label{sec:fase-preliminar}
+\label{sec:preliminary-phase}
 % # TODO: https://growthhackers.com/growth-studies/github, https://blog.github.com/2013-12-23-10-million-repositories/
 \begin{figure}
   \centering
@@ -627,7 +628,7 @@ Finally, we obtain a filtered \emph{project list} file, which keeps the same for
 }
 \end{table}
 \section{Data extraction}
-\label{sec:extraccion-datos}
+\label{sec:data-extraction}
 \begin{figure}
   \centering
   \includegraphics[width=13cm, keepaspectratio]{img/gh-api-master-json-example}
@@ -704,7 +705,7 @@ solution for every one of them:
   which sometimes caused encoding-decoding errors.
 \end{itemize}
 \section{Data filtering}
-\label{sec:filtro-datos}
+\label{sec:data-filtering}
 \begin{figure}
   \centering
   \includegraphics[width=13cm, keepaspectratio]{img/file-structure-example}
@@ -803,7 +804,7 @@ pointing to the actual file (see below lines 1 and 2, respectively):
 https://api.github.com/repos/mafesan/ptavi-pfinal/git/blobs/3eb76189a21a...
 https://raw.githubusercontent.com/mafesan/ptavi-pfinal/master/uaclient.py \end{lstlisting}
 \section{Data analysis}
-\label{sec:analisis-datos}
+\label{sec:data-analysis}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % RESULTADOS %
@@ -811,23 +812,23 @@ https://raw.githubusercontent.com/mafesan/ptavi-pfinal/master/uaclient.py \end{l
 \cleardoublepage
 \chapter{Results}
 \section{Case of study: UML}
-\label{sec:caso-estudio-uml}
+\label{sec:case-study-uml}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CONCLUSIONES %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
 \chapter{Conclusions}
-\label{chap:conclusiones}
+\label{chap:conclusions}
 \section{Achieved objectives}
-\label{sec:consecucion-objetivos}
+\label{sec:achieved-objectives}
 Esta sección es la sección espejo de las dos primeras del capítulo de objetivos,
 donde se planteaba el objetivo general y se elaboraban los específicos.
 Es aquí donde hay que debatir qué se ha conseguido y qué no. Cuando algo no
 se ha conseguido, se ha de justificar, en términos de qué problemas se han
 encontrado y qué medidas se han tomado para mitigar esos problemas.
 \section{Knowledge application}
-\label{sec:aplicacion}
+\label{sec:knowledge-application}
 Aquí viene lo que has aprendido durante el Grado/Máster y que has aplicado
 en el TFG/TFM. Una buena idea es poner las asignaturas más relacionadas y
 comentar en un párrafo los conocimientos y habilidades puestos en práctica.
@@ -841,19 +842,19 @@ comentar en un párrafo los conocimientos y habilidades puestos en práctica.
   \item Laboratorio de Tecnologías Audiovisuales en la Web
 \end{itemize}
 \section{Learning outcomes}
-\label{sec:lecciones_aprendidas}
+\label{sec:learning-outcomes}
 Aquí viene lo que has aprendido en el Trabajo Fin de Grado/Máster.
 \begin{enumerate}
   \item a
   \item b
 \end{enumerate}
 \section{Future work}
-\label{sec:trabajos_futuros}
+\label{sec:future-work}
 Ningún software se termina, así que aquí vienen ideas y funcionalidades
 que estaría bien tener implementadas en el futuro.
 Es un apartado que sirve para dar ideas de cara a futuros TFGs/TFMs.
 \section{Personal assessment}
-\label{sec:valoracion}
+\label{sec:assessment}
 Finalmente (y de manera opcional), hay gente que se anima a dar su punto de
 vista sobre el proyecto, lo que ha aprendido, lo que le gustaría haber aprendido,
 las tecnologías utilizadas y demás.
