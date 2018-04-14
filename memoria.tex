@@ -29,6 +29,7 @@
 %\usepackage[dvipdfm]{graphicx}
 \usepackage{graphicx}
 \usepackage{float}  %% H para posicionar figuras
+\usepackage[breaklinks=true]{hyperref} %% Para marcadores
 \usepackage[nottoc, notlot, notlof, notindex]{tocbibind} %% Opciones de �ndice
 \usepackage{latexsym}  %% Logo LaTeX
 \usepackage{csquotes}  %% Paquete para citas (displayquote)
@@ -503,9 +504,16 @@ to \emph{git}-related data, such as \textit{commits}, \textit{branches} or \text
 returning information using \emph{JSON}(\textit{JavaScript Object Notation}) format.
 \section{GHTorrent}
 \label{sec:ghtorrent}
+\begin{figure}
+  \centering
+  \includegraphics[width=16cm, keepaspectratio]{img/ghtorrent-schema}
+  \caption{GHTorrent database relational schema}
+  \label{fig:ghtorrent-schema}
+\end{figure}
 \textbf{GHTorrent} is a project based on create a scalable, queriable, offline mirror of data offered through the GitHub \textit{API}.\\
 As they explain in their website\footnote{\url{http://ghtorrent.org/}}, \emph{GHTorrent} monitors the GitHub public event time line.
-For each event, it retrieves its contents and their dependencies, exhaustively. Then, it stores the raw responses to a database.\
+For each event, it retrieves its contents and their dependencies, exhaustively. Then, it stores the raw responses to a database whose
+structure is represented in figure~\ref{ghtorrent-schema}.\
 For each release, you can choose the \textit{dump} (a raw copy of a database) you want to download: either a \emph{MySQL} dump
 (the full database, using one file per table) or a \emph{MongoDB} one (an incremental database).\\
 \section{GrimoireLab and Perceval}
@@ -568,12 +576,6 @@ Before going into detail in each of these stages, let's introduce them briefly:
   \includegraphics[width=14cm, keepaspectratio]{img/number-github-repos}
   \caption{Evolution of number of repositories on GitHub across time}
   \label{fig:total-repo-number}
-\end{figure}
-\begin{figure}
-  \centering
-  \includegraphics[width=16cm, keepaspectratio]{img/ghtorrent-schema}
-  \caption{GHTorrent database relational schema}
-  \label{fig:ghtorrent-schema}
 \end{figure}
 \begin{figure}
   \centering
@@ -805,6 +807,43 @@ https://api.github.com/repos/mafesan/ptavi-pfinal/git/blobs/3eb76189a21a...
 https://raw.githubusercontent.com/mafesan/ptavi-pfinal/master/uaclient.py \end{lstlisting}
 \section{Data analysis}
 \label{sec:data-analysis}
+In this section is where the positive results are analysed deeply to end up building a database to store
+all the extracted information so it can be queried to perform our desired analysis.
+\subsection{Extract extended repository information}
+\label{ssec:extract-perceval}
+To analyze the resulting repositories we take advantage of \textbf{Perceval}, a mature, powerful tool which
+is capable of retrieving data from more than 25 different data sources producing a uniform set of data which can be
+updated along time.\\
+The data sources which Perceval supports are given by its \emph{backends}, and we are using the \emph{Git backend} to
+obtain Git-related information from those GitHub repositories with at least one positive result.
+Perceval clones repository by repository and parses every Git event log, producing a \emph{JSON} file
+per repository containing data for every commit and its related Git objects.\\
+\subsection{Building the database}
+\label{ssec:build-database}
+Next step is to build a database, which allows to store the extracted data in an optimized way to
+obtain elaborated results by using queries according to our case of study.\\
+As we had used the GHTorrent database, which is a MySQL database, we decided to use a MySQL database
+for this purpose too, as it is easier to build and maintain.
+We designed this database to contain five tables; four of them using data from the files which are obtained with
+\textbf{Perceval} and one table from the GHTorrent database, \texttt{USERS} containing information about GitHub user accounts.
+These tables and their full structure are in figure \textcolor{red}{(ref)}, and as a summary, these tables contain the following information:
+\begin{itemize}
+  \item \texttt{REPOS}: For a repository; its name, number of commits, URL, founder, etc.
+  \item \texttt{PEOPLE}: Referring to the people who authored the commits, their name and email.
+  \item \texttt{COMMITS}: For each commit object; its ID in Git, its ID on GitHub, which repository belongs to, ID of its author, etc.
+  \item \texttt{INTERESTING\_FILES}: For each file (positive result); its name, URL, which repository belongs to and which commits this file is included into.
+  \item \texttt{USERS}: From GHTorrent, GitHub user account information as login, name, location, company, creation date, etc.
+\end{itemize}
+\subsection{Querying the database}
+\label{ssec:query-database}
+Once the database has been build and filled with the data, to produce proper results for our analysis we have to ensure
+that the perform the right queries.\\
+Here are some standard queries we can execute to perform a basic analysis:
+\begin{itemize}
+  \item Query 1 (tentative)
+  \begin{lstlisting}[language=SQL]
+  SELECT (*) FROM users; \end{lstlisting}
+\end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % RESULTADOS %
