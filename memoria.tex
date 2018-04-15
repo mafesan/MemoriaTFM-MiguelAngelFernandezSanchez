@@ -850,8 +850,62 @@ Here are some standard queries we can execute to perform a basic analysis:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
 \chapter{Results}
+\label{sec:results}
+As I mentioned in section~\ref{sec:motivation}, this project was born in a research environment.
+In this section it is described how the tool behaved in a real environment with all the setbacks
+and limitations that appeared during the whole process. It is important to mark that this ongoing research
+motivated many of the decisions which were took during the design and implementation
+of the tool that we saw in the last section.\\
+This case of study descriptions are focused on the implementation of the technical part of the studies,
+showing an overview of its data and results taking into account specific details and limitations.
 \section{Case of study: UML}
 \label{sec:case-study-uml}
+This methodology was applied for the first time to the study: ”The quest for Open Source projects that use
+UML: Mining GitHub” [HQC + 16 - cite]. This research has been a collaborative work between Chalmers University
+and Rey Juan Carlos University, as I mentioned in section (ref).
+The main goal of this study was to deepen in the knowledge of usage and evolution of UML models in
+Free/Libre/Open Source Software (FLOSS) projects, tracking them throughout the whole projects life-span.
+In addition to the main research questions mentioned in section~\ref{sec:objectives}, some of the specific RQs
+of this study were:
+\begin{itemize}
+  \item RQ1: Are there GitHub projects that use UML? Which are these projects?
+  \item RQ2: Are there GitHub projects in which the UML models are also updated?
+  \item RQ3: When in the project are new UML models introduced?
+\end{itemize}
+It is important to know if there is some peculiarity in the data we are looking for, for example, UML models can be
+found in many different formats, but they can be classified into two main types: text-based models, which are XML-alike
+files and image-based models (See figure~\ref{fig:uml-types}). This entails an additional problem as an external validation of the data is
+required in an intermediate phase between the data filtering and its analysis, which will be detailed later.\\\\
+\begin{figure}
+  \centering
+  \includegraphics[width=15cm, keepaspectratio]{img/umls-landscape}
+  \caption{Examples of how UML models can be found, XML-alike (left) or image type (right).}
+  \label{fig:uml-types}
+\end{figure}
+The first two phases of the tool, described in sections~\ref{sec:preliminary-phase} and~\ref{sec:data-extraction} respectively
+are, by default, independent from the case of study. However, these phases are not a trivial task because of the amount of
+data that has to be processed with the difficulties and limitations associated with it.\\
+Regarding to the preliminary phase, the GHTorrent data-set used in this study is from February, 2016. At that time, there were
+a total of 26 million repositories (approx.). As the main research that motivated this study was interested in identify UML
+models introduced in a project by its owners, we had to filter those projects to discard forked repositories. Applying that
+filter we got 12 847 555 repositories ready to be analyzed.\\\\
+The greatest challenge was to execute the tool against almost 13 million GitHub repositories, as the GitHub API has a limitation
+of 5,000 requests per hour \& account. As it is explained before, a maximum of three requests are made to obtain the main
+branch for each repository, as we are not interested in secondary branches for our case of study. Making the calculations about
+how much time would it take to complete this first stage:
+\begin{itemize}
+  \item 3 queries for each project = 1 666 projects/hour (max).
+  \item 12 847 555 projects / 1 666 projects per hour = 7 712 h. = 322 days
+\end{itemize}
+We made an estimation where 322 days would be needed with the best scenario, so we opted for parallelizing the process using many
+different GitHub accounts.\\
+To make this possible, we asked for help to some students and professors so they can temporarily borrow their GitHub account
+token and we obtained 21 account tokens. Finally, it took almost 90 days to complete this task as we were receiving these credentials
+while we were already collecting data. I take this opportunity to thank every person who had the kindness to contribute to this project
+with their GitHub accounts: (list of people).\\
+In addition to the GitHub API limitation, we may encounter technical limitations: it is desirable to have a fast and stable Internet
+connection, enough space in the hard drive and also use a powerful computer, because the size of the whole set of partial output files
+(compressed) was 140 GB and each of these partial files has to be opened and processed.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CONCLUSIONES %
