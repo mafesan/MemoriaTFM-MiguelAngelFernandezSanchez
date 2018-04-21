@@ -745,10 +745,10 @@ Key-words                  & \textit{urls}, \textit{views}, \textit{forms}, \tex
 \begin{tabular}{|c|c|}
 \hline
 \textbf{Path}              & \textbf{Type of positive}   \\ \hline
-scripts/shorten\_urls.py & Level-2 + contains key-word \\ \hline
-scripts/views.py           & Level-2 + contains key-word \\ \hline
-style/template.css         & Level-1                     \\ \hline
-web/error.html             & Level-1                     \\ \hline
+scripts/shorten\_urls.py & Level-2 + contains key-word   \\
+scripts/views.py           & Level-2 + contains key-word \\
+style/template.css         & Level-1                     \\
+web/error.html             & Level-1                     \\
 web/index.html             & Level-1                     \\ \hline
 \end{tabular}
 \end{table}
@@ -875,7 +875,7 @@ of this study were:
 It is important to know if there is some peculiarity in the data we are looking for, for example, UML models can be
 found in many different formats, but they can be classified into two main types: text-based models, which are XML-alike
 files and image-based models (See figure~\ref{fig:uml-types}). This entails an additional problem as an external validation of the data is
-required in an intermediate phase between the data filtering and its analysis, which will be detailed later.\\\\
+required in an intermediate step between the data filtering phase and the analysis one, which will be detailed later.\\\\
 \begin{figure}
   \centering
   \includegraphics[width=15cm, keepaspectratio]{img/umls-landscape}
@@ -905,7 +905,55 @@ while we were already collecting data. I take this opportunity to thank every pe
 with their GitHub accounts: (list of people).\\
 In addition to the GitHub API limitation, we may encounter technical limitations: it is desirable to have a fast and stable Internet
 connection, enough space in the hard drive and also use a powerful computer, because the size of the whole set of partial output files
-(compressed) was 140 GB and each of these partial files has to be opened and processed.
+(compressed) was 140 GB and each of these partial files has to be opened and processed.\\\\
+To continue with the next step of the data extraction phase, which is to apply the filter to the file-list information
+we had obtained. In this case, we are interested in looking for files whose extension matches with all possible extensions which an
+UML model can be found, as is it showed in table~\ref{table:heuristics-cs1-example}.\\\\
+\begin{table}[]
+\centering
+\caption{Example: definition of heuristics for the case of study 1.}
+\label{table:heuristics-cs1-example}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Type of Heuristic} & \textbf{Pattern(s)}                                                                                           \\ \hline
+Level-1                    & \textit{.uml}, \textit{.xmi}, \textit{.uxf} and \textit{.xdr}                                                 \\ \hline
+Level-2                    & \textit{.xml}, \textit{.bmp}, \textit{.jpg}, \textit{.jpeg}, \textit{.gif}, \textit{.png} and \textit{.svg}   \\ \hline
+Key-words                  & \textit{xmi}, \textit{uml}, \textit{diagram}, \textit{architecture} and \textit{design}                       \\ \hline
+\end{tabular}
+\end{table}
+As described before, an additional problem arose: from all the identified files with the interesting extensions, how many of those files
+really are a UML model, and how many are not? As the tool has a modular design, it was easy to add an additional phase to verify the data
+which was obtained after the filtering. This verification process was solved by Chalmers team, using heuristics for the XML-alike files
+and image processing and machine learning techniques for image files [HQCS + 14a, HQCS + 14b - cites].\\\\
+UML models can be included either in image or text files (See figure~\ref{fig:uml-types}), therefore our main filter using file extensions
+and character patters in file-names is not enough to completely identify UML files. That is why it was necessary the inclusion of
+an additional phase where all the positive outcomes after applying the first filter (now marked as \textbf{potential files}) need
+to be validated to determine whether they contain a UML model or not. This external validation stage developed by \emph{Chalmers} team
+includes machine-learning and digital image processing techniques which also required manual verification steps, which were very time-consuming.\\
+This handicap led to the decision of shorten the data-set to analyze $\sim$10\% of the total amount of GitHub repositories which resulted
+in 1.240.000 repositories, in order to offer accurately verified results. From those repositories, we obtained 100.702 potential files
+which matched after applying the heuristics filter in table~\ref{table:heuristics-cs1-example}. These potential files are the input
+of the validation stage whose process and results are summarized on figure~\ref{fig:validated-files-distribution}: A total of 21.316 UML
+files were validated included in 3.295 different GitHub repositories.\\\\
+\begin{figure}
+  \centering
+  \includegraphics[width=17cm, keepaspectratio]{img/file-results-models-diagram}
+  \caption{Diagram: Results distribution from potential files to validated UML files.}
+  \label{fig:validated-files-distribution}
+\end{figure}
+\begin{table}[]
+  \centering
+  \caption{Table: Validated positive repositories sorted by their number of UML models.}
+  \label{table:validated-repos-table}
+  \begin{tabular}{|c|c|}
+  \hline
+  \textbf{Number of UML models} & \textbf{Number of repositories}    \\ \hline
+  1                             & 1947                               \\
+  From 2 to 9                   & 1169                               \\
+  From 10 to 99                 & 158                                \\
+  100+                          & 4                                  \\ \hline
+  \end{tabular}
+\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CONCLUSIONES %
