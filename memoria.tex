@@ -38,6 +38,7 @@
 \usepackage[normalem]{ulem}  %% Para tablas
 \useunder{\uline}{\ul}{}  %% Para tablas
 \usepackage{listings}  %% para código y comandos
+\usepackage{pdfpages}  %% para incluir archivos PDF
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
@@ -648,7 +649,8 @@ Finally, we obtain a filtered \emph{project list} file, which keeps the same for
 Once the \emph{project list} file is ready, we can proceed to extract the file list of the main \textit{branch} of each
 repository. To achieve this, we have to query the GitHub \textit{API} several times for each project.
 It is important to mark this, as the GitHub \textit{API} has a limitation of 5.000 queries per hour for every authenticated
-account, which caused a huge impact in the research and the data-retrieval process, as it is detailed in section (\textcolor{red}{Section}).\\\\
+account, which caused a huge impact in the research and the data-retrieval process, as it is detailed in the case of study described in
+section~\ref{sec:case-study-uml}.\\\\
 To make authenticated queries to the GitHub \textit{API} we need an \textbf{API token}. A \textbf{token} is a unique
 identifier of an application requesting access to a service.
 In the case of GitHub, they are long, alphanumeric strings of characters generated within a GitHub account,
@@ -840,12 +842,19 @@ These tables and their full structure are in figure \textcolor{red}{(ref)}, and 
 \label{ssec:query-database}
 Once the database has been build and filled with the data, to produce proper results for our analysis we have to ensure
 that the perform the right queries.\\
-Here are some standard queries we can execute to perform a basic analysis:
+For instance, here are some queries we can execute to perform an analysis:
 \begin{itemize}
-  \item Query 1 (tentative)
+  \item Number of commits where a file has been modified.
+  \begin{lstlisting}[language=SQL]
+  SELECT (*) FROM users; \end{lstlisting}
+  \item Name of positive repositories with less than 10 files
+  \begin{lstlisting}[language=SQL]
+  SELECT (*) FROM users; \end{lstlisting}
+  \item Users who have modified \emph{.py} files within the last 2 months
   \begin{lstlisting}[language=SQL]
   SELECT (*) FROM users; \end{lstlisting}
 \end{itemize}
+\textcolor{red}{FIXME: Put actual MySQL queries to extract this information and add more examples.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % RESULTADOS %
@@ -858,13 +867,19 @@ In this section it is described how the tool behaved in a real environment with 
 and limitations that appeared during the whole process. It is important to mark that this ongoing research
 motivated many of the decisions which were took during the design and implementation
 of the tool that we saw in the last section.\\
-This case of study descriptions are focused on the implementation of the technical part of the studies,
+The results presented here led to several scientific papers published on international Software Engineering
+conferences which are highly ranked according to CORE\footnote{\url{http://www.core.edu.au/conference-portal}} portal:
+ICSE\footnote{International Conference on Software Engineering} (rank A*)\footnote{\url{http://portal.core.edu.au/conf-ranks/1209/}},
+MODELS\footnote{International Conference on the Unified Modelling Language} (rank A)\footnote{\url{http://portal.core.edu.au/conf-ranks/1244/}},
+and MSR\footnote{International Conference on Mining Software Repositories} (rank A, before rank C)\footnote{\url{http://portal.core.edu.au/conf-ranks/711/}}.
+These papers are available in appendix~\ref{app:papers}.
+\\This case of study descriptions are focused on the implementation of the technical part of the studies,
 showing an overview of its data and results taking into account specific details and limitations.
-\section{Case of study: UML}
+\section{Case of study: UML models in GitHub projects}
 \label{sec:case-study-uml}
 This methodology was applied for the first time to the study: ”The quest for Open Source projects that use
-UML: Mining GitHub” [HQC + 16 - cite]. This research has been a collaborative work between Chalmers University
-and Rey Juan Carlos University, as I mentioned in section (ref).
+UML: Mining GitHub” [HQC + 16 - cite] (The full paper is available in section~\ref{sec:paper-models}).
+This research has been a collaborative work between Chalmers University and Rey Juan Carlos University, as I mentioned in section~\ref{sec:motivation}.
 The main goal of this study was to deepen in the knowledge of usage and evolution of UML models in
 Free/Libre/Open Source Software (FLOSS) projects, tracking them throughout the whole projects life-span.
 In addition to the main research questions mentioned in section~\ref{sec:objectives}, some of the specific RQs
@@ -899,7 +914,7 @@ how much time would it take to complete this first stage:
   \item 3 queries for each project = 1 666 projects/hour (max).
   \item 12 847 555 projects / 1 666 projects per hour = 7 712 h. = 322 days
 \end{itemize}
-We made an estimation where 322 days would be needed with the best scenario, so we opted for parallelizing the process using many
+We made an estimation where 322 days would be needed with the best scenario, so we opted for paralleling the process using many
 different GitHub accounts.\\
 To make this possible, we asked for help to some students and professors so they can temporarily borrow their GitHub account
 token and we obtained 21 account tokens. Finally, it took almost 90 days to complete this task as we were receiving these credentials
@@ -926,7 +941,7 @@ Key-words                  & \textit{xmi}, \textit{uml}, \textit{diagram}, \text
 As described before, an additional problem arose: from all the identified files with the interesting extensions, how many of those files
 really are a UML model, and how many are not? As the tool has a modular design, it was easy to add an additional phase to verify the data
 which was obtained after the filtering. This verification process was solved by Chalmers team, using heuristics for the XML-alike files
-and image processing and machine learning techniques for image files [HQCS + 14a, HQCS + 14b - cites].\\\\
+and image processing and machine learning techniques for image files [HQCS + 14a, HQCS + 14b - \textcolor{red}{FIXME: Citations}].\\\\
 UML models can be included either in image or text files (See figure~\ref{fig:uml-types}), therefore our main filter using file extensions
 and character patters in file-names is not enough to completely identify UML files. That is why it was necessary the inclusion of
 an additional phase where all the positive outcomes after applying the first filter (now marked as \textbf{potential files}) need
@@ -936,16 +951,16 @@ This handicap led to the decision of shorten the data-set to analyze $\sim$10\% 
 in 1.240.000 repositories, in order to offer accurately verified results. From those repositories, we obtained 100.702 potential files
 which matched after applying the heuristics filter in table~\ref{table:heuristics-cs1-example}. These potential files are the input
 of the validation stage whose process and results are summarized on figure~\ref{fig:validated-files-distribution}: A total of 21.316 UML
-files were validated included in 3.295 different GitHub repositories.\\\\
+files were validated included in 3.295 different GitHub repositories, which is the answer to RQ1.\\\\
 \begin{figure}
   \centering
-  \includegraphics[width=17cm, keepaspectratio]{img/file-results-models-diagram}
+  \includegraphics[width=16cm, keepaspectratio]{img/file-results-models-diagram}
   \caption{Diagram: Results distribution from potential files to validated UML files.}
   \label{fig:validated-files-distribution}
 \end{figure}
 \begin{table}[]
   \centering
-  \caption{Table: Validated positive repositories sorted by their number of UML models.}
+  \caption{Validated positive repositories sorted by their number of UML models.}
   \label{table:validated-repos-table}
   \begin{tabular}{|c|c|}
   \hline
@@ -956,6 +971,9 @@ files were validated included in 3.295 different GitHub repositories.\\\\
   100+                          & 4                                  \\ \hline
   \end{tabular}
 \end{table}
+Next, in the data-analysis phase these projects were processed with Perceval and a database was built using that information.
+Once the database was created it was obtained more elaborated data, for instance, the distribution of positive repositories
+according to how many UML models contained each of them (See table~\ref{table:validated-repos-table}).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CONCLUSIONES %
@@ -1011,6 +1029,10 @@ las tecnologías utilizadas y demás.
 \label{app:manual}
 \chapter{Published papers}
 \label{app:papers}
+\section{The Quest for OS Projects that use UML: Mining GitHub}
+\label{sec:paper-models}
+This paper was published in MODELS conference, in July, 2016.
+\includepdf[pages=-,pagecommand={},width=1.2\textwidth]{pdf/models.pdf}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BIBLIOGRAFIA %
