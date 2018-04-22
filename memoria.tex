@@ -278,7 +278,7 @@ Lo mejor es escribir el resumen al final.
 % No te olvides de echarle un ojo a la p�gina con los cinco errores de escritura m�s frecuentes\footnote{\url{http://www.tallerdeescritores.com/errores-de-escritura-frecuentes}}.
 % #TODO Ask for resources to back this data:
 The way people develop software has evolved during these years: there is an extended social perception of developers to
-being ingoing, solitary people, with very few social skills. But this sense is outdated: the paradigm has changed,
+being introverted, solitary people, with very few social skills. But this sense is outdated: the paradigm has changed,
 as coding has become almost a social activity. Developers who work collaborating with others produce better software [resource], as they
 are continuously reading code from other developers, getting feedback about their contributions and consequently
 widening their knowledge with new procedures and ideas. It turns out that this is how most of the software is produced nowadays,
@@ -286,7 +286,7 @@ so it is very difficult to become a successful developer without having good soc
 If we think on social, virtual interactions among people, the first term that probably come to our minds will be
 ``\emph{Social networks}''. It is clear that those so-called social networks have produced a huge impact among a big part of the
 population changing daily habits or affecting real-life relationships, just to name a few examples. As individuals, we share personal information every
-day using interactive applications which allows us to participate somehow into a social network. Because of handling these
+day using interactive applications which allow us to participate somehow in a social network. Because of handling these
 applications, we make specific interactions as users. \\
 Let's see some examples. If we focus on Twitter, some of these interactions can be:
 \begin{itemize}
@@ -301,7 +301,8 @@ Let's see some examples. If we focus on Twitter, some of these interactions can 
     \item Writing a comment on someone's profile.
 \end{itemize}
 Talking about coding, in the last few years we have seen how this social trend came to software with the
-emergence of social coding platforms, such as GitHub, BitBucket, GitLab, etc.\\
+emergence of social coding platforms, such as GitHub\footnote{\url{https://github.com}},
+BitBucket\footnote{\url{https://bitbucket.org/product}}, GitLab\footnote{\url{https://gitlab.com/}}, etc.\\
 Social interactions in these platforms are about how software is developed and maintained but also how
 contributions are managed (code review, continuous integration, etc.).\\
 So, for example, on GitHub\footnote{\url{https://github.com}} we can find interactions like:
@@ -311,7 +312,8 @@ So, for example, on GitHub\footnote{\url{https://github.com}} we can find intera
     \item Checking the contributors of a repository.
     \item Submiting a \textit{Pull Request} (proposal to merge changes in a project).
 \end{itemize}
-These interactions that were mentioned, no matter their source, leave traces which remain stored in some computer on Earth.
+These interactions that were mentioned, no matter their source, leave traces which remain stored in some computer on Earth
+and generally they are visible to everybody.
 This means we can obtain these data (though not all of it is publicly available) through the Internet using an \emph{API}
 (\textit{Application programming interface}).\\
 Once this information is retrieved, we can analyze it and extract conclusions about it.
@@ -349,7 +351,7 @@ category are small: nearly all free software is open source, and nearly all open
 %Example code: \begin{verbatim}
 \section{Motivation}
 \label{sec:motivation}
-I was working as a Researcher Assistant in \emph{GSyC/LibreSoft}\footnote{\url{http://www.libresoft.es}} department at Rey Juan Carlos University when I started to
+I was working as a researcher assistant in \emph{GSyC/LibreSoft}\footnote{\url{http://www.libresoft.es}} department at Rey Juan Carlos University when I started to
 deepen into Free/Libre software and the world of metrics. Then I had the great luck of start participating in a study that
 Dr. Gregorio Robles was doing with researchers from Chalmers University in Gothenburg, Sweden. The main aim of their research was to
 learn how \emph{UML} models\footnote{\url{http://uml.org/what-is-uml.htm}} are used in public \emph{FLOSS} projects (particularly, projects hosted on GitHub),
@@ -359,18 +361,18 @@ data from all the existing repositories on GitHub, then filter those repositorie
 \emph{UML} model and finally analyze more in-depth the set of projects that meet this condition.\\\\
 Since early stages of this research, this tool was designed and built using a modular structure, thought to be reusable
 and adaptable to any kind of files that have to be found but also the way GitHub provides data; hoping to be useful
-for other researches or any other person who might be interested on extract this information. Besides, the scale of this project
+for other researches or any other person who might be interested on extracting this information. Besides, the scale of this project
 presented a personal challenge which provided me the opportunity to extend my knowledge and obtain a valuable point of
 view about research and large-scope projects.
 \section{Structure of the dissertation}
 \label{sec:structure}
 \textcolor{red}{(Work in progress)}\newline
-During this dissertation, I am going to explain the different objectives that were stated for this project, the technology
+In this dissertation, I am going to explain the different objectives that were stated for this project, the technology
 which have been used to make it happen.\\
-After that, I will detail the designing process and the tool architecture, itemizing on each one of its sections. Then,
+After that, I will detail the designing process and the tool architecture, itemizing on each one of its components. Then,
 we will explore the performance of the tool within a use case, taking into account the limitations and issues which arose
-during it and how they were solved.\\Then, discuss about results from the use case and general conclusions
-and to finish, consider future work and further steps for this project.
+during its development and how they were solved.\\Furthermore, I present the results of the use case and end the dissertation
+with conclusions and future work.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % OBJETIVOS %
@@ -392,13 +394,13 @@ automated way in order to obtain quantitative information about the usage of a c
 or/and any search that can be expressed into patterns and heuristics.\\\\
 Thus far, many studies focused in one single project or in a limited data-set when software development is analyzed, so
 the next goal to define is to obtain the whole data-set of repositories hosted on all GitHub at a certain date.\\
-For analyze the data from all GitHub in a proper way, we needed an static, reliable and updated source of this platform.\
+In order to analyze all data hosted in GitHub in a proper way, we needed an static, reliable and updated source of this platform.\
 This source is produced by the \emph{GHTorrent} project by a queriable, offline database with most of the information which the
 GitHub \textit{API} can provide.\\
 To finish answering \emph{RQ1}, we need to extract the list of files from the main branch [definition] of each repository so
-it can be applied the different filters.\\\\
+it can be applied a set of filters including patterns and other heuristics.\\\\
 To answer to \emph{RQ2}, we need to analyze more in-depth marking those repositories with at least one positive result
-after applying the filter, and then build a database with this extended data to extract useful information from it in a
+after filtering stage is over, and then build a database with this extended data to extract useful information from it in a
 systematic way.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -611,7 +613,7 @@ To obtain the actual data, the procedure to follow is:
   \item Run the Python script \textcolor{red}{[reference to script]} with the corresponding filters to obtain the main
         \emph{project list} file, which will be the input for the next stage.
 \end{enumerate}
-Note that the filtering we establish in this phase is going to condition the results of our analysis. To make this task easier,
+Note that the filtering we establish in this phase is going to influence the results of our analysis. To make this task easier,
 I decided to use a configuration file (See figure \textcolor{red}{[reference]}) to set basic filters and parameters. \textcolor{red}{(WIP)}\\
 Finally, we obtain a filtered \emph{project list} file, which keeps the same format as \texttt{projects.csv} from the database dump.
 \begin{table}[]
@@ -807,7 +809,7 @@ https://api.github.com/repos/mafesan/ptavi-pfinal/git/blobs/3eb76189a21a...
 https://raw.githubusercontent.com/mafesan/ptavi-pfinal/master/uaclient.py \end{lstlisting}
 \section{Data analysis}
 \label{sec:data-analysis}
-In this section is where the positive results are analysed deeply to end up building a database to store
+In this section is where the positive results are analyzed deeply to end up building a database to store
 all the extracted information so it can be queried to perform our desired analysis.
 \subsection{Extract extended repository information}
 \label{ssec:extract-perceval}
