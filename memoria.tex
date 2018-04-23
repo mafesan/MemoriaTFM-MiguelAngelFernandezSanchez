@@ -166,7 +166,7 @@ Herramienta para la extracción y el análisis de proyectos FLOSS en GitHub (pro
 \end{center}
 
 \vspace{1cm}
-La defensa del presente Trabajo Fin de Grado se realizó el día \qquad$\;\,$ de \qquad\qquad\qquad\qquad \newline de 20XX, siendo calificada por el siguiente tribunal:
+La defensa del presente Trabajo Fin de Grado se realizó el día \qquad$\;\,$ de \qquad\qquad\qquad\qquad \newline de 2018, siendo calificada por el siguiente tribunal:
 
 
 \vspace{0.5cm}
@@ -188,7 +188,7 @@ y habiendo obtenido la siguiente calificación:
 
 \vspace{1cm}
 \begin{flushright}
-Fuenlabrada, a \qquad$\;\,$ de \qquad\qquad\qquad\qquad de 20XX
+Fuenlabrada, a \qquad$\;\,$ de \qquad\qquad\qquad\qquad de 2018
 \end{flushright}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -278,6 +278,27 @@ Lo mejor es escribir el resumen al final.
 % el mismo, dando la informaci�n sobre el contexto en el �que se ha desarrollado.
 % No te olvides de echarle un ojo a la p�gina con los cinco errores de escritura m�s frecuentes\footnote{\url{http://www.tallerdeescritores.com/errores-de-escritura-frecuentes}}.
 % #TODO Ask for resources to back this data:
+
+
+I was working as a researcher assistant in \emph{GSyC/LibreSoft}\footnote{\url{http://www.libresoft.es}} department at Rey Juan Carlos University when I started to
+deepen into Free/Libre software and the world of metrics. Then I had the great luck of start participating in a study that
+Dr. Gregorio Robles was doing with researchers from Chalmers University in Gothenburg, Sweden. The main aim of their research was to
+learn how \emph{UML} models\footnote{\url{http://uml.org/what-is-uml.htm}} are used in public \emph{FLOSS} projects (particularly, projects hosted on GitHub),
+as most of the previous studies focused only on its industrial use.\\
+Given the large size of GitHub as a platform and its access limitations, this research motivated to build a tool which extracts
+data from all the existing repositories on GitHub, then filter those repositories which may include at least one
+\emph{UML} model and finally analyze more in-depth the set of projects that meet this condition.\\\\
+Since early stages of this research, this tool was designed and built using a modular structure, thought to be reusable
+and adaptable to any kind of files that have to be found but also the way GitHub provides data; hoping to be useful
+for other researches or any other person who might be interested on extracting this information. Besides, the scale of this project
+presented a personal challenge which provided me the opportunity to extend my knowledge and obtain a valuable point of
+view about research and large-scope projects.
+
+\section{Context}
+\label{sec:context}
+
+FIXME: not sure why you talk about this in your thesis. I would talk more about UML and what it supposes!
+
 The way people develop software has evolved during these years: there is an extended social perception of developers to
 being introverted, solitary people, with very few social skills. But this sense is outdated: the paradigm has changed,
 as coding has become almost a social activity. Developers who work collaborating with others produce better software [resource], as they
@@ -324,8 +345,8 @@ Once this information is retrieved, we can analyze it and extract conclusions ab
 In the following sections, we are going to talk about software and its development process, focusing on \emph{FLOSS} (Free/Libre, Open-source
 software) projects, so it is inevitable to describe briefly what is this about.
 During my degree, I was fortunate to be taught within \emph{FLOSS} values, as most of my professors plead
-for Free/Libre software as their teaching model, by which I have obtained a distinctive knowledge and perspective as a professional but also as an individual.\\
-\newpage
+for Free/Libre software as their teaching model, by which I have obtained a distinctive knowledge and perspective as a professional but also as an individual.
+
 According to the \textbf{Free Software Foundation}\footnote{\url{https://www.gnu.org/philosophy/free-sw.html}}:
 \begin{displayquote}
     \emph{Free software} means software that respects users' freedom and community. Roughly, it means that the users have the freedom
@@ -350,21 +371,7 @@ and there are free software licenses they have not accepted. However, the differ
 category are small: nearly all free software is open source, and nearly all open source software is free.
 \end{displayquote}
 %Example code: \begin{verbatim}
-\section{Motivation}
-\label{sec:motivation}
-I was working as a researcher assistant in \emph{GSyC/LibreSoft}\footnote{\url{http://www.libresoft.es}} department at Rey Juan Carlos University when I started to
-deepen into Free/Libre software and the world of metrics. Then I had the great luck of start participating in a study that
-Dr. Gregorio Robles was doing with researchers from Chalmers University in Gothenburg, Sweden. The main aim of their research was to
-learn how \emph{UML} models\footnote{\url{http://uml.org/what-is-uml.htm}} are used in public \emph{FLOSS} projects (particularly, projects hosted on GitHub),
-as most of the previous studies focused only on its industrial use.\\
-Given the large size of GitHub as a platform and its access limitations, this research motivated to build a tool which extracts
-data from all the existing repositories on GitHub, then filter those repositories which may include at least one
-\emph{UML} model and finally analyze more in-depth the set of projects that meet this condition.\\\\
-Since early stages of this research, this tool was designed and built using a modular structure, thought to be reusable
-and adaptable to any kind of files that have to be found but also the way GitHub provides data; hoping to be useful
-for other researches or any other person who might be interested on extracting this information. Besides, the scale of this project
-presented a personal challenge which provided me the opportunity to extend my knowledge and obtain a valuable point of
-view about research and large-scope projects.
+
 \section{Structure of the dissertation}
 \label{sec:structure}
 \textcolor{red}{(Work in progress)}\newline
@@ -577,7 +584,7 @@ Before going into detail in each of these stages, let's introduce them briefly:
 \begin{figure}
   \centering
   \includegraphics[width=14cm, keepaspectratio]{img/number-github-repos}
-  \caption{Evolution of number of repositories on GitHub across time}
+  \caption{Evolution of number of repositories on GitHub across time - FIXME: this graph belongs to related research}
   \label{fig:total-repo-number}
 \end{figure}
 \begin{figure}
