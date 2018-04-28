@@ -39,6 +39,7 @@
 \useunder{\uline}{\ul}{}  %% Para tablas
 \usepackage{listings}  %% para código y comandos
 \usepackage{pdfpages}  %% para incluir archivos PDF
+\usepackage{enumerate}  %% Para enumerar
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
@@ -655,9 +656,10 @@ Finally, we obtain a filtered \emph{project list} file, which keeps the same for
 \end{figure}
 Once the \emph{project list} file is ready, we can proceed to extract the file list of the main \textit{branch} of each
 repository. To achieve this, we have to query the GitHub \textit{API} several times for each project.
-It is important to mark this, as the GitHub \textit{API} has a limitation of 5.000 queries per hour for every authenticated
-account, which caused a huge impact in the research and the data-retrieval process, as it is detailed in the case of study described in
-section~\ref{sec:case-study-uml}.\\\\
+It is important to mark this, as the GitHub \textit{API} has a limitation of
+5.000\footnote{The numbers (excepting dates) in this dissertation follow the spanish separators notation.}
+queries per hour for every authenticated account, which caused a huge impact in the research and the data-retrieval
+process, as it is detailed in the case of study described in section~\ref{sec:case-study-uml}.\\\\
 To make authenticated queries to the GitHub \textit{API} we need an \textbf{API token}. A \textbf{token} is a unique
 identifier of an application requesting access to a service.
 In the case of GitHub, they are long, alphanumeric strings of characters generated within a GitHub account,
@@ -912,24 +914,24 @@ data that has to be processed with the difficulties and limitations associated w
 Regarding to the preliminary phase, the GHTorrent data-set used in this study is from February, 2016. At that time, there were
 a total of 26 million repositories (approx.). As the main research that motivated this study was interested in identify UML
 models introduced in a project by its owners, we had to filter those projects to discard forked repositories. Applying that
-filter we got 12 847 555 repositories ready to be analyzed.\\\\
+filter we got 12.847.555 repositories ready to be analyzed.\\\\
 The greatest challenge was to execute the tool against almost 13 million GitHub repositories, as the GitHub API has a limitation
-of 5,000 requests per hour \& account. As it is explained before, a maximum of three requests are made to obtain the main
+of 5.000 requests per hour \& account. As it is explained before, a maximum of three requests are made to obtain the main
 branch for each repository, as we are not interested in secondary branches for our case of study. Making the calculations about
 how much time would it take to complete this first stage:
 \begin{itemize}
-  \item 3 queries for each project = 1 666 projects/hour (max).
-  \item 12 847 555 projects / 1 666 projects per hour = 7 712 h. = 322 days
+  \item 3 queries for each project = 1.666 projects/hour (max).
+  \item 12.847.555 projects / 1.666 projects per hour = 7.712 h. = 322 days
 \end{itemize}
 We made an estimation where 322 days would be needed with the best scenario, so we opted for paralleling the process using many
 different GitHub accounts.\\
 To make this possible, we asked for help to some students and professors so they can temporarily borrow their GitHub account
 token and we obtained 21 account tokens. Finally, it took almost 90 days to complete this task as we were receiving these credentials
 while we were already collecting data. I take this opportunity to thank every person who had the kindness to contribute to this project
-with their GitHub accounts: (list of people).\\
+with their GitHub accounts: \textcolor{red}{(list of people)}.\\
 In addition to the GitHub API limitation, we may encounter technical limitations: it is desirable to have a fast and stable Internet
-connection, enough space in the hard drive and also use a powerful computer, because the size of the whole set of partial output files
-(compressed) was 140 GB and each of these partial files has to be opened and processed.\\\\
+connection, enough space in the hard drive and also use a powerful computer, as after the data-extraction stage we got 126 GB of compressed
+JSON files, which have to be opened and processed.\\\\
 To continue with the next step of the data extraction phase, which is to apply the filter to the file-list information
 we had obtained. In this case, we are interested in looking for files whose extension matches with all possible extensions which an
 UML model can be found, as is it showed in table~\ref{table:heuristics-cs1-example}.\\\\
@@ -967,21 +969,63 @@ files were validated included in 3.295 different GitHub repositories, which is t
 \end{figure}
 \begin{table}[]
   \centering
-  \caption{Validated positive repositories sorted by their number of UML models.}
+  \caption{Validated positive repositories (partial) sorted by their number of UML models.}
   \label{table:validated-repos-table}
   \begin{tabular}{|c|c|}
   \hline
-  \textbf{Number of UML models} & \textbf{Number of repositories}    \\ \hline
-  1                             & 1947                               \\
-  From 2 to 9                   & 1169                               \\
-  From 10 to 99                 & 158                                \\
-  100+                          & 4                                  \\ \hline
+  \textbf{Number of UML models} & \textbf{Number of repositories}     \\ \hline
+  1                             & 1.947                               \\
+  From 2 to 9                   & 1.169                               \\
+  From 10 to 99                 & 158                                 \\
+  100+                          & 4                                   \\ \hline
   \end{tabular}
 \end{table}
 Next, in the data-analysis phase these projects were processed with Perceval and a database was built using that information.
 Once the database was created it was obtained more elaborated data, for instance, the distribution of positive repositories
-according to how many UML models contained each of them (See table~\ref{table:validated-repos-table}).\\
-\textcolor{red}{FIXME: Add more examples about the obtained results and complete it with the full search in the whole set of projects.}
+according to how many UML models contained each of them (See table~\ref{table:validated-repos-table}).\\\\
+
+This UML search was completed when all the potential files were validated using the same process described before.
+The complete results were presented in the paper "An extensive dataset of UML models in GitHub" (The full paper is available in section~\ref{sec:paper-msr}),
+which resulted in the identification of 93.596 (See table~\ref{table:validated-models-table} publicly available UML models
+in GitHub from over 24.125 repositories. Though this amount of repositories only represent 0,19239\% of the total amount of the initial set,
+the identified models constitute a dataset that is two orders of magnitude larger than the rest of UML datasets at the time of this research.\\\\
+\begin{table}[]
+  \centering
+  \caption{Complete results of validated positive UML models sorted by their type.}
+  \label{table:validated-models-table}
+  \begin{tabular}{|c|c|}
+  \hline
+  \textbf{Type of model}     & \textbf{Number of UML models}     \\ \hline
+  Text-based (.uml, .xmi)    & 35.774                            \\
+  Image-based                & 57.822                            \\ \hline
+  \end{tabular}
+\end{table}
+Applying the data-analysis phase to the complete UML models dataset we ended up with a database with deeper information about these results,
+which broaden the posibilities to enrich different aspects of this research. This derived in the paper "Practices and Perceptions of UML Use
+in Open Source Projects" (The full paper is available in section~\ref{sec:paper-icse}), whose goal of this later research was ``to shed some
+light into the motivation and benefits of the use of modeling and its use within project teams''. To do so, the applied method was to
+perform a survey among open source developers, focusing on projects that use UML as a representative for software modeling.\\
+The constructed database played a pivotal role for this survey, as it was necessary to define which projects and developers met the
+survey conditions executing the right queries to the database. There were two main lines to obtain the survey target:
+\begin{enumerate}
+  \item \textbf{Filtering short-time projects out}: For this paper, reserachers aimed
+  at projects that are interesting from an industry perspective. Then, we focus on projects that are \textbf{not} short-term and that
+  do not jut consist of a singe contributor. In this context, the accurate definitions of ``short-time project'' are:
+  \begin{enumerate}[i.]
+    \item Active time (time between the first and the latest commits) less then 6 months, OR
+    \item less than 2 contributors, OR
+    \item less than 10 commits.
+  \end{enumerate}
+  After classifying and filtering short-time projects out, 4.650 UML-projects (out of 24.125) met the requirements.
+  \item \textbf{Identify developer role in a repository}: It was important to consider the role that the different contributors
+  play within the OSS projects with UML models to ask them the appropriate questions, considering a combination of roles in the
+  following two dimensions:
+  \begin{enumerate}[i.]
+    \item Founder (F) vs. non-founder (NF)
+    \item Non-UML Contributor (NUC) vs. first UML Contributor (1UC) \& UML Contributor or updater (non-1st contributor) (UC)
+  \end{enumerate}
+  Therefore, each interview participant fulfilled one of the following 6 roles: F-1UC, F-NUC, F-UC, NF-1UC, NF-NUC, NF-UC.
+\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CONCLUSIONES %
@@ -1039,8 +1083,16 @@ las tecnologías utilizadas y demás.
 \label{app:papers}
 \section{The Quest for OS Projects that use UML: Mining GitHub}
 \label{sec:paper-models}
-This paper was published in MODELS conference, in July, 2016.
+This paper was published in MODELS conference (Saint-Malo, France), in October 2016.
 \includepdf[pages=-,pagecommand={},width=1.2\textwidth]{pdf/models.pdf}
+\section{An extensive dataset of UML models in GitHub}
+\label{sec:paper-msr}
+This paper was published in MSR conference (Buenos Aires, Argentina), in May 2017.
+\includepdf[pages=-,pagecommand={},width=1.2\textwidth]{pdf/msr2017.pdf}
+\section{Practices and Perceptions of UML Use in OS Projects}
+\label{sec:paper-msr}
+This paper was published in ICSE-SEIP conference (Buenos Aires, Argentina), in May 2017.
+\includepdf[pages=-,pagecommand={},width=1.2\textwidth]{pdf/seip2017.pdf}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BIBLIOGRAFIA %
