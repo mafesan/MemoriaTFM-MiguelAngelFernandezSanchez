@@ -287,8 +287,9 @@ for the future (known as data-driven decisions).\\\\
 I was working as a researcher assistant in \emph{GSyC/LibreSoft}\footnote{\url{http://www.libresoft.es}} department at Rey Juan Carlos University when I started to
 deepen into Free/Libre software and the world of metrics. Then I had the great luck of start participating in a study that
 Dr. Gregorio Robles was doing with researchers from Chalmers University in Gothenburg, Sweden. The main aim of their research was to
-learn how \emph{UML} models\footnote{\url{http://uml.org/what-is-uml.htm}} are used in public \emph{FLOSS} projects (particularly, projects hosted on GitHub),
-as most of the previous studies focused only on its industrial use.\\
+learn how \emph{UML} models\footnote{\url{http://uml.org/what-is-uml.htm}} are used in public
+\emph{FLOSS}\footnote{Free/Libre and Open Source Software. Complete definition at section~\ref{sec:floss-definition}} projects
+(particularly, projects hosted on GitHub), as most of the previous studies focused only on its industrial use.\\
 Given the large size of GitHub as a platform and its access limitations, this research motivated to build a tool which extracts
 data from all the existing repositories on GitHub, then filter those repositories which may include at least one
 \emph{UML} model and finally analyze more in-depth the set of projects that meet this condition.\\\\
@@ -327,13 +328,29 @@ artifacts from a system (mainly; structure, behavior and interaction) containing
 UML provides a standard way to write the plans of a system, covering from conceptual aspects like business processes and
 system features to particular aspects like classes from a certain programming language, database schemas and reusable
 software components with a higher level of abstraction. Therefore, modelling with UML is considered as one more component
-in a software development process.\\
-\textcolor{red}{FIXME: Why is UML important, usage in industry and interest of researchers in free software repos,
-very limited datasets, small previous research.}
-%"Perfect tandem"
+in a software development process.\\\\
+For industrial software, the use of UML is commonly accepted and software engineering researchers in the area of modeling
+have made efforts to collect examples of projects that use modelling and their models. Nonetheless, industrial projects
+are very averse to share their models because of these projects licenses and privacy issues (For instance; its current
+state, new features, etc.).
+This situation hinders the task of creating a models data-set for researchers, who had achieved in summer 2016 a data-set
+containing around 81 models from open source projects. At this moment, here was not much research about the use of UML in open source.
+Furthermore, most open source code platforms do not provide any feature for model management, which made researchers think that UML
+is not very frequent in FLOSS projects.
+Still, there was no quantification of its occurrence.\\\\
+In this context, a tandem research was born uniting the experience of LibreSoft team researchers (from Rey Juan Carlos University) about
+FLOSS and software development processes and the experience of Software Engineering division team researchers (from Chalmers University)
+about software modelling to obtain quantitative data about the use of UML in open source projects. To make this study a reality, they
+decided to get these projects from GitHub, which was (and still is) the biggest code platform in the world, containing the greatest amount
+of FLOSS projects. This was the motivation to create the tool presented in this thesis, to perform a systematic search looking for UML models in
+an automated and scalable way.\\
+As I explain in the ``Results'' section (\ref{sec:case-study-uml}), a total of 93.596 publicly available UML models were identified thank to this research.
+This amount of models compounds a data-set that is two orders of magnitude larger than the previous UML data-sets from previous studies. Furthermore,
+the results obtained with this tool led to several scientific papers published on international Software Engineering conferences, as I detail on
+section~\ref{sec:results}. These published papers are available on appendix~\ref{app:papers}.
 \section{Free/Libre/Open-Source Software}
 \label{sec:floss-definition}
-The tool presented in this dissertation is distributed as Free/Libre software. Furthermore, in the following sections we are going
+The tool presented in this dissertation is distributed as Free/Libre software. Moreover, in the following sections we are going
 to talk about software and its development process, focusing on Free/Libre and Open-source
 software (\emph{FLOSS}) projects, therefore it is inevitable to describe briefly what this is about.\\\\
 According to the \textbf{Free Software Foundation}\footnote{\url{https://www.gnu.org/philosophy/free-sw.html}}:
@@ -392,7 +409,8 @@ To finish answering \emph{RQ1}, we need to extract the list of files from the ma
 it can be applied a set of filters including patterns and other heuristics.\\\\
 To answer to \emph{RQ2}, we need to analyze more in-depth marking those repositories with at least one positive result
 after filtering stage is over, and then build a database with this extended data to extract useful information from it in a
-systematic way.
+systematic way.\newline
+\textcolor{red}{FIXME: Why GrimoireLab (Perceval)?}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ESTADO DEL ARTE %
@@ -403,6 +421,7 @@ systematic way.
 %Puedes citar libros, como el de Bonabeau et al. sobre procesos estigm�rgicos~\cite{bonabeau:_swarm}.
  % Nota que el ~ a�ade un espacio en blanco, pero no deja que exista un salto de l�nea. Imprescindible ponerlo para las citas.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textcolor{red}{FIXME: Introduction paragraph to this section.}
 \section{Python}
 \label{sec:python}
 \textbf{Python}\footnote{\url{https://www.python.org/}} is an interpreted, object-oriented, high-level, open source
@@ -501,6 +520,7 @@ or \emph{Bugzilla}, including messaging systems such as \emph{IRC}, \emph{Slack}
 \cleardoublepage
 \chapter{Design and implementation}
 \label{sec:design-implementation}
+\textcolor{red}{FIXME: Why Python as programming language? Why MySQL database?}\newline
 This tool has a modular design, to ease its adaptability to future updates, changes on it dependencies or other needs which may appear.
 To fully understand the functioning of the tool is necessary to be familiar with main \emph{git} objects (commits, branches and trees),
 as they are going to play a key role in this project. In section\ref{sec:git-definitions} there is a complete definition for these \emph{git} concepts.\\\\
@@ -784,6 +804,7 @@ Perceval clones repository by repository and parses every Git event log, produci
 per repository containing data for every commit and its related Git objects.\\
 \subsection{Building the database}
 \label{ssec:build-database}
+\textcolor{red}{FIXME: Databsase schema!}\newline
 Next step is to build a database, which allows to store the extracted data in an optimized way to
 obtain elaborated results by using queries according to our case of study.\\
 As we had used the GHTorrent database, which is a MySQL database, we decided to use a MySQL database
@@ -934,13 +955,14 @@ files were validated included in 3.295 different GitHub repositories, which is t
 \end{table}
 Next, in the data-analysis phase these projects were processed with Perceval and a database was built using that information.
 Once the database was created it was obtained more elaborated data, for instance, the distribution of positive repositories
-according to how many UML models contained each of them (See table~\ref{table:validated-repos-table}).\\\\
-
+according to how many UML models contained each of them (See table~\ref{table:validated-repos-table}).
+\newline\textcolor{red}{FIXME: More examples about extracted data from database: RQs from RQ2 to RQ4}\\\\
 This UML search was completed when all the potential files were validated using the same process described before.
 The complete results were presented in the paper "An extensive dataset of UML models in GitHub" (The full paper is available in section~\ref{sec:paper-msr}),
 which resulted in the identification of 93.596 (See table~\ref{table:validated-models-table} publicly available UML models
 in GitHub from over 24.125 repositories. Though this amount of repositories only represent 0,19239\% of the total amount of the initial set,
-the identified models constitute a data-set that is two orders of magnitude larger than the rest of UML data-sets at the time of this research.\\\\
+as I anticipated in the introduction chapter, the identified models constitute a data-set that is two orders of magnitude larger than the
+rest of UML data-sets at the time of this research.\\\\
 \begin{table}[]
   \centering
   \caption{Complete results of validated positive UML models sorted by their type.}
@@ -978,6 +1000,7 @@ survey conditions executing the right queries to the database. There were two ma
   \end{enumerate}
   Therefore, each interview participant fulfilled one of the following 6 roles: F-1UC, F-NUC, F-UC, NF-1UC, NF-NUC, NF-UC.
 \end{enumerate}
+\textcolor{red}{FIXME: New case of study: Extended search of UML}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CONCLUSIONES %
@@ -1101,7 +1124,7 @@ In the case of GitHub, they are long, alphanumeric strings of characters generat
 so every executed action with that \textbf{token} is done on behalf of its owner's account.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% MANUAL %
+% SCRIPTS %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Main scripts of the tool}
 \label{app:scripts}
