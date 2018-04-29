@@ -419,8 +419,8 @@ GitHub allows to obtain its information through its \textit{API},
 but this entails several limitations, for instance, the GitHub API has a maximum rate of 5.000 request per hour with each account.
 Additionally, GitHub is not static (new repositories are added, existing ones are modified, etc.) and there isn't a direct way
 of obtaining the amount of repositories in the platform at a certain date using its \textit{API}.
-These limitations led to the decision of using the \emph{GHTorrent} project, which offers a queriable, offline database with most
-of the information which the GitHub API can provide.\\\\
+These limitations led to the decision of using the \emph{GHTorrent} project, which offers a queriable, offline \emph{MySQL}
+database with most of the information which the GitHub API can provide.\\\\
 Although GitHub allows to filter projects by a certain programming language (e.g. \emph{Python}, \emph{C++}, etc.),
 it does not offer a mechanism through which you can identify projects containing files with a certain extension or how many files
 match with some word or pattern in their file-name in a repository. Therefore, to achieve OB2 and OB3 we need to extract the list of files
@@ -501,6 +501,11 @@ All this information is stored in a key-value system as \emph{git} objects, with
 \textbf{GitHub} is a \emph{git}, web-based repository hosting service founded back in 2008. While \emph{git} is a command
 line tool, GitHub provides a graphical interface, adding its own collaboration features such as a wikis and basic task
 management tools for every project.\\
+Each user on GitHub has their own profile, showing its past work and contributions to
+other projects via \textit{pull requests}, \textit{forking} (create editable copies into someone's account) other repositories, etc.
+Project revisions can be discussed publicly via \textit{issues} so many people can collaborate together to advance a project
+forward. GitHub is currently the largest host of source code in the world (See figure~\ref{fig:total-repo-number} for a quantitative
+estimation of its scale evolution across time).
 % # TODO: https://growthhackers.com/growth-studies/github, https://blog.github.com/2013-12-23-10-million-repositories/
 \begin{figure}
   \centering
@@ -508,29 +513,24 @@ management tools for every project.\\
   \caption{Evolution of number of repositories on GitHub across time}
   \label{fig:total-repo-number}
 \end{figure}
-Each user on GitHub has their own profile, showing its past work and contributions to
-other projects via \textit{pull requests}, \textit{forking} (create editable copies into someone's account) other repositories, etc.
-Project revisions can be discussed publicly via \textit{issues} so many people can collaborate together to advance a project
-forward. GitHub is currently the largest host of source code in the world (See figure~\ref{fig:total-repo-number} for a quantitative
-estimation of its scale evolution across time).
 % TODO: https://www.quora.com/How-many-repositories-are-there-on-GitHub
 %       https://www.howtogeek.com/180167/htg-explains-what-is-github-and-what-do-geeks-use-it-for/
 %       https://techcrunch.com/2012/07/14/what-exactly-is-github-anyway/
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{GHTorrent}
 \label{sec:ghtorrent}
+\textbf{GHTorrent} is a project based on create a scalable, queriable, offline mirror of data offered through the GitHub \textit{API}.\\
+As they explain in their website\footnote{\url{http://ghtorrent.org/}}, \emph{GHTorrent} monitors the GitHub public event time line.
+For each event, it retrieves its contents and their dependencies, exhaustively. Then, it stores the raw responses to a database whose
+structure is represented in figure~\ref{fig:ghtorrent-schema}.\
+For each release, you can choose the \textit{dump} (a raw copy of a database) you want to download: either a \emph{MySQL} dump
+(the full database, using one file per table) or a \emph{MongoDB} one (an incremental database).
 \begin{figure}
   \centering
   \includegraphics[width=16cm, keepaspectratio]{img/ghtorrent-schema}
   \caption{GHTorrent database relational schema}
   \label{fig:ghtorrent-schema}
 \end{figure}
-\textbf{GHTorrent} is a project based on create a scalable, queriable, offline mirror of data offered through the GitHub \textit{API}.\\
-As they explain in their website\footnote{\url{http://ghtorrent.org/}}, \emph{GHTorrent} monitors the GitHub public event time line.
-For each event, it retrieves its contents and their dependencies, exhaustively. Then, it stores the raw responses to a database whose
-structure is represented in figure~\ref{fig:ghtorrent-schema}.\
-For each release, you can choose the \textit{dump} (a raw copy of a database) you want to download: either a \emph{MySQL} dump
-(the full database, using one file per table) or a \emph{MongoDB} one (an incremental database).\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{GrimoireLab and Perceval}
 \label{sec:grimoire}
@@ -559,19 +559,14 @@ To mention some examples, MySQL is used by Facebook, Twitter, Flickr and YouTube
 \cleardoublepage
 \chapter{Design and implementation}
 \label{sec:design-implementation}
-\textcolor{red}{FIXME: Why Python as programming language? Why MySQL database?}\newline
 This tool has a modular design, to ease its adaptability to future updates, changes on it dependencies or other needs which may appear.
 To fully understand the functioning of the tool is necessary to be familiar with main \emph{git} objects (commits, branches and trees),
 as they are going to play a key role in this project. In section\ref{sec:git-definitions} there is a complete definition for these \emph{git} concepts.
 It is also important to mark that the research which motivated this tool influenced most of the decisions which were taken during the design phase.\\\\
-The tool is divided into several linear sections with a set of \emph{Python} scripts, which can be grouped into three
-main phases (See figure~\ref{fig:arquitectura}).
-\begin{figure}
-  \centering
-  \includegraphics[width=12cm, keepaspectratio]{img/generic-tool-diagram-sections}
-  \caption{General architecture of the tool}
-  \label{fig:arquitectura}
-\end{figure}
+The tool is divided into several linear sections with a set of \emph{Python} scripts. We decided to code this tool in Python because it was the programming
+language I feel more confortable with, along with its versatility due to the great amount of compatible packages and modules, followed
+with a great amount of documentation.\\\\
+The set of scripts which compounds this tool can be grouped into three main phases (See figure~\ref{fig:arquitectura}).
 Before going into detail in each of these stages, let's introduce them briefly:
 \begin{enumerate}
   \item \textbf{Preliminary phase}
@@ -597,15 +592,15 @@ Before going into detail in each of these stages, let's introduce them briefly:
             building a \emph{projects database} which can be queried to extract information.
     \end{itemize}
 \end{enumerate}
+\begin{figure}
+  \centering
+  \includegraphics[width=12cm, keepaspectratio]{img/generic-tool-diagram-sections}
+  \caption{General architecture of the tool}
+  \label{fig:arquitectura}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Preliminary phase}
 \label{sec:preliminary-phase}
-\begin{figure}
-  \centering
-  \includegraphics[width=16cm, keepaspectratio]{img/ghtorrent-schema-detail}
-  \caption{\textit{Projects} table structure from GHTorrent database}
-  \label{fig:ghtorrent-schema-detail}
-\end{figure}
 Given the scale of GitHub, the main problem we face is that there isn't a direct way
 of obtaining the amount of repositories in the platform, neither getting a list of them using its \textit{API}, so it is
 very difficult to have quantitative and reliable data. For example, for building a graph like ~\ref{fig:total-repo-number},
@@ -636,6 +631,12 @@ To obtain the actual data, the procedure to follow is:
 Note that the filtering we establish in this phase is going to influence the results of our analysis. To make this task easier,
 I decided to use a configuration file (See figure \textcolor{red}{[reference]}) to set basic filters and parameters. \textcolor{red}{(WIP)}\\
 Finally, we obtain a filtered \emph{project list} file, which keeps the same format as \texttt{projects.csv} from the database dump.
+\begin{figure}
+  \centering
+  \includegraphics[width=16cm, keepaspectratio]{img/ghtorrent-schema-detail}
+  \caption{\textit{Projects} table structure from GHTorrent database}
+  \label{fig:ghtorrent-schema-detail}
+\end{figure}
 \begin{table}[]
 \centering
 \caption{Adapted extract from \texttt{projects.csv} file, formatted as a table}
@@ -653,19 +654,6 @@ Finally, we obtain a filtered \emph{project list} file, which keeps the same for
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Data extraction}
-\label{sec:data-extraction}
-\begin{figure}
-  \centering
-  \includegraphics[width=13cm, keepaspectratio]{img/gh-api-master-json-example}
-  \caption{Example: \texttt{JSON} response to the query asking for master branch data}
-  \label{fig:gh-api-master-json}
-\end{figure}
-\begin{figure}
-  \centering
-  \includegraphics[width=14cm, keepaspectratio]{img/github-api}
-  \caption{Flow-chart of \texttt{github-api.py} script}
-  \label{fig:gh-api-diagram}
-\end{figure}
 Once the \emph{project list} file is ready, we can proceed to extract the file list of the main \textit{branch} of each
 repository. To achieve this, we have to query the GitHub \textit{API} several times for each project.
 It is important to mark this, as the GitHub \textit{API} has a limitation of
@@ -728,53 +716,22 @@ solution for every one of them:
   using different types of characters (Japanese, for instance) or other unknown characters (using another encoding)
   which sometimes caused encoding-decoding errors.
 \end{itemize}
+\label{sec:data-extraction}
+\begin{figure}
+  \centering
+  \includegraphics[width=13cm, keepaspectratio]{img/gh-api-master-json-example}
+  \caption{Example: \texttt{JSON} response to the query asking for master branch data}
+  \label{fig:gh-api-master-json}
+\end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[width=14cm, keepaspectratio]{img/github-api}
+  \caption{Flow-chart of \texttt{github-api.py} script}
+  \label{fig:gh-api-diagram}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Data filtering}
 \label{sec:data-filtering}
-\begin{figure}
-  \centering
-  \includegraphics[width=13cm, keepaspectratio]{img/file-structure-example}
-  \caption{Example: File-structure of a project to apply filters.}
-  \label{fig:file-structure-example}
-\end{figure}
-\begin{figure}
-  \centering
-  \includegraphics[width=13cm, keepaspectratio]{img/gh-api-trees-json-example}
-  \caption{Example: \texttt{JSON} file containing information about \textit{tree} objects}
-  \label{fig:gh-tree-json}
-\end{figure}
-\begin{figure}
-  \centering
-  \includegraphics[width=11cm, keepaspectratio]{img/github-tree}
-  \caption{Flow-chart with the functioning of \texttt{github-tree.py} and \texttt{hits2urls.py} scripts.}
-  \label{fig:gh-tree-diagram}
-\end{figure}
-\begin{table}[]
-\centering
-\caption{Example: definition of heuristics.}
-\label{table:heuristics-table-example}
-\begin{tabular}{|c|c|}
-\hline
-\textbf{Type of Heuristic} & \textbf{Pattern(s)}                                            \\ \hline
-Level-1                    & \textit{.html}, \textit{.css}, \textit{.js}                    \\ \hline
-Level-2                    & \textit{.py}                                                   \\ \hline
-Key-words                  & \textit{urls}, \textit{views}, \textit{forms}, \textit{models} \\ \hline
-\end{tabular}
-\end{table}
-\begin{table}[]
-\centering
-\caption{Positive results after applying heuristics filter.}
-\label{table:heuristics-positive-example}
-\begin{tabular}{|c|c|}
-\hline
-\textbf{Path}              & \textbf{Type of positive}   \\ \hline
-scripts/shorten\_urls.py & Level-2 + contains key-word   \\
-scripts/views.py           & Level-2 + contains key-word \\
-style/template.css         & Level-1                     \\
-web/error.html             & Level-1                     \\
-web/index.html             & Level-1                     \\ \hline
-\end{tabular}
-\end{table}
 In this section is where the data we have obtained from the previous stage is filtered according to our search.
 The approach that have been followed to apply filters is to define three types of heuristics, related to
 file extensions and keywords:
@@ -828,6 +785,50 @@ pointing to the actual file (see below lines 1 and 2, respectively):
 \begin{lstlisting}[language=bash]
 https://api.github.com/repos/mafesan/ptavi-pfinal/git/blobs/3eb76189a21a...
 https://raw.githubusercontent.com/mafesan/ptavi-pfinal/master/uaclient.py \end{lstlisting}
+\begin{figure}
+  \centering
+  \includegraphics[width=13cm, keepaspectratio]{img/file-structure-example}
+  \caption{Example: File-structure of a project to apply filters.}
+  \label{fig:file-structure-example}
+\end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[width=13cm, keepaspectratio]{img/gh-api-trees-json-example}
+  \caption{Example: \texttt{JSON} file containing information about \textit{tree} objects}
+  \label{fig:gh-tree-json}
+\end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[width=11cm, keepaspectratio]{img/github-tree}
+  \caption{Flow-chart with the functioning of \texttt{github-tree.py} and \texttt{hits2urls.py} scripts.}
+  \label{fig:gh-tree-diagram}
+\end{figure}
+\begin{table}[]
+\centering
+\caption{Example: definition of heuristics.}
+\label{table:heuristics-table-example}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Type of Heuristic} & \textbf{Pattern(s)}                                            \\ \hline
+Level-1                    & \textit{.html}, \textit{.css}, \textit{.js}                    \\ \hline
+Level-2                    & \textit{.py}                                                   \\ \hline
+Key-words                  & \textit{urls}, \textit{views}, \textit{forms}, \textit{models} \\ \hline
+\end{tabular}
+\end{table}
+\begin{table}[]
+\centering
+\caption{Positive results after applying heuristics filter.}
+\label{table:heuristics-positive-example}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Path}              & \textbf{Type of positive}   \\ \hline
+scripts/shorten\_urls.py & Level-2 + contains key-word   \\
+scripts/views.py           & Level-2 + contains key-word \\
+style/template.css         & Level-1                     \\
+web/error.html             & Level-1                     \\
+web/index.html             & Level-1                     \\ \hline
+\end{tabular}
+\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Data analysis}
 \label{sec:data-analysis}
@@ -856,6 +857,7 @@ These tables and their full structure are in figure \textcolor{red}{(ref)}, and 
   \item \texttt{REPOS}: For a repository; its name, number of commits, URL, founder, etc.
   \item \texttt{PEOPLE}: Referring to the people who authored the commits, their name and email.
   \item \texttt{COMMITS}: For each commit object; its ID in Git, its ID on GitHub, which repository belongs to, ID of its author, etc.
+  \item \texttt{FILECOMMITS}: \textcolor{red}{FIXME}
   \item \texttt{INTERESTING\_FILES}: For each file (positive result); its name, URL, which repository belongs to and which commits this file is included into.
   \item \texttt{USERS}: From GHTorrent, GitHub user account information as login, name, location, company, creation date, etc.
 \end{itemize}
@@ -917,12 +919,6 @@ It is important to know if there is some peculiarity in the data we are looking 
 found in many different formats, but they can be classified into two main types: text-based models, which are XML-alike
 files and image-based models (See figure~\ref{fig:uml-types}). This entails an additional problem as an external validation of the data is
 required in an intermediate step between the data filtering phase and the analysis one, which will be detailed later.\\\\
-\begin{figure}
-  \centering
-  \includegraphics[width=15cm, keepaspectratio]{img/umls-landscape}
-  \caption{Examples of how UML models can be found, text-based (left) or image type (right).}
-  \label{fig:uml-types}
-\end{figure}
 The first two phases of the tool, described in sections~\ref{sec:preliminary-phase} and~\ref{sec:data-extraction} respectively
 are, by default, independent from the case of study. However, these phases are not a trivial task because of the amount of
 data that has to be processed with the difficulties and limitations associated with it.\\
@@ -950,18 +946,6 @@ JSON files, which have to be opened and processed.\\\\
 To continue with the next step of the data extraction phase, which is to apply the filter to the file-list information
 we had obtained. In this case, we are interested in looking for files whose extension matches with all possible extensions which an
 UML model can be found, as is it showed in table~\ref{table:heuristics-cs1-example}.\\\\
-\begin{table}[]
-\centering
-\caption{Example: definition of heuristics for the case of study 1.}
-\label{table:heuristics-cs1-example}
-\begin{tabular}{|c|c|}
-\hline
-\textbf{Type of Heuristic} & \textbf{Pattern(s)}                                                                                           \\ \hline
-Level-1                    & \textit{.uml}, \textit{.xmi}, \textit{.uxf} and \textit{.xdr}                                                 \\ \hline
-Level-2                    & \textit{.xml}, \textit{.bmp}, \textit{.jpg}, \textit{.jpeg}, \textit{.gif}, \textit{.png} and \textit{.svg}   \\ \hline
-Key-words                  & \textit{xmi}, \textit{uml}, \textit{diagram}, \textit{architecture} and \textit{design}                       \\ \hline
-\end{tabular}
-\end{table}
 As described before, an additional problem arose: from all the identified files with the interesting extensions, how many of those files
 really are a UML model, and how many are not? As the tool has a modular design, it was easy to add an additional phase to verify the data
 which was obtained after the filtering. This verification process was solved by Chalmers team, using heuristics for the XML-alike files
@@ -976,25 +960,6 @@ in 1.240.000 repositories, in order to offer accurately verified results. From t
 which matched after applying the heuristics filter in table~\ref{table:heuristics-cs1-example}. These potential files are the input
 of the validation stage whose process and results are summarized on figure~\ref{fig:validated-files-distribution}: A total of 21.316 UML
 files were validated included in 3.295 different GitHub repositories, which is the answer to RQ1.\\\\
-\begin{figure}
-  \centering
-  \includegraphics[width=16cm, keepaspectratio]{img/file-results-models-diagram}
-  \caption{Diagram: Results distribution from potential files to validated UML files.}
-  \label{fig:validated-files-distribution}
-\end{figure}
-\begin{table}[]
-  \centering
-  \caption{Validated positive repositories (partial) sorted by their number of UML models.}
-  \label{table:validated-repos-table}
-  \begin{tabular}{|c|c|}
-  \hline
-  \textbf{Number of UML models} & \textbf{Number of repositories}     \\ \hline
-  1                             & 1.947                               \\
-  From 2 to 9                   & 1.169                               \\
-  From 10 to 99                 & 158                                 \\
-  100+                          & 4                                   \\ \hline
-  \end{tabular}
-\end{table}
 Next, in the data-analysis phase these projects were processed with Perceval and a database was built using that information.
 Once the database was created it was obtained more elaborated data, for instance, the distribution of positive repositories
 according to how many UML models contained each of them (See table~\ref{table:validated-repos-table}) but also the answers to the rest
@@ -1020,17 +985,6 @@ which resulted in the identification of 93.596 (See table~\ref{table:validated-m
 in GitHub from over 24.125 repositories. Though this amount of repositories only represent 0,19239\% of the total amount of the initial set,
 as I anticipated in the introduction chapter, the identified models constitute a data-set that is two orders of magnitude larger than the
 rest of UML data-sets at the time of this research.\\\\
-\begin{table}[]
-  \centering
-  \caption{Complete results of validated positive UML models sorted by their type.}
-  \label{table:validated-models-table}
-  \begin{tabular}{|c|c|}
-  \hline
-  \textbf{Type of model}     & \textbf{Number of UML models}     \\ \hline
-  Text-based (.uml, .xmi)    & 35.774                            \\
-  Image-based                & 57.822                            \\ \hline
-  \end{tabular}
-\end{table}
 Applying the data-analysis phase to the complete UML models data-set we ended up with a database with deeper information about these results,
 which broaden the possibilities to enrich different aspects of this research. This derived in the paper "Practices and Perceptions of UML Use
 in Open Source Projects" (The full paper is available in section~\ref{sec:paper-icse}), whose goal of this later research was ``to shed some
@@ -1061,6 +1015,54 @@ Furthermore, researchers considered the posibility of having duplicate identitie
 use different emails, user-name (for example, changing the user-name or email during the project time).
 The email and the full-name were the primary keys for this check, which resulted in 99.319 distinct contributors out of
  129.276 original ones.
+ \begin{figure}
+   \centering
+   \includegraphics[width=15cm, keepaspectratio]{img/umls-landscape}
+   \caption{Examples of how UML models can be found, text-based (left) or image type (right).}
+   \label{fig:uml-types}
+ \end{figure}
+ \begin{table}[]
+ \centering
+ \caption{Example: definition of heuristics for the case of study 1.}
+ \label{table:heuristics-cs1-example}
+ \begin{tabular}{|c|c|}
+ \hline
+ \textbf{Type of Heuristic} & \textbf{Pattern(s)}                                                                                           \\ \hline
+ Level-1                    & \textit{.uml}, \textit{.xmi}, \textit{.uxf} and \textit{.xdr}                                                 \\ \hline
+ Level-2                    & \textit{.xml}, \textit{.bmp}, \textit{.jpg}, \textit{.jpeg}, \textit{.gif}, \textit{.png} and \textit{.svg}   \\ \hline
+ Key-words                  & \textit{xmi}, \textit{uml}, \textit{diagram}, \textit{architecture} and \textit{design}                       \\ \hline
+ \end{tabular}
+ \end{table}
+ \begin{figure}
+   \centering
+   \includegraphics[width=16cm, keepaspectratio]{img/file-results-models-diagram}
+   \caption{Diagram: Results distribution from potential files to validated UML files.}
+   \label{fig:validated-files-distribution}
+ \end{figure}
+ \begin{table}[]
+   \centering
+   \caption{Validated positive repositories (partial) sorted by their number of UML models.}
+   \label{table:validated-repos-table}
+   \begin{tabular}{|c|c|}
+   \hline
+   \textbf{Number of UML models} & \textbf{Number of repositories}     \\ \hline
+   1                             & 1.947                               \\
+   From 2 to 9                   & 1.169                               \\
+   From 10 to 99                 & 158                                 \\
+   100+                          & 4                                   \\ \hline
+   \end{tabular}
+ \end{table}
+ \begin{table}[]
+   \centering
+   \caption{Complete results of validated positive UML models sorted by their type.}
+   \label{table:validated-models-table}
+   \begin{tabular}{|c|c|}
+   \hline
+   \textbf{Type of model}     & \textbf{Number of UML models}     \\ \hline
+   Text-based (.uml, .xmi)    & 35.774                            \\
+   Image-based                & 57.822                            \\ \hline
+   \end{tabular}
+ \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Case of study: Software Architecture documents \& extended UML models in GitHub projects}
 \label{sec:case-study-sad}
@@ -1113,21 +1115,28 @@ Aquí viene lo que has aprendido durante el Grado/Máster y que has aplicado
 en el TFG/TFM. Una buena idea es poner las asignaturas más relacionadas y
 comentar en un párrafo los conocimientos y habilidades puestos en práctica.
 \subsection{Related courses}
-\begin{itemize}
-  \item Informática 1
-  \item Informática 2
-  \item Arquitectura de Internet
-  \item Sistemas Telemáticos para medios audiovisuales
-  \item Protocolos de Transmisión de Audio y Video en Internet
-  \item Laboratorio de Tecnologías Audiovisuales en la Web
-\end{itemize}
+In this project I have applied the learning outcomes from the following courses
+\begin{enumerate}
+  \item ``Informática I'' (Fundamentals of Programming): This course was my first programming-related course,
+  where I learned the basics of programming'' (basic data and flow-control structures).
+  \item ``Informática II'' (Telecommunication Systems programming): In this course I learned advance programming
+  techniques along with more complex data structures, including for the first time communication protocols as UDP and TCP connections
+  ellaborating both client-server and peer-to-peer applications.
+  \item ``Arquitectura de Internet'' and ``Sistemas Telemáticos para medios audiovisuales'' (Computer networks):
+  Thank to these courses I learned about both basic and complex communication protocols and how the Internet works,
+  from TCP/IP protocol to HTTP connections, routing algorithms and protocols, etc.
+  \item ``Protocolos de Transmisión de Audio y Video en Internet'' (Audio/video transmission protocols):
+  In this course I learned how to program in Python language and the basic concepts for object-oriented programming, in
+  addition to real-time communication protocols.
+  \item ``Laboratorio de Tecnologías Audiovisuales en la Web'' (Web-based technologies): Though this course is not directly
+  related, I learned basic concepts about databases and I improved my programming skils in Python.
+\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Learning outcomes}
 \label{sec:learning-outcomes}
-Aquí viene lo que has aprendido en el Trabajo Fin de Grado/Máster.
+These are some of the learning outcomes I have obained thank to this project:
 \begin{enumerate}
-  \item a
-  \item b
+  \item
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Future work}
@@ -1138,9 +1147,6 @@ Es un apartado que sirve para dar ideas de cara a futuros TFGs/TFMs.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Personal assessment}
 \label{sec:assessment}
-Finalmente (y de manera opcional), hay gente que se anima a dar su punto de
-vista sobre el proyecto, lo que ha aprendido, lo que le gustaría haber aprendido,
-las tecnologías utilizadas y demás.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % APPENDIX %
@@ -1199,7 +1205,7 @@ returning information using \emph{JSON} (\textit{JavaScript Object Notation}) fo
 \subsection{API token}
 \label{ssec:api-token}
 A \textbf{token} is a unique identifier of an application requesting access to a service.
-In the case of GitHub, they are long, alphanumeric strings of characters generated within a GitHub account,
+In the case of GitHub API, they are long, alphanumeric strings of characters generated within a GitHub account,
 so every executed action with that \textbf{token} is done on behalf of its owner's account.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Essential freedoms of Free/Libre Software}
