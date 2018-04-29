@@ -281,7 +281,7 @@ Lo mejor es escribir el resumen al final.
 % #TODO Ask for resources to back this data:
 GitHub is the most used online code platform in the world. We can extract huge amounts of information from millions of projects
 about how is the software being developed: productivity, issue-tracking methods, developer-to-developer relations, etc. [RGBM06]
-For researchers, GitHub is an endless source of publicly available data for potential studies, and for companies (and also foundations)
+For researchers, GitHub is an endless source of publicly available data for potential studies, and for companies and communities
 is probably the best way to know deeply how its software is evolving over time, so they can use this data to make the right decisions
 for the future (known as data-driven decisions).\\\\
 I was working as a researcher assistant in \emph{GSyC/LibreSoft}\footnote{\url{http://www.libresoft.es}} department at Rey Juan Carlos University when I started to
@@ -322,7 +322,7 @@ they are visible to everybody.
 This means we can obtain these data (though not all of it is publicly available) through the Internet using an \emph{API}
 (See its definition in section~\ref{sec:api}).\\
 Once this information is retrieved, we can analyze it and extract conclusions about it.\\\\
-To complete the context for this dissertation is necessary to situate what UML is and why it is important.
+To complete the context for this thesis is necessary to situate what UML is and why it is important.
 The Universal Modeling Language (UML) is a graphic, descriptive language to visualize, specify, construct and document the
 artifacts from a system (mainly; structure, behavior and interaction) containing a great amount of software.
 UML provides a standard way to write the plans of a system, covering from conceptual aspects like business processes and
@@ -345,12 +345,12 @@ decided to get these projects from GitHub, which was (and still is) the biggest 
 of FLOSS projects. This was the motivation to create the tool presented in this thesis, to perform a systematic search looking for UML models in
 an automated and scalable way.\\
 As I explain in the ``Results'' section (\ref{sec:case-study-uml}), a total of 93.596 publicly available UML models were identified thank to this research.
-This amount of models compounds a data-set that is two orders of magnitude larger than the previous UML data-sets from previous studies. Furthermore,
-the results obtained with this tool led to several scientific papers published on international Software Engineering conferences, as I detail on
-section~\ref{sec:results}. These published papers are available on appendix~\ref{app:papers}.
+This amount of models compounds a data-set that is two orders of magnitude larger than the previous UML data-sets from previous studies. The results
+obtained with this tool and its subsequent analysis of this data led to several scientific papers published on international Software Engineering conferences,
+as I detail on section~\ref{sec:results}. These published papers are available on appendix~\ref{app:papers}.
 \section{Free/Libre/Open-Source Software}
 \label{sec:floss-definition}
-The tool presented in this dissertation is distributed as Free/Libre software. Moreover, in the following sections we are going
+The tool presented in this thesis is distributed as Free/Libre software. Moreover, in the following sections we are going
 to talk about software and its development process, focusing on Free/Libre and Open-source
 software (\emph{FLOSS}) projects, therefore it is inevitable to describe briefly what this is about.\\\\
 According to the \textbf{Free Software Foundation}\footnote{\url{https://www.gnu.org/philosophy/free-sw.html}}:
@@ -372,15 +372,22 @@ During my degree, I was fortunate to be taught within \emph{FLOSS} values, as mo
 for Free/Libre software as their teaching model, by which I have obtained a distinctive knowledge and perspective
 as a professional but also as an individual.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Structure of the dissertation}
+\section{Structure of the thesis}
 \label{sec:structure}
-\textcolor{red}{(Work in progress)}\newline
-In this dissertation, I am going to explain the different objectives that were stated for this project, the technology
-which have been used to make it happen.\\
-After that, I will detail the designing process and the tool architecture, itemizing on each one of its components. Then,
-we will explore the performance of the tool within a use case, taking into account the limitations and issues which arose
-during its development and how they were solved.\\Furthermore, I present the results of the use case and end the dissertation
-with conclusions and future work.
+In this thesis are presented the main objectives which were marked to build this tool in chapter~\ref{sec:objectives},
+followed by a brief explanation of the technology which have been used to achieve these objectives in chapter~\ref{sec:state-art}.
+Next, in chapter~\ref{sec:design-implementation} it is detailed the designing process and the tool architecture, itemizing on each one of its components.
+Thenceforth, the performance and results of the tool are explored in chapter~\ref{sec:results} by means of two different use cases,
+detailing the obtained results but also taking into account the technical particularities which arose during its development and how they were solved.
+Furthermore, some conclusions are presented in chapter~\ref{sec:conclusions}, reviewing whether the marked objectives have been accomplished or not,
+along with a brief discussion about the limitations of this tool and future work.\\\\
+This thesis contains the following annexes:
+\begin{enumerate}[A.]
+  \item Definitions
+  \item Main scripts of the tool
+  \item User manual
+  \item Published papers
+\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % OBJETIVOS %
@@ -388,29 +395,46 @@ with conclusions and future work.
 \cleardoublepage
 \chapter{Objectives}
 \label{sec:objectives}
-GitHub allows to filter projects by a certain programming language (e.g. \emph{Python}, \emph{C++}, etc.),
-but GitHub does not offer a mechanism through which you can identify projects
-containing files with a certain extension or how many files match with some word or pattern in their
-file-name in a repository. The fundamental research questions that motivated the creation of this tool were:
+This tool was created with the purpose of answering two main research questions:
 \begin{itemize}
   \item RQ1: How many GitHub repositories contain at least one file with a certain extension or a certain
         pattern in its file-name?
   \item RQ2: What is the history of those files in the life-span of the project?
 \end{itemize}
-Therefore, the main goal of this tool is to extract and analyze data from a set of GitHub projects in a scalable,
-automated way in order to obtain quantitative information about the usage of a certain file type, programming language
-or/and any search that can be expressed into patterns and heuristics.\\\\
-Thus far, many studies focused in one single project or in a limited data-set when software development is analyzed, so
-the next goal to define is to obtain the whole data-set of repositories hosted on all GitHub at a certain date.\\
-In order to analyze all data hosted in GitHub in a proper way, we needed an static, reliable and updated source of this platform.\
-This source is produced by the \emph{GHTorrent} project by a queriable, offline database with most of the information which the
-GitHub \textit{API} can provide.\\
-To finish answering \emph{RQ1}, we need to extract the list of files from the main branch [definition] of each repository so
-it can be applied a set of filters including patterns and other heuristics.\\\\
-To answer to \emph{RQ2}, we need to analyze more in-depth marking those repositories with at least one positive result
-after filtering stage is over, and then build a database with this extended data to extract useful information from it in a
-systematic way.\newline
-\textcolor{red}{FIXME: Why GrimoireLab (Perceval)?}
+Thus far, many studies focused in one single project or in a limited data-set when software development is analyzed,
+whereas the aim of this research was to obtain the whole data-set of repositories hosted on the GitHub platform
+in order to obtain quantitative information about the usage of a certain file type, programming language
+or/and any search that can be expressed into patterns and heuristics. Then, store that data in a database
+where it can be analyzed in a deeper way to extract elaborate information about the data-set.\\\\
+To meet these requirements, the tool had to achieve the following main objectives:
+\begin{itemize}
+  \item OB1: Extract the whole set of projects hosted in GitHub.
+  \item OB2: Collect data from all these projects about their file structure in a scalable, automated way.
+  \item OB3: Establish a procedure to filter this extracted data using a determined kind of heuristics and patterns.
+  \item OB4: Analyze positive GitHub repositories (with at least one positive result) to obtain enhanced data from them.
+  \item OB5: Store this enhanced data in a database whose structure allows to query information of interest.
+\end{itemize}
+To accomplish OB1 in a proper way we needed an static, reliable and updated source of GitHub.
+GitHub allows to obtain its information through its \textit{API}\footnote{See the definition of GitHub
+\textit{API} in section~\ref{sec:api}},
+but this entails several limitations, for instance, the GitHub API has a maximum rate of 5.000 request per hour with each account.
+Additionally, GitHub is not static (new repositories are added, existing ones are modified, etc.) and there isn't a direct way
+of obtaining the amount of repositories in the platform at a certain date using its \textit{API}.
+These limitations led to the decision of using the \emph{GHTorrent} project, which offers a queriable, offline database with most
+of the information which the GitHub API can provide.\\\\
+Although GitHub allows to filter projects by a certain programming language (e.g. \emph{Python}, \emph{C++}, etc.),
+it does not offer a mechanism through which you can identify projects containing files with a certain extension or how many files
+match with some word or pattern in their file-name in a repository. Therefore, to achieve OB2 and OB3 we need to extract the list of files
+from the main branch\footnote{Definition of branch and other Git objects in section~\ref{ssec:git-branch}} of each repository,
+but \emph{GHTorrent} data does not contain file-related information, so it is necessary to define a method to access the GitHub API
+in order to retrieve this information so later it can be applied a set of filters to determine which repositories meet the established
+requirements. Once OB1, OB2 and OB3 are achieved, the obtained results will constitute the answer to RQ1.\\\\
+OB4 and OB5 have to be completed to answer \emph{RQ2}. Analyzing positive repositories is not a trivial task, as it is crucial
+to retrieve complete and reliable information from them to perform a robust analysis. That's why it was decided to
+use a tool called \emph{Perceval} which belongs to the \emph{GrimoireLab} project, a mature and Free/Libre tool-set for software development
+analytics, to comply with OB4. It should be noted that this tool is not valid to perform OB2 and that's why the direct access to the
+GitHub API is still needed. Lastly, to accomplish OB5 the approach is to store the data obtained with \emph{Perceval} in a database to execute
+the necessary queries to obtain answers for RQ2 and any further questions.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ESTADO DEL ARTE %
@@ -513,6 +537,7 @@ than 20 different kinds of data sources, from \emph{git} repositories or GitHub 
 or \emph{Bugzilla}, including messaging systems such as \emph{IRC}, \emph{Slack} or mailing lists, or other types of systems such as
 \emph{StackOverflow} or \emph{Jenkins} in a regular and incremental way, allowing to produce uniform sets of information.
 \newline \emph{GrimoireLab} is now part of \emph{CHAOSS}\footnote{\url{https://chaoss.community/}}, a project by \emph{The Linux Foundation}.
+\section{MySQL}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DISEÑO E IMPLEMENTACIÓN %
@@ -523,7 +548,8 @@ or \emph{Bugzilla}, including messaging systems such as \emph{IRC}, \emph{Slack}
 \textcolor{red}{FIXME: Why Python as programming language? Why MySQL database?}\newline
 This tool has a modular design, to ease its adaptability to future updates, changes on it dependencies or other needs which may appear.
 To fully understand the functioning of the tool is necessary to be familiar with main \emph{git} objects (commits, branches and trees),
-as they are going to play a key role in this project. In section\ref{sec:git-definitions} there is a complete definition for these \emph{git} concepts.\\\\
+as they are going to play a key role in this project. In section\ref{sec:git-definitions} there is a complete definition for these \emph{git} concepts.
+It is also important to mark that the research which motivated this tool influenced most of the decisions which were taken during the design phase.\\\\
 The tool is divided into several linear sections with a set of \emph{Python} scripts, which can be grouped into three
 main phases (See figure~\ref{fig:arquitectura}).
 \begin{figure}
@@ -629,7 +655,7 @@ Finally, we obtain a filtered \emph{project list} file, which keeps the same for
 Once the \emph{project list} file is ready, we can proceed to extract the file list of the main \textit{branch} of each
 repository. To achieve this, we have to query the GitHub \textit{API} several times for each project.
 It is important to mark this, as the GitHub \textit{API} has a limitation of
-5.000\footnote{The numbers (excepting dates) in this dissertation follow the spanish separators notation.}
+5.000\footnote{The numbers (excepting dates) in this thesis follow the spanish separators notation.}
 queries per hour for every authenticated account, which caused a huge impact in the research and the data-retrieval
 process, as it is detailed in the case of study described in section~\ref{sec:case-study-uml}.\\\\
 To make authenticated queries to the GitHub \textit{API} we need an \textbf{API token}.
@@ -843,7 +869,7 @@ For instance, here are some queries we can execute to perform an analysis:
 \cleardoublepage
 \chapter{Results}
 \label{sec:results}
-As I mentioned in section~\ref{sec:introduction}, this project was born in a research environment.
+As I mentioned in section~\ref{sec:intro}, this project was born in a research environment.
 In this current section it is described how the tool behaved in a real environment with all the setbacks
 and limitations that appeared during the whole process. It is important to mark that this ongoing research
 motivated many of the decisions which were took during the design and implementation
@@ -861,7 +887,8 @@ showing an overview of its data and results taking into account specific details
 \label{sec:case-study-uml}
 This methodology was applied for the first time to the study: ”The quest for Open Source projects that use
 UML: Mining GitHub” [HQC + 16 - cite] (The full paper is available in section~\ref{sec:paper-models}).
-This research has been a collaborative work between Chalmers University and Rey Juan Carlos University, as I mentioned in section~\ref{sec:motivation}.
+This research has been a collaborative work between Chalmers University and Rey Juan Carlos University in the context
+explained in section~\ref{sec:context}.
 The main goal of this study was to deepen in the knowledge of usage and evolution of UML models in
 Free/Libre/Open Source Software (FLOSS) projects, tracking them throughout the whole projects life-span.
 In addition to the main research questions mentioned in section~\ref{sec:objectives}, some of the specific RQs
@@ -870,6 +897,7 @@ of this study were:
   \item RQ1: Are there GitHub projects that use UML? Which are these projects?
   \item RQ2: Are there GitHub projects in which the UML models are also updated?
   \item RQ3: When in the project are new UML models introduced?
+  \item RQ4: What is the ime span of ``active'' UML creation and modification?
 \end{itemize}
 It is important to know if there is some peculiarity in the data we are looking for, for example, UML models can be
 found in many different formats, but they can be classified into two main types: text-based models, which are XML-alike
@@ -878,7 +906,7 @@ required in an intermediate step between the data filtering phase and the analys
 \begin{figure}
   \centering
   \includegraphics[width=15cm, keepaspectratio]{img/umls-landscape}
-  \caption{Examples of how UML models can be found, XML-alike (left) or image type (right).}
+  \caption{Examples of how UML models can be found, text-based (left) or image type (right).}
   \label{fig:uml-types}
 \end{figure}
 The first two phases of the tool, described in sections~\ref{sec:preliminary-phase} and~\ref{sec:data-extraction} respectively
@@ -901,7 +929,7 @@ different GitHub accounts.\\
 To make this possible, we asked for help to some students and professors so they can temporarily borrow their GitHub account
 token and we obtained 21 account tokens. Finally, it took almost 90 days to complete this task as we were receiving these credentials
 while we were already collecting data. I take this opportunity to thank every person who had the kindness to contribute to this project
-with their GitHub accounts: \textcolor{red}{(list of people)}.\\
+with their GitHub accounts.
 In addition to the GitHub API limitation, we may encounter technical limitations: it is desirable to have a fast and stable Internet
 connection, enough space in the hard drive and also use a powerful computer, as after the data-extraction stage we got 126 GB of compressed
 JSON files, which have to be opened and processed.\\\\
@@ -955,10 +983,25 @@ files were validated included in 3.295 different GitHub repositories, which is t
 \end{table}
 Next, in the data-analysis phase these projects were processed with Perceval and a database was built using that information.
 Once the database was created it was obtained more elaborated data, for instance, the distribution of positive repositories
-according to how many UML models contained each of them (See table~\ref{table:validated-repos-table}).
-\newline\textcolor{red}{FIXME: More examples about extracted data from database: RQs from RQ2 to RQ4}\\\\
-This UML search was completed when all the potential files were validated using the same process described before.
-The complete results were presented in the paper "An extensive dataset of UML models in GitHub" (The full paper is available in section~\ref{sec:paper-msr}),
+according to how many UML models contained each of them (See table~\ref{table:validated-repos-table}) but also the answers to the rest
+of the RQs:
+\begin{itemize}
+  \item RQ2: Are there GitHub projects in which the UML models are also updated?
+  \begin{itemize}
+    \item Only 26\% of this first data-set updated their UML files at least once.
+  \end{itemize}
+  \item RQ3: When in the project are new UML models introduced?
+  \begin{itemize}
+    \item UML models are introduced un all active phases of a project with a tendency towards the early phases.
+  \end{itemize}
+  \item RQ4: What is the ime span of ``active'' UML creation and modification?
+  \begin{itemize}
+    \item Few of the studied projects are active with UML during their whole lifetime.
+    In general, the projects work very shortly in UML, usually at the beginning.
+  \end{itemize}
+\end{itemize}
+hen the validation process described before was extended to the whole set of potential results, the UML search was finished.
+These complete results were presented in the paper "An extensive dataset of UML models in GitHub" (The full paper is available in section~\ref{sec:paper-msr}),
 which resulted in the identification of 93.596 (See table~\ref{table:validated-models-table} publicly available UML models
 in GitHub from over 24.125 repositories. Though this amount of repositories only represent 0,19239\% of the total amount of the initial set,
 as I anticipated in the introduction chapter, the identified models constitute a data-set that is two orders of magnitude larger than the
@@ -998,13 +1041,22 @@ survey conditions executing the right queries to the database. There were two ma
     \item Founder (F) vs. non-founder (NF)
     \item Non-UML Contributor (NUC) vs. first UML Contributor (1UC) \& UML Contributor or updater (non-1st contributor) (UC)
   \end{enumerate}
-  Therefore, each interview participant fulfilled one of the following 6 roles: F-1UC, F-NUC, F-UC, NF-1UC, NF-NUC, NF-UC.
+  Therefore, each interview participant had to fulfill one of the following 6 roles: F-1UC, F-NUC, F-UC, NF-1UC, NF-NUC, NF-UC.
 \end{enumerate}
-\textcolor{red}{FIXME: End this section properly}
+Furthermore, researchers considered the posibility of having duplicate identities in our database, as one contributor can
+use different emails, user-name (for example, changing the user-name or email during the project time).
+The email and the full-name were the primary keys for this check, which resulted in 99.319 distinct contributors out of
+ 129.276 original ones.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Case of study: Software Architecture documents \& extended UML models in GitHub projects}
 \label{sec:case-study-sad}
-\textcolor{red}{FIXME: Add contnet to this case of study.}
+After the derived studies from the first data-set, the second case of study came out when the same research team were
+interested in extend the search looking for models with other less-restrictive extensions but also looking for
+software architecture documents, as sometimes the models from a project are defined inside a document (i.e., a PDF file).\\
+Accomplishing this new case of study was substantially easier and faster, as all the JSON files containing file-related information
+from all GitHub projects were already downloaded. Then, with the preliminary and data-extraction phases completed, the procedure to
+follow was to execute the steps from the data-filtering stage using the patterns and heuristics from table~\ref{table:heuristics-cs2-example}.
+This data-filtering phase resulted in a list of 6.373.748 potential files belonging to 573.854 different GitHub repositories.
 \begin{table}[]
 \centering
 \caption{Example: definition of heuristics for the case of study 2.}
@@ -1030,7 +1082,7 @@ Key-words                  & \textit{xmi}, \textit{uml}, \textit{diagram}, \text
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
 \chapter{Conclusions}
-\label{chap:conclusions}
+\label{sec:conclusions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Achieved objectives}
 \label{sec:achieved-objectives}
@@ -1087,17 +1139,6 @@ las tecnologías utilizadas y demás.
 \chapter{Definitions}
 \label{app:definitions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Essential freedoms of Free/Libre Software}
-\label{sec:freedoms}
-A program is free software if the program's users have the four essential freedoms:
-\begin{itemize}
-   \item The freedom to run the program as you wish, for any purpose (freedom 0).
-   \item The freedom to study how the program works, and change it so it does your computing as you wish (freedom 1).
-   \item The freedom to redistribute copies (freedom 2).
-   \item The freedom to distribute copies of your modified versions to others (freedom 3).
-\end{itemize}
-A program is free software if it gives users adequately all of these freedoms. Otherwise, it is \textit{nonfree}.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Git objects definitions}
 \label{sec:git-definitions}
 \subsection{Commit}
@@ -1145,6 +1186,18 @@ returning information using \emph{JSON} (\textit{JavaScript Object Notation}) fo
 A \textbf{token} is a unique identifier of an application requesting access to a service.
 In the case of GitHub, they are long, alphanumeric strings of characters generated within a GitHub account,
 so every executed action with that \textbf{token} is done on behalf of its owner's account.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Essential freedoms of Free/Libre Software}
+\label{sec:freedoms}
+A program is free software if the program's users have the four essential freedoms:
+\begin{itemize}
+   \item The freedom to run the program as you wish, for any purpose (freedom 0).
+   \item The freedom to study how the program works, and change it so it does your computing as you wish (freedom 1).
+   \item The freedom to redistribute copies (freedom 2).
+   \item The freedom to distribute copies of your modified versions to others (freedom 3).
+\end{itemize}
+A program is free software if it gives users adequately all of these freedoms. Otherwise, it is \textit{nonfree} or \textit{propietary}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SCRIPTS %
@@ -1175,7 +1228,7 @@ This paper was published in MSR conference (Buenos Aires, Argentina), in May 201
 \includepdf[pages=-,pagecommand={},width=1.2\textwidth]{pdf/msr2017.pdf}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Practices and Perceptions of UML Use in OS Projects}
-\label{sec:paper-msr}
+\label{sec:paper-icse}
 This paper was published in ICSE-SEIP conference (Buenos Aires, Argentina), in May 2017.
 \includepdf[pages=-,pagecommand={},width=1.2\textwidth]{pdf/seip2017.pdf}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
