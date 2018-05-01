@@ -411,7 +411,7 @@ where it can be analyzed in a deeper way to extract elaborate information about 
 To meet these requirements, the tool had to achieve the following main objectives:
 \begin{itemize}
   \item OB1: Extract the whole set of projects hosted in GitHub.
-  \item OB2: Collect data from all these projects about their file structure in a scalable, automated way.
+  \item OB2: Collect data from all public projects about their file structure in a scalable, automated way.
   \item OB3: Establish a procedure to filter this extracted data using a determined kind of heuristics and patterns.
   \item OB4: Analyze positive GitHub repositories (with at least one positive result) to obtain enhanced Git data from them.
   \item OB5: Store this enhanced data in a database whose structure allows to query information of interest.
@@ -422,7 +422,7 @@ but this entails several limitations. To mention the most important ones:
 \begin{itemize}
     \item The GitHub API has a maximum rate of 5.000 request per hour with each account.
     \item GitHub is not static (new repositories are added, existing ones are modified, etc.) which leads to the problem of
-    accesing concurrently to its data.
+    accessing concurrently to its data.
     \item There isn't a direct way
     of obtaining the amount of repositories in the platform at a certain date using its \textit{API}.
 \end{itemize}
@@ -571,7 +571,7 @@ To fully understand the functioning of the tool is necessary to be familiar with
 as they are going to play a key role in this project. In section\ref{sec:git-definitions} there is a complete definition for these \emph{git} concepts.
 It is also important to mark that the research which motivated this tool influenced most of the decisions which were taken during the design phase.\par
 The tool is divided into several linear sections with a set of \emph{Python} scripts. We decided to code this tool in Python because it was the programming
-language I feel more confortable with, along with its versatility due to the great amount of compatible packages and modules, followed
+language I feel more comfortable with, along with its versatility due to the great amount of compatible packages and modules, followed
 with a great amount of documentation.\par
 The set of scripts which compounds this tool can be grouped into three main phases (See figure~\ref{fig:arquitectura}).
 Before going into detail in each of these stages, let's introduce them briefly:
@@ -882,8 +882,9 @@ that the perform the right queries. For instance, here are some queries we can e
     \begin{lstlisting}[language=SQL]
     SELECT COUNT(DISTINCT repos.name) FROM interesting_files
     LEFT JOIN repos ON interesting_files.repo_id = repos.id
-    WHERE interesting_files.name LIKE '%.png';\end{lstlisting}
+    WHERE interesting_files.name LIKE '\%.png'; \end{lstlisting}
 \end{itemize}
+
 \begin{figure}
   \centering
   \includegraphics[width=15cm, keepaspectratio]{img/dbschema-generic}
@@ -985,9 +986,9 @@ of the RQs:
   \end{itemize}
   \item RQ3: When in the project are new UML models introduced?
   \begin{itemize}
-    \item UML models are introduced un all active phases of a project with a tendency towards the early phases.
+    \item UML models are introduced in all active phases of a project with a tendency towards the early phases.
   \end{itemize}
-  \item RQ4: What is the ime span of ``active'' UML creation and modification?
+  \item RQ4: What is the time span of ``active'' UML creation and modification?
   \begin{itemize}
     \item Few of the studied projects are active with UML during their whole lifetime.
     In general, the projects work very shortly in UML, usually at the beginning.
@@ -1025,10 +1026,10 @@ survey conditions executing the right queries to the database. There were two ma
   \end{enumerate}
   Therefore, each interview participant had to fulfill one of the following 6 roles: F-1UC, F-NUC, F-UC, NF-1UC, NF-NUC, NF-UC.
 \end{enumerate}
-Furthermore, researchers considered the posibility of having duplicate identities in our database, as one contributor can
+Furthermore, researchers considered the possibility of having duplicate identities in our database, as one contributor can
 use different emails, user-name (for example, changing the user-name or email during the project time).
 The email and the full-name were the primary keys for this check, which resulted in 99.319 distinct contributors out of
- 129.276 original ones.
+129.276 original ones.
  \begin{figure}
    \centering
    \includegraphics[width=15cm, keepaspectratio]{img/umls-landscape}
@@ -1114,22 +1115,53 @@ Key-words                  & \textit{xmi}, \textit{uml}, \textit{diagram}, \text
 \cleardoublepage
 \chapter{Conclusions}
 \label{sec:conclusions}
+During the whole implementation and the later set-up process of this tool with the different use-cases,
+there were found several limitations and setbacks which affected how the objetives described
+in chapter~\ref{sec:objectives} were reached. Nonetheless, looking back at the tool and how
+it performed with the different use-cases, along with the obtained results, it is safe to
+say the purpose of this tool was achieved, proving answers to the proposed research questions.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Achieved objectives}
 \label{sec:achieved-objectives}
-Esta sección es la sección espejo de las dos primeras del capítulo de objetivos,
-donde se planteaba el objetivo general y se elaboraban los específicos.
-Es aquí donde hay que debatir qué se ha conseguido y qué no. Cuando algo no
-se ha conseguido, se ha de justificar, en términos de qué problemas se han
-encontrado y qué medidas se han tomado para mitigar esos problemas.
+Regarding OB1\footnote{Extract the whole set of projects hosted in GitHub.},
+we were able to extract the whole set of projects hosted in GitHub at
+a certain date and time thank to the \emph{GHTorrent} project. This is the first threat
+following this approach: during the time where the MySQL dump of \emph{GHTorrent} from GitHub data is created
+and the data extraction phase is executed, the source of information is constantly changing,
+so we may encounter some projects that don't exist anymore, some projects become private
+and of course, there are new projects that are being created. These limitations are hard
+to avoid but also it is safer to extract the information from an static, reliable and uniform source.\par
+About OB2\footnote{Collect data from all public projects about their file structure in a scalable, automated way.},
+this was the most arduous objective to accomplish, as setting up and watching over
+the different parallel instances (up to 21 instances running at the same time) to speed-up the completion
+of the whole data-retrieval process required a huge amount of time and effort. The GitHub API limit of
+5.000 requests per hour \& account was a huge drawback we tried to avoid contacting to GitHub asking them for a special
+account without limitation in order to perform the study, but the solution they gave us was to create more accounts
+and using them all to perform more requests per hour (and so we did). Furthermore, GitHub API changed during this
+data-retrieval phase including paginated results. That forced us to adapt this tool and re-analyse some of the data
+that have been already dowloaded.\\
+These drawbacks could be avoided in future versions of this tool if \emph{GHTorrent} included git-trees information. It would save a lot of time and resources,
+together with having more reliability due to the staticness this data would have.\par
+Looking at OB3\footnote{Establish a procedure to filter this extracted data using a determined kind of heuristics and patterns.},
+the positive results can be identified properly. However, due to the different particularities of the data
+we want to analyse, we may want to add more filtering layers to the obtained potential results. Technically,
+the most difficult issue was to handle huge JSON files (some of them sized GBs) and cover the diverse Charset-related
+errors.\par
+OB4\footnote{Analyze positive GitHub repositories to obtain enhanced Git data from them.}
+was completely covered using \emph{Perceval}, with the limitations of encountering positive repositories which had been deleted
+or set as private, reducing the final data-set.
+Finally, OB5\footnote{Store the enhanced data in a database whose structure allows to query information of interest.}
+was also completely accomplished. These two last objectives
+share some technical difficulties regarding to storage space and performance: Perceval needed to clone the repositories,
+which means it had to download and uncompress data; and some of the generated SQL files with the database information
+(like the one for the \texttt{commits} table) contained millions of entries, which aside from their size, difficulted
+the importing process.\par
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Knowledge application}
 \label{sec:knowledge-application}
-Aquí viene lo que has aprendido durante el Grado/Máster y que has aplicado
-en el TFG/TFM. Una buena idea es poner las asignaturas más relacionadas y
-comentar en un párrafo los conocimientos y habilidades puestos en práctica.
-\subsection{Related courses}
-In this project I have applied the learning outcomes from the following courses
+During my degree I've learned about important concepts and tools during the different courses,
+but also about how to face new challenges where to implement the acquired knowledge.
+In this project I have applied the learning outcomes from the following courses:
 \begin{enumerate}
   \item \textbf{``Informática I''} (Fundamentals of Programming): This course was my first programming-related course,
   where I learned the basics of programming'' (basic data and flow-control structures).
@@ -1151,17 +1183,39 @@ In this project I have applied the learning outcomes from the following courses
 \label{sec:learning-outcomes}
 These are some of the learning outcomes I have obained thank to this project:
 \begin{enumerate}
-  \item
+  \item Fostering of my programming skills, especially in Python. Though I was familiar with
+  this programming language in particular, I've learned about general, complex concepts of programming
+  as parallelization and concurrency but also specific advanced Python concepts and structures:
+  sets (unordered collections of non-duplicated values), list-comprehensions
+  (a way to to create lists containing an expression followed by a for clause, then
+  zero or more for or if clauses) and other Python \textit{idioms}.
+  \item Learning new technologies, specially about databases and SQL language which
+  complements my academic background. I've also learn how to interact with APIs for the first time.
+  \item A great overview about research. Since I started to work as a researcher assistant,
+  I was surprised about how little I know about research and its procedures about scientific papers,
+  conferences. With this project I was able to learn from the very beginning the stages of the elaboration
+  of a study to its final stages including th process for the paper to be published.
+  \item A valuable perspective about team work and communication, having the possibility
+  to collaborate with an international team from a different university.
+  \item System administration. Taking care of the technical tasks about this project forced me
+  to learn how to execute and watch over all the stages of this tool in different environments,
+  incluing remote servers.
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Future work}
 \label{sec:future-work}
-Ningún software se termina, así que aquí vienen ideas y funcionalidades
-que estaría bien tener implementadas en el futuro.
-Es un apartado que sirve para dar ideas de cara a futuros TFGs/TFMs.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Personal assessment}
 \label{sec:assessment}
+I had the great luck to be in the right place at the right moment when I started this project.
+Working on it has brough me a lot of great experiences and outcomes, which are
+extensive to my periord working as a reseacher assistant in LibreSoft group where I met fantastic people.\par
+I feel fulfilled after having participated in such an important research and see its resulting scientific papers
+presented and published in important conferences. I've obtained more knowledge but also self-confidence to face large-scale
+projects, to make presentations in front of an audience and also to foster my english level. Furthermore,
+I had the opportunity of travelling to Gothenburg (Sweden) in June, 2016 to meet the team from Chalmers University
+we were collaborating with. Afterwards, this cooperation provided me the chance to enroll myself to an
+ERASMUS+ traineeship in that university during summer 2017.\par
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % APPENDIX %
