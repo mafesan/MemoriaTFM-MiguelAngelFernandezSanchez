@@ -130,7 +130,7 @@ Trabajo Fin de Grado
 \vspace{2.5cm}
 
 \LARGE
-HERRAMIENTA PARA ANALIZAR PROYECTOS FLOSS EN GITHUB (prov.)
+HERRAMIENTA PARA ANALIZAR PROYECTOS FLOSS EN GITHUB
 % http://dl.acm.org/citation.cfm?id=2976778
 \vspace{4cm}
 
@@ -158,7 +158,7 @@ Tutor : Dr. Gregorio Robles
 
 \vspace{1cm}
 \large
-Herramienta para la extracción y el análisis de proyectos FLOSS en GitHub (provisional)
+Herramienta para analizar proyectos FLOSS en GitHub
 
 \vspace{1cm}
 \large
@@ -199,26 +199,49 @@ Fuenlabrada, a \qquad$\;\,$ de \qquad\qquad\qquad\qquad de 2018
 \chapter*{Dedications}
 \pagenumbering{Roman} % para comenzar la numeracion de paginas en numeros romanos
 \begin{flushright}
-\textit{Dedicado a \\
-mi familia / mi abuelo / mi abuela}
+\textit{A mi madre y a mi padre:\\
+Esta memoria no hubiera sido posible \\
+sin vuestro incansable esfuerzo y apoyo.}
 \end{flushright}
-
+\par
+\begin{flushright}
+\textit{A mi hermana, Ana:\\
+Con esfuerzo y constancia,\\
+alcanzarás todo lo que te propongas.\\}
+\end{flushright}
+\begin{flushright}
+\textit{\\To my mother and father:\\
+This thesis wouldn't have been possible\\
+without your endless effort and support.}
+\end{flushright}
+\par
+\begin{flushright}
+\textit{To my sister, Ana:\\
+With effort and persistence,\\
+you will reach all of your goals.}
+\end{flushright}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Agradecimientos
 
 \chapter*{Acknowledgements}
 %\addcontentsline{toc}{chapter}{Agradecimientos} % si queremos que aparezca en el �ndice
-\markboth{AGRADECIMIENTOS}{AGRADECIMIENTOS} % encabezado
+\markboth{ACKNOWLEDGEMENTS}{ACKNOWLEDGEMENTS} % encabezado
 
-Aquí vienen los agradecimientos\ldots Aunque esté bien acordarse de la pareja,
-no hay que olvidarse de dar las gracias a tu madre, que aunque a veces no lo
-parezca disfruta tanto de tus logros como tú\ldots Además, la pareja quizás
-no sea para siempre, pero tu madre sí.
-
-
+First, I want to thank my parents and the rest of my family. Their constant effort and support
+along with the values they taught me, made possible for me studying at the university. These words
+are dedicated to them: This is your success, I love you.\par
+I want to thank my tutor Gregorio, for believing in me, and giving me the great opportunity of working
+in LibreSoft research group where I've lived some of my great experiences at the university;
+growing as a person, meeting wonderful people, travelling and learning far beyond I could have ever imagined.\par
+To my friends and classmates from the university: Eva, Eduardo, Bea, Diego, Olalla, Raúl, Sara, Luismi, Javi, Marta, Dani, Carol,
+Celia, Nuria, Vanessa, Raquel and many, many more. Without your friendship, help and support I wouldn't reached this goal, thank you.\par
+To the people who has helped me to review and improve this thesis: Gregorio, Santi, Valerio, Fernando, Saray, Eva and Sara. Thank you
+for your patience and sharing your time and knowledge so generously.\par
+Finally, thank to the people who contributed with their GitHub account to make this study possible:
+Gregorio R., Michel C., Truong H.Q., Eva H., Olalla S., Beatriz C., Diego S.,
+Eduardo D., Javier M., Diego J., Jose M., Alejandro F., Ángel C., Alejandro, Cristina, Fernando, Irene, Nacho, Ana R. y Ronny.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Resumen en ingl�s
-
 \chapter*{Summary}
 %\addcontentsline{toc}{chapter}{Summary} % si queremos que aparezca en el �ndice
 \markboth{SUMMARY}{SUMMARY} % encabezado
@@ -849,7 +872,9 @@ updated along time.\\
 The data sources which Perceval supports are given by its \emph{backends}, and we are using the \emph{Git backend} to
 obtain Git-related information from those GitHub repositories with at least one positive result.
 Perceval clones repository by repository and parses every Git event log, producing a \emph{JSON} file
-per repository containing data for every commit and its related Git objects.\\
+per repository containing data for every commit and its related Git objects. This tool is written in Python
+language and it can be executed via command line or as a Python module, so it can be easily integrated with
+this set of scripts.\\
 \subsection{Building the database}
 \label{ssec:build-database}
 Next step is to build a database, which allows to store the extracted data in an optimized way to
@@ -858,7 +883,7 @@ As we had used the GHTorrent database, which is a MySQL database, we decided to 
 for this purpose too, as it is easier to build and maintain.
 We designed this database to contain five tables; four of them using data from the files which are obtained with
 \textbf{Perceval} and one table from the GHTorrent database, \texttt{USERS} containing information about GitHub user accounts.
-These tables and their full structure are in figure \textcolor{red}{(ref)}, and as a summary, these tables contain the following information:
+These tables contain the following information:
 \begin{itemize}
   \item \texttt{REPOS}: For a repository; its name, number of commits, URL, founder, etc.
   \item \texttt{PEOPLE}: Referring to the people who authored the commits, their name and email.
@@ -869,7 +894,9 @@ These tables and their full structure are in figure \textcolor{red}{(ref)}, and 
 After a first version of this database, it was decided to add an additional table, \textit{FILE\_COMMITS},
 which contains augmented information about each file commit, indicating the commit unique ID, the name of the committed file and the field
 file-type (type of the committed file based on a predefined classification, i.e., source code, documentation, etc.).
-The complete schema of this database is represented in figure~\ref{fig:dbschema}.\par
+These tables are represented in the complete schema of this database in figure~\ref{fig:dbschema}.\par
+The dedicated script which converts the analysed data into a database produces one SQL script per table. Then, these
+scripts have to be imported in a MySQL database whose structure has to be specified before.
 Once the database has been built and filled with the data, to produce proper results for our analysis we have to ensure
 that the perform the right queries. For instance, here are some queries we can execute to perform an analysis:
 \begin{itemize}
@@ -928,7 +955,7 @@ of this study were:
   \item RQ1: Are there GitHub projects that use UML? Which are these projects?
   \item RQ2: Are there GitHub projects in which the UML models are also updated?
   \item RQ3: When in the project are new UML models introduced?
-  \item RQ4: What is the ime span of ``active'' UML creation and modification?
+  \item RQ4: What is the time span of ``active'' UML creation and modification?
 \end{itemize}
 It is important to know if there is some peculiarity in the data we are looking for, for example, UML models can be
 found in many different formats, but they can be classified into two main types: text-based models, which are XML-alike
@@ -1116,7 +1143,7 @@ Key-words                  & \textit{xmi}, \textit{uml}, \textit{diagram}, \text
 \chapter{Conclusions}
 \label{sec:conclusions}
 During the whole implementation and the later set-up process of this tool with the different use-cases,
-there were found several limitations and setbacks which affected how the objetives described
+there were found several handicaps, limitations and setbacks which affected how the objetives described
 in chapter~\ref{sec:objectives} were reached. Nonetheless, looking back at the tool and how
 it performed with the different use-cases, along with the obtained results, it is safe to
 say the purpose of this tool was achieved, proving answers to the proposed research questions.
@@ -1204,6 +1231,26 @@ These are some of the learning outcomes I have obained thank to this project:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Future work}
 \label{sec:future-work}
+This tool and its execution process can be improved in several aspects. Regarding to the preliminary and data-extraction
+stages, these are some of the features that could be implemented:
+\begin{itemize}
+    \item A method to keep updated the initial set of GitHub projects from new dumps from \emph{GHTorrent}.
+    \item If \emph{GHTorrent} dumps format change, adapt the necessary scripts to ensure compatibility.
+    \item A method to keep updated the JSON files containing the file-list information for
+    each repository, and another to unify the format of that data in those repositories whose response was truncated.
+    \item Multi-thread execution support to have different parallel instances of \texttt{github-api.py} script.
+    \item Improve monitoring and exception management.
+\end{itemize}
+In the data-filtering and the data-analysis phases, the proposed improvements are:
+\begin{itemize}
+    \item Add more filter types or improve the existing ones.
+    \item Improve the method to analyze the positive repositories using Perceval. There is a new \emph{GrimoireLab}
+    tool called \textbf{Arthur}\footnote{\url{https://github.com/chaoss/grimoirelab-kingarthur}},
+    which is a distributed job queue platform that schedules and executes Perceval using threads, error management and more.
+    This new tool could be integrated in the data-analysis stage to set the repositories to be analyzed by Perceval
+    in a more efficient way.
+    \item Optimize how the analyzed data is imported into a new database even exploring other different database types.
+\end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Personal assessment}
 \label{sec:assessment}
