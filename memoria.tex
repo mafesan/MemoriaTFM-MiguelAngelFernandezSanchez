@@ -230,7 +230,7 @@ you will reach all of your goals.}
 First, I want to thank my parents and the rest of my family. Their constant effort and support
 along with the values they taught me, made possible for me studying at the university. These words
 are dedicated to them: This is your success, I love you.\par
-I want to thank my tutor Gregorio, for believing in me, and giving me the great opportunity of working
+I want to thank my tutor Gregorio, for believing in me and giving me the great opportunity of working
 in LibreSoft research group where I've lived some of my great experiences at the university;
 growing as a person, meeting wonderful people, travelling and learning far beyond I could have ever imagined.\par
 To my friends and classmates from the university: Eva, Eduardo, Bea, Diego, Olalla, Raúl, Sara, Luismi, Javi, Marta, Dani, Carol,
@@ -245,31 +245,43 @@ Eduardo D., Javier M., Diego J., Jose M., Alejandro F., Ángel C., Alejandro, Cr
 \chapter*{Summary}
 %\addcontentsline{toc}{chapter}{Summary} % si queremos que aparezca en el �ndice
 \markboth{SUMMARY}{SUMMARY} % encabezado
-
-Here comes a translation of the ``Resumen'' into English. Please, double check
-it for correct grammar and spelling. As it is the translation of the ``Resumen'',
-which is supposed to be written at the end, this as well should be filled out
-just before submitting.
-
-
+In this thesis it is presented a method for extracting and analyzing information from Free / Libre / Open-source
+software (FLOSS) repositories hosted on \emph{GitHub}, a software development platform. Thus far, many studies focused
+in one single project or in a limited data-set when software development is analyzed. The goal of this project to
+extract and analyse data from all GitHub in a scalable, semi-automated way in order to obtain information about
+the usage of a certain file type, programming language or/and any search that can be expressed into patterns and heuristics.\par
+To perform the data-extraction, the tool starts with a data-set provided by the \emph{GHTorrent} project,
+a database which contains a mirror of data from the \emph{GitHub API}. Then, a series of scripts are
+used for extracting file-related data from the repositories, identifying interesting projects looking for patterns and/or
+specific file extensions and analyzing those positive results using an external tool called \emph{Perceval},
+which extracts additional metrics from them. Finally, this information is structured into a database where a deeper
+analysis can be performed.\par
+This project was created to be applied to a research case study: the search of \emph{UML} models in FLOSS projects.
+The main goal of this research is to deepen in the knowledge of usage and evolution of UML models,
+quantifying and analyzing its use in projects hosted in the GitHub platform, tracking them throughout
+the whole projects life-span.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Resumen
-
 \chapter*{Resumen}
 %\addcontentsline{toc}{chapter}{Resumen} % si queremos que aparezca en el �ndice
 \markboth{RESUMEN}{RESUMEN} % encabezado
-
-Aquí viene un resumen del proyecto. Ha de constar de tres o cuatro párrafos,
-donde se presente de manera clara y concisa de qué va el proyecto. Han
-de quedar respondidas las siguientes preguntas:
-
-\begin{itemize}
-  \item ¿De qué va este proyecto? ¿Cuál es su objetivo principal?
-  \item ¿Cómo se ha realizado? ¿Qué tecnologías están involucradas?
-  \item ¿En qué contexto se ha realizado el proyecto? ¿Es un proyecto
-dentro de un marco general?
-\end{itemize}
-Lo mejor es escribir el resumen al final.
+En esta memoria se presenta un método para extraer y analizar información de repositorios de software libre y \textit{open-source}
+(FLOSS) alojados en \emph{GitHub}, una plataforma dedicada al desarrollo de software. En el pasado se habían realizado varios estudios
+analizando el desarrollo de software, concentrándose en un conjunto muy limitado de proyectos para realizar
+dicho análisis. El objetivo de este proyecto es extraer y analizar datos obtenidos de todo GitHub de una forma escalable
+y semi-automática, con el fin de recopilar información sobre el uso de cierto tipo de ficheros, lenguaje de programación
+y/o cualquier búsqueda que pueda ser expresada en forma de patrones y heurísticos.\par
+Para realizar la extracción de los datos, la herramienta usa un conjunto de datos iniciales proporcionados por el proyecto
+\emph{GHTorrent}, una base de datos que contiene una copia de datos obtenidos de la \emph{API} de GitHub.
+A continuación, se usan una serie de \textit{scripts} para extraer datos relacionados con los ficheros que contienen los
+repositorios, identificar aquellos proyectos de interés a través de patrones y/o extensiones de fichero específicas y
+por último analizar aquellos resultados positivos usando una herramienta externa llamada Perceval, que extrae métricas
+adicionales de dichos resultados. Finalmente, esta información es estructurada en una base de datos donde se puede
+realizar un análisis más profundo.\par
+Este proyecto fue creado para ser aplicado a un caso de estudio: la búsqueda de modelos \emph{UML} en projectos FLOSS.
+La motivación principal de este estudio es profundizar en el conocimiento sobre el uso y la evolución de los modelos UML,
+cuantificando y analizando dicho uso en proyectos alojados en la plataforma GitHub y rastreando su evolución a través de
+todo el tiempo de vida de cada proyecto.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % �NDICES %
@@ -436,6 +448,7 @@ To meet these requirements, the tool had to achieve the following main objective
   \item OB1: Extract the whole set of projects hosted in GitHub.
   \item OB2: Collect data from all public projects about their file structure in a scalable, automated way.
   \item OB3: Establish a procedure to filter this extracted data using a determined kind of heuristics and patterns.
+  \newpage
   \item OB4: Analyze positive GitHub repositories (with at least one positive result) to obtain enhanced Git data from them.
   \item OB5: Store this enhanced data in a database whose structure allows to query information of interest.
 \end{itemize}
@@ -481,7 +494,7 @@ The uniqueness of the structure of this information along the process and its sc
 controlling every stage of this tool in order to ensure the truthfulness of the results, triggered the need of
 creating a customized, modular tool to satisfy every aspect of the study as much as possible.\par
 These are the technologies that were chosen to build this tool. Every technology will be motivated in the next chapter,
-``Design and implementation'':
+``Design and implementation''.
 \section{Python}
 \label{sec:python}
 \textbf{Python}\footnote{\url{https://www.python.org/}} is an interpreted, object-oriented, high-level, open source
@@ -540,7 +553,7 @@ estimation of its scale evolution across time).
 \begin{figure}
   \centering
   \includegraphics[width=14cm, keepaspectratio]{img/number-github-repos}
-  \caption{Evolution of number of repositories on GitHub across time}
+  \caption{Estimation: Evolution of number of GitHub repositories across time}
   \label{fig:total-repo-number}
 \end{figure}
 % TODO: https://www.quora.com/How-many-repositories-are-there-on-GitHub
@@ -749,7 +762,7 @@ solution for every one of them:
 \label{sec:data-extraction}
 \begin{figure}
   \centering
-  \includegraphics[width=13cm, keepaspectratio]{img/gh-api-master-json-example}
+  \includegraphics[width=15cm, keepaspectratio]{img/gh-api-master-json-example}
   \caption{Example: \texttt{JSON} response to the query asking for master branch data}
   \label{fig:gh-api-master-json}
 \end{figure}
@@ -823,7 +836,7 @@ https://raw.githubusercontent.com/mafesan/ptavi-pfinal/master/uaclient.py \end{l
 \end{figure}
 \begin{figure}
   \centering
-  \includegraphics[width=13cm, keepaspectratio]{img/gh-api-trees-json-example}
+  \includegraphics[width=15cm, keepaspectratio]{img/gh-api-trees-json-example}
   \caption{Example: \texttt{JSON} file containing information about \textit{tree} objects}
   \label{fig:gh-tree-json}
 \end{figure}
@@ -1224,9 +1237,9 @@ These are some of the learning outcomes I have obained thank to this project:
   of a study to its final stages including th process for the paper to be published.
   \item A valuable perspective about team work and communication, having the possibility
   to collaborate with an international team from a different university.
-  \item System administration. Taking care of the technical tasks about this project forced me
-  to learn how to execute and watch over all the stages of this tool in different environments,
-  incluing remote servers.
+  \item System administration experience. Taking care of the technical tasks about this project forced me
+  to learn how to execute and watch over all the stages of this tool in different GNU/Linux distributions,
+  mostly using a remote server.
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Future work}
