@@ -520,8 +520,8 @@ It is by far, the most used \emph{VCS} in the world\footnote{\url{http://stackov
 The major difference between \emph{git} and any other VCS is the way \emph{git} thinks about its data.
 Conceptually, most other systems store information as a list of file-based changes. Other systems like \textit{Subversion},
 \textit{Perforce}, \textit{Bazaar}, etc. think of the information they store as a set of files and the changes made to each
-file over time (See figure~\ref{fig:info-not-git}).\\
-Instead, \emph{git} thinks of its data more like a series of snapshots of a miniature file-system (See figure~\ref{fig:info-git}).
+file over time (See Figure~\ref{fig:info-not-git}).\\
+Instead, \emph{git} thinks of its data more like a series of snapshots of a miniature file-system (See Figure~\ref{fig:info-git}).
 With \emph{git}, every time you commit or save the state of your project, \emph{git} basically takes a picture of what all
 your files look like at that moment and stores a reference to that snapshot. To be efficient, if files have not changed,
 \emph{git} doesn't store the file again, just a link to the previous identical file it has already stored.
@@ -547,7 +547,7 @@ management tools for every project.\\
 Each user on GitHub has their own profile, showing its past work and contributions to
 other projects via \textit{pull requests}, \textit{forking} (create editable copies into someone's account) other repositories, etc.
 Project revisions can be discussed publicly via \textit{issues} so many people can collaborate together to advance a project
-forward. GitHub is currently the largest host of source code in the world (See figure~\ref{fig:total-repo-number} for a quantitative
+forward. GitHub is currently the largest host of source code in the world (See Figure~\ref{fig:total-repo-number} for a quantitative
 estimation of its scale evolution across time).
 % # TODO: https://growthhackers.com/growth-studies/github, https://blog.github.com/2013-12-23-10-million-repositories/
 \begin{figure}
@@ -565,7 +565,7 @@ estimation of its scale evolution across time).
 \textbf{GHTorrent} is a project based on create a scalable, queriable, offline mirror of data offered through the GitHub \textit{API}.\\
 As they explain in their website\footnote{\url{http://ghtorrent.org/}}, \emph{GHTorrent} monitors the GitHub public event time line.
 For each event, it retrieves its contents and their dependencies, exhaustively. Then, it stores the raw responses to a database whose
-structure is represented in figure~\ref{fig:ghtorrent-schema}.\
+structure is represented in Figure~\ref{fig:ghtorrent-schema}.\
 For each release, you can choose the \textit{dump} (a raw copy of a database) you want to download: either a \emph{MySQL} dump
 (the full database, using one file per table) or a \emph{MongoDB} one (an incremental database).
 \begin{figure}
@@ -609,7 +609,7 @@ It is also important to mark that the research which motivated this tool influen
 The tool is divided into several linear sections with a set of \emph{Python} scripts. We decided to code this tool in Python because it was the programming
 language I feel more comfortable with, along with its versatility due to the great amount of compatible packages and modules, followed
 with a great amount of documentation.\par
-The set of scripts which compounds this tool can be grouped into three main phases (See figure~\ref{fig:arquitectura}).
+The set of scripts which compounds this tool can be grouped into three main phases (See Figure~\ref{fig:arquitectura}).
 Before going into detail in each of these stages, let's introduce them briefly:
 \begin{enumerate}
   \item \textbf{Preliminary phase}
@@ -658,7 +658,7 @@ be necessary, as we could query and filter the data of our interest directly fro
 If we have a look at how \emph{GHTorrent} database is structured (Figure~\ref{fig:ghtorrent-schema}), we can observe that
 there is almost one table per GitHub object (\textit{users}, \textit{projects}, \textit{pull requests}, \textit{issues}, etc.).
 Looking closer on these table's structure, we realize the table we need is the \emph{Projects} table
-(see figure~\ref{fig:ghtorrent-schema-detail}), as it contains crucial repository-wise information including every project's name
+(see Figure~\ref{fig:ghtorrent-schema-detail}), as it contains crucial repository-wise information including every project's name
 and \textit{URL} but also other complementary information which could be used as a primary filter, like \texttt{language} (project's main language,
 code-wise) or \texttt{forked\_from} (Empty if the repository isn't a \textit{fork} from another project), etc.\par
 To obtain the actual data, the procedure to follow is:
@@ -667,7 +667,7 @@ To obtain the actual data, the procedure to follow is:
         format\footnote{To give an estimation of the current file sizes, the last dump available (2018, Mar 1st) sizes 71025 \texttt{MB}}.
   \item Uncompress the \texttt{tar.gz} file, which contains one \emph{CSV} file per table in the database.
   \item Get the file \texttt{projects.csv}, whose data corresponds to \emph{Projects} table (See an adapted\footnote{The field \emph{url} has been replaced by \emph{owner} to make the table more readable.}
-  example of this file in table~\ref{table:projects-table-example}).
+  example of this file in Table~\ref{table:projects-table-example}).
   \item Run the Python script \textcolor{red}{[reference to script]} with the corresponding filters to obtain the main
         \emph{project list} file, which will be the input for the next stage.
 \end{enumerate}
@@ -713,7 +713,7 @@ For instance, if I want to \textit{fork} a repository into my GitHub account, I 
   \begin{lstlisting}[language=bash]
   POST https://api.github.com/repos/:owner/:repo/forks?:token \end{lstlisting}
 \end{itemize}
-The script for this phase, \texttt{github-api.py} (See its diagram in figure~\ref{fig:gh-api-diagram}) has into account
+The script for this phase, \texttt{github-api.py} (See its diagram in Figure~\ref{fig:gh-api-diagram}) has into account
 this API limitation, ensuring that this limit is not exceeded. It employs three different directories in order to classify its outputs:
 \textbf{master}, \textbf{default} and \textbf{trees}.
 Then, it reads the \emph{project list} file and, per line, executes the following actions:
@@ -725,7 +725,7 @@ Then, it reads the \emph{project list} file and, per line, executes the followin
   The \textit{query} sent to the GitHub \textit{API} to retrieve this data is:
   \begin{lstlisting}[language=bash]
   GET /repos/:owner/:repo/branches/master?:token \end{lstlisting}
-  If we obtain a successful response, we will have a \texttt{JSON} file similar to the one in figure~\ref{fig:gh-api-master-json}.
+  If we obtain a successful response, we will have a \texttt{JSON} file similar to the one in Figure~\ref{fig:gh-api-master-json}.
   \item If the \emph{master} \textit{branch} is not found, we have to obtain the default \textit{branch} for that repository and
   perform another \textit{query} to retrieve the data from that \textit{branch}, which will be saved into the directory \textbf{default}.
   To retrieve this information, we need to obtain meta-data from the repository first and then, keep the content
@@ -786,7 +786,7 @@ file extensions and keywords:
   has to contain to be considered as a positive result.
 \end{itemize}
 Let's imagine a basic example where we are interested in projects related with web development. Defining the
-necessary heuristics as in table~\ref{table:heuristics-table-example}, we will keep any file whose extension
+necessary heuristics as in Table~\ref{table:heuristics-table-example}, we will keep any file whose extension
 is on Level-1 list, and those files whose extension is on Level-2 list \textbf{AND} whose file-name contains at least one
 of the words (or group of characters) defined in the key-word list.\\
 \begin{itemize}
@@ -794,8 +794,8 @@ of the words (or group of characters) defined in the key-word list.\\
   \item \texttt{.py} is on \textbf{Level-2} list, so only \texttt{.py} files containing at least one key-word in their file-name
   (i.e. \textit{urls}) will be considered as a positive result.
 \end{itemize}
-To complete this example, if we apply this filter to a repository whose file structure is like the one in figure~\ref{fig:file-structure-example},
-we would obtain the set of positive results showed at table~\ref{table:heuristics-positive-example}.\par
+To complete this example, if we apply this filter to a repository whose file structure is like the one in Figure~\ref{fig:file-structure-example},
+we would obtain the set of positive results showed at Table~\ref{table:heuristics-positive-example}.\par
 Now, the next step is applying these filters to the \texttt{JSON} files which have been obtained before.
 Specifically, we are interested only in those files included into the \textbf{trees} directory.
 Each of those files contains the file structure of the last version of its repository,
@@ -809,9 +809,9 @@ where the \textit{tree} object contains under itself all the files (\textit{blob
   \item \textbf{size}: File size in \textit{bytes}. Only \texttt{blob} objects contain this parameter.
   \item \textbf{url}: Link to this object in GitHub \textit{API}.
 \end{itemize}
-There is a simple example of the content of one of these files at figure~\ref{fig:gh-tree-json}.\par
+There is a simple example of the content of one of these files at Figure~\ref{fig:gh-tree-json}.\par
 The corresponding scripts for this phase are \texttt{github-tree.py} and \texttt{hits2urls.py}
-(See a diagram for both of them in figure~\ref{fig:gh-tree-diagram}):\\
+(See a diagram for both of them in Figure~\ref{fig:gh-tree-diagram}):\\
 \texttt{github-tree.py} iterates over all the \texttt{JSON} files in the \textbf{trees} directory,
 executing these simple instructions per file:
 \begin{itemize}
@@ -907,7 +907,7 @@ These tables contain the following information:
 After a first version of this database, it was decided to add an additional table, \textit{FILE\_COMMITS},
 which contains augmented information about each file commit, indicating the commit unique ID, the name of the committed file and the field
 file-type (type of the committed file based on a predefined classification, i.e., source code, documentation, etc.).
-These tables are represented in the complete schema of this database in figure~\ref{fig:dbschema}.\par
+These tables are represented in the complete schema of this database in Figure~\ref{fig:dbschema}.\par
 The dedicated script which converts the analysed data into a database produces one SQL script per table. Then, these
 scripts have to be imported in a MySQL database whose structure has to be specified before.
 Once the database has been built and filled with the data, to produce proper results for our analysis we have to ensure
@@ -972,7 +972,7 @@ of this study were:
 \end{itemize}
 It is important to know if there is some peculiarity in the data we are looking for, for example, UML models can be
 found in many different formats, but they can be classified into two main types: text-based models, which are XML-alike
-files and image-based models (See figure~\ref{fig:uml-types}). This entails an additional problem as an external validation of the data is
+files and image-based models (See Figure~\ref{fig:uml-types}). This entails an additional problem as an external validation of the data is
 required in an intermediate step between the data filtering phase and the analysis one, which will be detailed later.\par
 The first two phases of the tool, described in sections~\ref{sec:preliminary-phase} and~\ref{sec:data-extraction} respectively
 are, by default, independent from the case of study. However, these phases are not a trivial task because of the amount of
@@ -1000,24 +1000,24 @@ connection, enough space in the hard drive and also use a powerful computer, as 
 JSON files, which have to be opened and processed.\par
 To continue with the next step of the data extraction phase, which is to apply the filter to the file-list information
 we had obtained. In this case, we are interested in looking for files whose extension matches with all possible extensions which an
-UML model can be found, as is it showed in table~\ref{table:heuristics-cs1-example}.\par
+UML model can be found, as is it showed in Table~\ref{table:heuristics-cs1-example}.\par
 As described before, an additional problem arose: from all the identified files with the interesting extensions, how many of those files
 really are a UML model, and how many are not? As the tool has a modular design, it was easy to add an additional phase to verify the data
 which was obtained after the filtering. This verification process was solved by Chalmers team, using heuristics for the XML-alike files
 and image processing and machine learning techniques for image files [HQCS + 14a, HQCS + 14b - \textcolor{red}{FIXME: Citations}].\par
-UML models can be included either in image or text files (See figure~\ref{fig:uml-types}), therefore our main filter using file extensions
+UML models can be included either in image or text files (See Figure~\ref{fig:uml-types}), therefore our main filter using file extensions
 and character patters in file-names is not enough to completely identify UML files. That is why it was necessary the inclusion of
 an additional phase where all the positive outcomes after applying the first filter (now marked as \textbf{potential files}) need
 to be validated to determine whether they contain a UML model or not. This external validation stage developed by \emph{Chalmers} team
 includes machine-learning and digital image processing techniques which also required manual verification steps, which were very time-consuming.\\
 This handicap led to the decision of shorten the data-set to analyze $\sim$10\% of the total amount of GitHub repositories which resulted
 in 1.240.000 repositories, in order to offer accurately verified results. From those repositories, we obtained 100.702 potential files
-which matched after applying the heuristics filter in table~\ref{table:heuristics-cs1-example}. These potential files are the input
-of the validation stage whose process and results are summarized on figure~\ref{fig:validated-files-distribution}: A total of 21.316 UML
+which matched after applying the heuristics filter in Table~\ref{table:heuristics-cs1-example}. These potential files are the input
+of the validation stage whose process and results are summarized on Figure~\ref{fig:validated-files-distribution}: A total of 21.316 UML
 files were validated included in 3.295 different GitHub repositories, which is the answer to RQ1.\par
 Next, in the data-analysis phase these projects were processed with Perceval and a database was built using that information.
 Once the database was created it was obtained more elaborated data, for instance, the distribution of positive repositories
-according to how many UML models contained each of them (See table~\ref{table:validated-repos-table}) but also the answers to the rest
+according to how many UML models contained each of them (See Table~\ref{table:validated-repos-table}) but also the answers to the rest
 of the RQs:
 \begin{itemize}
   \item RQ2: Are there GitHub projects in which the UML models are also updated?
@@ -1036,7 +1036,7 @@ of the RQs:
 \end{itemize}
 hen the validation process described before was extended to the whole set of potential results, the UML search was finished.
 These complete results were presented in the paper "An extensive dataset of UML models in GitHub" (The full paper is available in section~\ref{sec:paper-msr}),
-which resulted in the identification of 93.596 (See table~\ref{table:validated-models-table} publicly available UML models
+which resulted in the identification of 93.596 (See Table~\ref{table:validated-models-table} publicly available UML models
 in GitHub from over 24.125 repositories. Though this amount of repositories only represent 0,19239\% of the total amount of the initial set,
 as I anticipated in the introduction chapter, the identified models constitute a data-set that is two orders of magnitude larger than the
 rest of UML data-sets at the time of this research.\par
@@ -1091,7 +1091,7 @@ The email and the full-name were the primary keys for this check, which resulted
  \begin{figure}
    \centering
    \includegraphics[width=16cm, keepaspectratio]{img/file-results-models-diagram}
-   \caption{Diagram: Results distribution from potential files to validated UML files.}
+   \caption{Diagram: Distribution from potential files with UML to validated UML files.}
    \label{fig:validated-files-distribution}
  \end{figure}
  \begin{table}[]
@@ -1126,7 +1126,7 @@ interested in extend the search looking for models with other less-restrictive e
 software architecture documents, as sometimes the models from a project are defined inside a document (i.e., a PDF file).\\
 Accomplishing this new case of study was substantially easier and faster, as all the JSON files containing file-related information
 from all GitHub projects were already downloaded. Then, with the preliminary and data-extraction phases completed, the procedure to
-follow was to execute the steps from the data-filtering stage using the patterns and heuristics from table~\ref{table:heuristics-cs2-example}.
+follow was to execute the steps from the data-filtering stage using the patterns and heuristics from Table~\ref{table:heuristics-cs2-example}.
 This data-filtering phase resulted in a list of 6.373.748 potential files belonging to 573.854 different GitHub repositories.
 Since these potential results haven't been validated yet, no further phases of the tool were executed.
 \begin{table}[]
@@ -1294,13 +1294,13 @@ ERASMUS+ traineeship in that university during summer 2017.\par
 \subsection{Commit}
 \label{ssec:git-commit}
 A \textbf{commit} is a \emph{git} object which contains a record of the changes made to the repository since last modified
-version of itself (last commit object). In the example in figure~\ref{fig:info-git}, each \textbf{commit} would be each different
+version of itself (last commit object). In the example in Figure~\ref{fig:info-git}, each \textbf{commit} would be each different
 \textit{Version} (1, 2, 3...), meaning that there is a new version of the repository with every \textbf{commit}.
 \subsection{Tree}
 \label{ssec:git-tree}
 A \emph{git} \textbf{tree} represents a directory and its structure (including file-names) in the repository, containing other possible
 sub-directories as other child \textbf{tree} objects. However, these objects do not contain any information about the file contents:
-that is stored in \textbf{blob} objects. In figure~\ref{fig:git-objs-example} there is an example of how \textbf{commits},
+that is stored in \textbf{blob} objects. In Figure~\ref{fig:git-objs-example} there is an example of how \textbf{commits},
 \textbf{trees} and \textbf{blobs} are connected with each other.
 \subsection{Branch}
 \label{ssec:git-branch}
