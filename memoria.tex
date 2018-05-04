@@ -1236,14 +1236,16 @@ The email and the full-name were the primary keys for this check, which resulted
 \section{Case of study: Software Architecture documents \& extended UML models in GitHub projects}
 \label{sec:case-study-sad}
 
-After the derived studies from the first data-set, the second case of study came out when the same research team were
-interested in extend the search looking for models with other less-restrictive extensions but also looking for
-software architecture documents, as sometimes the models from a project are defined inside a document (i.e., a PDF file).\\
+After the derived studies from the first dataset, the second case of study came out when the same research team was
+interested in extending the search looking for models with other less-restrictive extensions, but also looking for
+software architecture documents, as sometimes the models from a project are defined inside a document (i.e., a PDF file).
+
 Accomplishing this new case of study was substantially easier and faster, as all the JSON files containing file-related information
-from all GitHub projects were already downloaded. Then, with the preliminary and data-extraction phases completed, the procedure to
+from all GitHub projects had already been downloaded. Then, with the preliminary and data extraction phases completed, the procedure to
 follow was to execute the steps from the data-filtering stage using the patterns and heuristics from Table~\ref{table:heuristics-cs2-example}.
 This data-filtering phase resulted in a list of 6,373,748 potential files belonging to 573,854 different GitHub repositories.
 Since these potential results have not been validated yet, no further phases of the tool were executed.
+
 \begin{table}[]
 \centering
 \caption{Example: Definition of heuristics for the case of study 2.}
@@ -1270,14 +1272,16 @@ Key-words                  & \textit{xmi}, \textit{uml}, \textit{diagram}, \text
 \cleardoublepage
 \chapter{Conclusions}
 \label{sec:conclusions}
-During the whole implementation and the later set-up process of this tool with the different use-cases,
-there were found several handicaps, limitations and setbacks which affected how the objectives described
+
+During the whole implementation and the later set-up process of the tool with the different use-cases,
+several handicaps, limitations and setbacks were found which affected how the objectives described
 in Chapter~\ref{sec:objectives} were reached. Nonetheless, looking back at the tool and how
-it performed with the different use-cases, along with the obtained results, it is safe to
+it performed with the different use cases, along with the obtained results, it is safe to
 say the purpose of this tool was achieved, proving answers to the proposed research questions.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Achieved objectives}
 \label{sec:achieved-objectives}
+
 Regarding OB1\footnote{Extract the whole set of projects hosted in GitHub.},
 we were able to extract the whole set of projects hosted in GitHub at
 a certain date and time thank to the \emph{GHTorrent} project. This is the first threat
@@ -1285,35 +1289,42 @@ following this approach: during the time where the MySQL dump of \emph{GHTorrent
 and the data extraction phase is executed, the source of information is constantly changing,
 so we may encounter some projects that do not exist anymore, some projects become private
 and of course, there are new projects that are being created. These limitations are hard
-to avoid but also it is safer to extract the information from an static, reliable and uniform source.\par
+to avoid but also it is safer to extract the information from an static, reliable and uniform source.
+
 About OB2\footnote{Collect data from all public projects about their file structure in a scalable, automated way.},
 this was the most arduous objective to accomplish, as setting up and watching over
 the different parallel instances (up to 21 instances running at the same time) to speed-up the completion
 of the whole data-retrieval process required a huge amount of time and effort. The GitHub API limit of
-5.000 requests per hour \& account was a huge drawback we tried to avoid contacting to GitHub asking them for a special
+5,000 requests per hour \& account was a huge drawback we tried to avoid contacting to GitHub asking them for a special
 account without limitation in order to perform the study, but the solution they gave us was to create more accounts
 and using them all to perform more requests per hour (and so we did). Furthermore, GitHub API changed during this
 data-retrieval phase including paginated results. That forced us to adapt this tool and re-analyse some of the data
-that have been already downloaded.\\
+that have been already downloaded.
+
 These drawbacks could be avoided in future versions of this tool if \emph{GHTorrent} included git-trees information. It would save a lot of time and resources,
-together with having more reliability due to the staticness this data would have.\par
+together with having more reliability due to the staticness this data would have.
+
 Looking at OB3\footnote{Establish a procedure to filter this extracted data using a determined kind of heuristics and patterns.},
 the positive results can be identified properly. However, due to the different particularities of the data
 we want to analyse, we may want to add more filtering layers to the obtained potential results. Technically,
 the most difficult issue was to handle huge JSON files (some of them sized GBs) and cover the diverse Charset-related
-errors.\par
+errors.
+
 OB4\footnote{Analyze positive GitHub repositories to obtain enhanced Git data from them.}
 was completely covered using \emph{Perceval}, with the limitations of encountering positive repositories which had been deleted
 or set as private, reducing the final data-set.
+
 Finally, OB5\footnote{Store the enhanced data in a database whose structure allows to query information of interest.}
 was also completely accomplished. These two last objectives
 share some technical difficulties regarding to storage space and performance: Perceval needed to clone the repositories,
 which means it had to download and uncompress data; and some of the generated SQL files with the database information
 (like the one for the \texttt{commits} table) contained millions of entries, which aside from their size, hindered
-the importing process.\par
+the importing process.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Knowledge application}
 \label{sec:knowledge-application}
+
 During my degree I have learned about important concepts and tools during the different courses,
 but also about how to face new challenges where to implement the acquired knowledge.
 In this project I have applied the learning outcomes from the following courses:
@@ -1336,7 +1347,7 @@ In this project I have applied the learning outcomes from the following courses:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Learning outcomes}
 \label{sec:learning-outcomes}
-These are some of the learning outcomes I have obtained thank to this project:
+These are some of the learning outcomes I have reached thank to this project:
 \begin{enumerate}
   \item Fostering of my programming skills, especially in Python. Though I was familiar with
   this programming language in particular, I have learned about general, complex concepts of programming
@@ -1356,10 +1367,12 @@ These are some of the learning outcomes I have obtained thank to this project:
   to learn how to execute and watch over all the stages of this tool in different GNU/Linux distributions,
   mostly using a remote server.
 \end{enumerate}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Future work}
 \label{sec:future-work}
-This tool and its execution process can be improved in several aspects. Regarding to the preliminary and data-extraction
+
+The tool and its execution process can be improved in several aspects. Regarding to the preliminary and data-extraction
 stages, these are some of the features that could be implemented:
 \begin{itemize}
     \item A method to keep updated the initial set of GitHub projects from new dumps from \emph{GHTorrent}.
@@ -1369,6 +1382,7 @@ stages, these are some of the features that could be implemented:
     \item Multi-thread execution support to have different parallel instances of \texttt{github-api.py} script.
     \item Improve monitoring and exception management.
 \end{itemize}
+
 In the data-filtering and the data-analysis phases, the proposed improvements are:
 \begin{itemize}
     \item Add more filter types or improve the existing ones.
@@ -1379,18 +1393,21 @@ In the data-filtering and the data-analysis phases, the proposed improvements ar
     in a more efficient way.
     \item Optimize how the analyzed data is imported into a new database even exploring other different database types.
 \end{itemize}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Personal assessment}
 \label{sec:assessment}
 I had the great luck to be in the right place at the right moment when I started this project.
 Working on it has brought me a lot of great experiences and outcomes, which are
-extensive to my period working as a researcher assistant in LibreSoft group where I met fantastic people.\par
+extensive to my period working as a researcher assistant in the GSyC/LibreSoft group where I met fantastic people.
+
 I feel fulfilled after having participated in such an important research and see its resulting scientific papers
 presented and published in important conferences. I have obtained more knowledge but also self-confidence to face large-scale
 projects, to make presentations in front of an audience and also to foster my English level. Furthermore,
 I had the opportunity of traveling to Gothenburg (Sweden) in June 2016 to meet the team from Chalmers University
 we were collaborating with. Afterwards, this cooperation provided me the chance to enroll myself in an
-ERASMUS+ traineeship in that university during summer 2017.\par
+Erasmus+ traineeship in that university during Summer 2017.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % APPENDIX %
@@ -1484,17 +1501,17 @@ A program is free software if it gives users adequately all of these freedoms. O
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The Quest for OS Projects that use UML: Mining GitHub}
 \label{sec:paper-models}
-This paper was published in MODELS conference (Saint-Malo, France), in October 2016.
+This paper was published in the MODELS conference (Saint-Malo, France), in October 2016.
 \includepdf[pages=-,pagecommand={},width=1.2\textwidth]{pdf/models.pdf}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{An extensive dataset of UML models in GitHub}
 \label{sec:paper-msr}
-This paper was published in MSR conference (Buenos Aires, Argentina), in May 2017.
+This paper was published in the MSR conference (Buenos Aires, Argentina), in May 2017.
 \includepdf[pages=-,pagecommand={},width=1.2\textwidth]{pdf/msr2017.pdf}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Practices and Perceptions of UML Use in OS Projects}
 \label{sec:paper-icse}
-This paper was published in ICSE-SEIP conference (Buenos Aires, Argentina), in May 2017.
+This paper was published in the ICSE (SEIP track) conference (Buenos Aires, Argentina), in May 2017.
 \includepdf[pages=-,pagecommand={},width=1.2\textwidth]{pdf/seip2017.pdf}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
