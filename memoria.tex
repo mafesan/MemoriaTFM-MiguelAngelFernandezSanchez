@@ -520,51 +520,59 @@ the necessary queries to obtain answers for RQ2 and any further questions.
 %Puedes citar libros, como el de Bonabeau et al. sobre procesos estigm�rgicos~\cite{bonabeau:_swarm}.
  % Nota que el ~ a�ade un espacio en blanco, pero no deja que exista un salto de l�nea. Imprescindible ponerlo para las citas.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 There are multiple tools to analyze GitHub repositories. Nonetheless, at the moment when this tool was designed
-there was not one single application capable of meeting at once the different and diverse requirements for the
+there was no application capable of meeting the diverse requirements for the
 researcher's needs to complete this study.
 The uniqueness of the structure of this information along the process and its scale, together with the advantage of
-controlling every stage of this tool in order to ensure the truthfulness of the results, triggered the need of
-creating a customized, modular tool to satisfy every aspect of the study as much as possible.\par
-These are the technologies that were chosen to build this tool. Every technology will be motivated in the next chapter,
-``Design and implementation''.
+controlling every stage of the tool in order to ensure the truthfulness of the results, triggered the need of
+creating a customized, modular tool to satisfy every aspect of the study as much as possible.
+
+These are the technologies that were chosen to build this tool. Every technology will be motivated in Chapter~\cite{sec:design-implementation}.
+
 \section{Python}
 \label{sec:python}
+
 \textbf{Python}\footnote{\url{https://www.python.org/}} is an interpreted, object-oriented, high-level, open source
-programming language for general-purpose programming created by Guido van Rossum in 1991 (Nowadays, the most
-recent version is 3.6.4, from December, 2017).\ Its design is focused on code readability and clear syntax, making
-possible to program using fewer lines of code comparing to other programming languages as \emph{C++} or \emph{Ada}.\\
+programming language for general-purpose programming created by Guido van Rossum in 1991. Nowadays, the most
+recent version is 3.6.4, from December, 2017. Its design is focused on code readability and clear syntax, making
+possible to program using fewer lines of code comparing to other programming languages as \emph{C++} or \emph{Ada}.
+
 %Python is widely used over the world, for example: Numeric and Scientific Programming, ... \\
 \emph{Python} features a large standard library, which includes many different tasks from text pattern matching to network
 scripting, in addition to a vast collection of third-party application libraries.
 Other remarkable features are portability, as \emph{Python} interpreters are available for many operating systems;
 and the component integration, as \emph{Python} scripts can easily communicate with other parts of an application or code,
-like \emph{C++} libraries, \emph{MySQL} databases, etc.\\
+like \emph{C++} libraries, \emph{MySQL} databases, etc.
 %As a downside to Python is that its execution speed may not always be as fast as a compiled, lower-level
 %slanguages such as C and C++.\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Git}
 \label{sec:git}
 %source: https://git-scm.com/book/en/v2/Getting-Started-Git-Basics
-\textbf{Git} is an open-source Version Control System (\emph{VCS}), originally developed in 2005 by Linus Torvalds.\
+\textbf{Git} is an open-source Version Control System (\emph{VCS}), originally developed in 2005 by Linus Torvalds. 
 As any \emph{VCS}, \emph{git} is a system that records changes to a file or set of files over time
 so that you can recall specific versions later.
-It is by far, the most used \emph{VCS} in the world\footnote{\url{http://stackoverflow.com/research/developer-survey-2015}}.\par
+It is by far, the most used \emph{VCS} in the world\footnote{\url{http://stackoverflow.com/research/developer-survey-2015}}.
+
 The major difference between \emph{git} and any other VCS is the way \emph{git} thinks about its data.
 Conceptually, most other systems store information as a list of file-based changes. Other systems like \textit{Subversion},
 \textit{Perforce}, \textit{Bazaar}, etc. think of the information they store as a set of files and the changes made to each
-file over time (See Figure~\ref{fig:info-not-git}).\\
-Instead, \emph{git} thinks of its data more like a series of snapshots of a miniature file-system (See Figure~\ref{fig:info-git}).
-With \emph{git}, every time you commit or save the state of your project, \emph{git} basically takes a picture of what all
-your files look like at that moment and stores a reference to that snapshot. To be efficient, if files have not changed,
-\emph{git} does not store the file again, just a link to the previous identical file it has already stored.
-All this information is stored in a key-value system as \emph{git} objects, with a unique identity for each of them.
+file over time (see Figure~\ref{fig:info-not-git}).
+
 \begin{figure}
   \centering
   \includegraphics[width=12cm, keepaspectratio]{img/deltas-not-git}
   \caption{How other non-\emph{git} \emph{VCS} store information (Source: Git documentation).}
   \label{fig:info-not-git}
 \end{figure}
+
+Instead, \emph{git} thinks of its data more like a series of snapshots of a miniature file-system (See Figure~\ref{fig:info-git}).
+With \emph{git}, every time you commit or save the state of your project, \emph{git} basically takes a picture of what all
+your files look like at that moment and stores a reference to that snapshot. To be efficient, if files have not changed,
+\emph{git} does not store the file again, just a link to the previous identical file it has already stored.
+All this information is stored in a key-value system as \emph{git} objects, with a unique identity for each of them.
+
 \begin{figure}
   \centering
   \includegraphics[width=12cm, keepaspectratio]{img/snapshots-git}
@@ -574,13 +582,15 @@ All this information is stored in a key-value system as \emph{git} objects, with
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{GitHub}
 \label{sec:github}
-\textbf{GitHub} is a \emph{git}, web-based repository hosting service founded back in 2008. While \emph{git} is a command
+
+\textbf{GitHub} is a \emph{git} and web-based repository hosting service founded back in 2008. While \emph{git} is a command
 line tool, GitHub provides a graphical interface, adding its own collaboration features such as a wikis and basic task
-management tools for every project.\\
+management tools for every project.
+
 Each user on GitHub has their own profile, showing its past work and contributions to
 other projects via \textit{pull requests}, \textit{forking} (create editable copies into someone's account) other repositories, etc.
 Project revisions can be discussed publicly via \textit{issues} so many people can collaborate together to advance a project
-forward. GitHub is currently the largest host of source code in the world (See Figure~\ref{fig:total-repo-number} for a quantitative
+forward. GitHub is currently the largest host of source code in the world (see Figure~\ref{fig:total-repo-number} for a quantitative
 estimation of its scale evolution across time).
 % # TODO: https://growthhackers.com/growth-studies/github, https://blog.github.com/2013-12-23-10-million-repositories/
 \begin{figure}
@@ -595,39 +605,51 @@ estimation of its scale evolution across time).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{GHTorrent}
 \label{sec:ghtorrent}
-\textbf{GHTorrent} is a project based on create a scalable, queriable, offline mirror of data offered through the GitHub \textit{API}.\\
+
+\textbf{GHTorrent} is a project aimed to create a scalable, queriable, off-line mirror of data offered through the GitHub \textit{API}.
+
 As they explain in their website\footnote{\url{http://ghtorrent.org/}}, \emph{GHTorrent} monitors the GitHub public event time line.
 For each event, it retrieves its contents and their dependencies, exhaustively. Then, it stores the raw responses to a database whose
-structure is represented in Figure~\ref{fig:ghtorrent-schema}.\
+structure is represented in Figure~\ref{fig:ghtorrent-schema}.
 For each release, you can choose the \textit{dump} (a raw copy of a database) you want to download: either a \emph{MySQL} dump
 (the full database, using one file per table) or a \emph{MongoDB} one (an incremental database).
+
 \begin{figure}
   \centering
   \includegraphics[width=16cm, keepaspectratio]{img/ghtorrent-schema}
   \caption{GHTorrent database relational schema}
   \label{fig:ghtorrent-schema}
+
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{GrimoireLab and Perceval}
 \label{sec:grimoire}
+
 \textbf{GrimoireLab}\footnote{\url{http://grimoirelab.github.io/}} is a free, open source tool-set for software development analytics
 mainly developed by the Spanish company \emph{Bitergia}\footnote{\url{https://bitergia.com/}}.
 It allows you to retrieve data from many kinds of systems with information related to software development, and produce
-analysis and visualizations with it.\\
+analysis and visualizations with it.
+
 We are focusing on a particular tool of \emph{GrimoireLab} called \textbf{Perceval}. This tool can retrieve data from more
 than 20 different kinds of data sources, from \emph{git} repositories or GitHub projects, to issue trackers such as \emph{Jira}
 or \emph{Bugzilla}, including messaging systems such as \emph{IRC}, \emph{Slack} or mailing lists, or other types of systems such as
 \emph{StackOverflow} or \emph{Jenkins} in a regular and incremental way, allowing to produce uniform sets of information.
-\newline \emph{GrimoireLab} is now part of \emph{CHAOSS}\footnote{\url{https://chaoss.community/}}, a project by \emph{The Linux Foundation}.
+
+\emph{GrimoireLab} is now part of \emph{CHAOSS}\footnote{\url{https://chaoss.community/}}, a project by \emph{The Linux Foundation}.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{MySQL}
+
 \textbf{MySQL} is an open-source relational database management system based on Structured Query Language (SQL),
 which is the most popular language for adding, accessing and managing content in a database. It is most noted for its quick processing,
-proven reliability, ease and flexibility of use.\par
+proven reliability, ease and flexibility of use.
+
 MySQL works in multiple platforms, running as a server and allows multiple users (MySQL \emph{clients}) to manage and create numerous databases.
+
 It is a central component in the LAMP stack of open source web application
 software (LAMP stands for Linux, Apache, MySQL, and PHP) and it is adequate to be used in high-profile, large-scale systems and websites.
 To mention some examples, MySQL is used by Facebook, Twitter, Flickr and YouTube.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DISEÑO E IMPLEMENTACIÓN %
@@ -635,7 +657,8 @@ To mention some examples, MySQL is used by Facebook, Twitter, Flickr and YouTube
 \cleardoublepage
 \chapter{Design and implementation}
 \label{sec:design-implementation}
-This tool has a modular design, to ease its adaptability to future updates, changes on it dependencies or other needs which may appear.
+
+The tool has a modular design, to ease its adaptability to future updates, changes on it dependencies or other needs which may appear.
 To fully understand the functioning of the tool is necessary to be familiar with main \emph{git} objects (commits, branches and trees),
 as they are going to play a key role in this project. In section\ref{sec:git-definitions} there is a complete definition for these \emph{git} concepts.
 It is also important to mark that the research which motivated this tool influenced most of the decisions which were taken during the design phase.\par
