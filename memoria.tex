@@ -364,10 +364,10 @@ The Universal Modeling Language (UML) is a graphic, descriptive language to visu
 artifacts from a system (mainly; structure, behavior and interaction) containing a great amount of software.
 UML provides a standard way to write the plans of a system, covering from conceptual aspects like business processes and
 system features to particular aspects like classes from a certain programming language, database schemas and reusable
-software components with a higher level of abstraction. Therefore, modelling with UML is considered as one more component
+software components with a higher level of abstraction. Therefore, modeling with UML is considered as one more component
 in a software development process.\par
 For industrial software, the use of UML is commonly accepted and software engineering researchers in the area of modeling
-have made efforts to collect examples of projects that use modelling and their models. Nonetheless, industrial projects
+have made efforts to collect examples of projects that use modeling and their models. Nonetheless, industrial projects
 are very averse to share their models because of these projects licenses and privacy issues (For instance; its current
 state, new features, etc.).
 This situation hinders the task of creating a models data-set for researchers, who had achieved in summer 2016 a data-set
@@ -377,7 +377,7 @@ is not very frequent in FLOSS projects.
 Still, there was no quantification of its occurrence.\par
 In this context, a tandem research was born uniting the experience of LibreSoft team researchers (from Rey Juan Carlos University) about
 FLOSS and software development processes and the experience of Software Engineering division team researchers (from Chalmers University)
-about software modelling to obtain quantitative data about the use of UML in open source projects. To make this study a reality, they
+about software modeling to obtain quantitative data about the use of UML in open source projects. To make this study a reality, they
 decided to get these projects from GitHub because is the code platform containing the greatest amount of FLOSS projects.
 This was the motivation to create the tool presented in this thesis, to perform a systematic search looking for UML models in
 an automated and scalable way.\\
@@ -700,7 +700,7 @@ Finally, we obtain a filtered \emph{project list} file, which keeps the same for
 Once the \emph{project list} file is ready, we can proceed to extract the file list of the main \textit{branch} of each
 repository. To achieve this, we have to query the GitHub \textit{API} several times for each project.
 It is important to mark this, as the GitHub \textit{API} has a limitation of
-5.000\footnote{The numbers (excepting dates) in this thesis follow the spanish separators notation.}
+5.000\footnote{The numbers (excepting dates) in this thesis follow the Spanish separators notation.}
 queries per hour for every authenticated account, which caused a huge impact in the research and the data-retrieval
 process, as it is detailed in the case of study described in section~\ref{sec:case-study-uml}.\par
 To make authenticated queries to the GitHub \textit{API} we need an \textbf{API token}\footnote{See the definition for API token in subsection~\ref{ssec:api-token}}.
@@ -928,7 +928,7 @@ that the perform the right queries. For instance, here are some queries we can e
 \begin{figure}
   \centering
   \includegraphics[width=15cm, keepaspectratio]{img/dbschema-generic}
-  \caption{Database schema from the data-analisis phase.}
+  \caption{Database schema from the data-analysis phase.}
   \label{fig:dbschema}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -947,7 +947,7 @@ The results presented here led to several scientific papers published on interna
 conferences which are highly ranked according to CORE\footnote{\url{http://www.core.edu.au/conference-portal}} portal:
 \begin{itemize}
     \item ICSE (International Conference on Software Engineering) - Rank A* (Source\footnote{\url{http://portal.core.edu.au/conf-ranks/1209/}}).
-    \item MODELS (International Conference on the Unified Modelling Language) - Rank A (Source\footnote{\url{http://portal.core.edu.au/conf-ranks/1244/}}).
+    \item MODELS (International Conference on the Unified Modeling Language) - Rank A (Source\footnote{\url{http://portal.core.edu.au/conf-ranks/1244/}}).
     \item MSR (International Conference on Mining Software Repositories) - Rank A, before rank C (Source\footnote{\url{http://portal.core.edu.au/conf-ranks/711/}}).
 \end{itemize}
 The complete published papers are available in appendix~\ref{app:papers}.
@@ -1156,7 +1156,7 @@ Key-words                  & \textit{xmi}, \textit{uml}, \textit{diagram}, \text
 \chapter{Conclusions}
 \label{sec:conclusions}
 During the whole implementation and the later set-up process of this tool with the different use-cases,
-there were found several handicaps, limitations and setbacks which affected how the objetives described
+there were found several handicaps, limitations and setbacks which affected how the objectives described
 in chapter~\ref{sec:objectives} were reached. Nonetheless, looking back at the tool and how
 it performed with the different use-cases, along with the obtained results, it is safe to
 say the purpose of this tool was achieved, proving answers to the proposed research questions.
@@ -1179,7 +1179,7 @@ of the whole data-retrieval process required a huge amount of time and effort. T
 account without limitation in order to perform the study, but the solution they gave us was to create more accounts
 and using them all to perform more requests per hour (and so we did). Furthermore, GitHub API changed during this
 data-retrieval phase including paginated results. That forced us to adapt this tool and re-analyse some of the data
-that have been already dowloaded.\\
+that have been already downloaded.\\
 These drawbacks could be avoided in future versions of this tool if \emph{GHTorrent} included git-trees information. It would save a lot of time and resources,
 together with having more reliability due to the staticness this data would have.\par
 Looking at OB3\footnote{Establish a procedure to filter this extracted data using a determined kind of heuristics and patterns.},
@@ -1194,7 +1194,7 @@ Finally, OB5\footnote{Store the enhanced data in a database whose structure allo
 was also completely accomplished. These two last objectives
 share some technical difficulties regarding to storage space and performance: Perceval needed to clone the repositories,
 which means it had to download and uncompress data; and some of the generated SQL files with the database information
-(like the one for the \texttt{commits} table) contained millions of entries, which aside from their size, difficulted
+(like the one for the \texttt{commits} table) contained millions of entries, which aside from their size, hindered
 the importing process.\par
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Knowledge application}
@@ -1207,7 +1207,7 @@ In this project I have applied the learning outcomes from the following courses:
   where I learned the basics of programming'' (basic data and flow-control structures).
   \item \textbf{``Informática II''} (Telecommunication Systems Programming): In this course I learned advance programming
   techniques along with more complex data structures, including for the first time communication protocols as UDP and TCP connections
-  ellaborating both client-server and peer-to-peer applications.
+  elaborating both client-server and peer-to-peer applications.
   \item \textbf{``Arquitectura de Internet''} and \textbf{``Sistemas Telemáticos para Medios Audiovisuales''} (Computer Networks I and II):
   Thank to these courses I learned about both basic and complex communication protocols and how the Internet works,
   from TCP/IP protocol to HTTP connections, routing algorithms and protocols, etc.
@@ -1215,13 +1215,13 @@ In this project I have applied the learning outcomes from the following courses:
   In this course I learned how to program in Python language and the basic concepts for object-oriented programming, in
   addition to real-time communication protocols.
   \item \textbf{``Laboratorio de Tecnologías Audiovisuales en la Web''} (Web-based Technologies): Though this course is not directly
-  related, I learned basic concepts about databases and I fostered my programming skils in Python building my first Django
+  related, I learned basic concepts about databases and I fostered my programming skills in Python building my first Django
   application.
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Learning outcomes}
 \label{sec:learning-outcomes}
-These are some of the learning outcomes I have obained thank to this project:
+These are some of the learning outcomes I have obtained thank to this project:
 \begin{enumerate}
   \item Fostering of my programming skills, especially in Python. Though I was familiar with
   this programming language in particular, I've learned about general, complex concepts of programming
@@ -1234,7 +1234,7 @@ These are some of the learning outcomes I have obained thank to this project:
   \item A great overview about research. Since I started to work as a researcher assistant,
   I was surprised about how little I know about research and its procedures about scientific papers,
   conferences. With this project I was able to learn from the very beginning the stages of the elaboration
-  of a study to its final stages including th process for the paper to be published.
+  of a study to its final stages including the process for the paper to be published.
   \item A valuable perspective about team work and communication, having the possibility
   to collaborate with an international team from a different university.
   \item System administration experience. Taking care of the technical tasks about this project forced me
@@ -1268,12 +1268,12 @@ In the data-filtering and the data-analysis phases, the proposed improvements ar
 \section{Personal assessment}
 \label{sec:assessment}
 I had the great luck to be in the right place at the right moment when I started this project.
-Working on it has brough me a lot of great experiences and outcomes, which are
-extensive to my periord working as a reseacher assistant in LibreSoft group where I met fantastic people.\par
+Working on it has brought me a lot of great experiences and outcomes, which are
+extensive to my period working as a researcher assistant in LibreSoft group where I met fantastic people.\par
 I feel fulfilled after having participated in such an important research and see its resulting scientific papers
 presented and published in important conferences. I've obtained more knowledge but also self-confidence to face large-scale
-projects, to make presentations in front of an audience and also to foster my english level. Furthermore,
-I had the opportunity of travelling to Gothenburg (Sweden) in June, 2016 to meet the team from Chalmers University
+projects, to make presentations in front of an audience and also to foster my English level. Furthermore,
+I had the opportunity of traveling to Gothenburg (Sweden) in June, 2016 to meet the team from Chalmers University
 we were collaborating with. Afterwards, this cooperation provided me the chance to enroll myself to an
 ERASMUS+ traineeship in that university during summer 2017.\par
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
