@@ -236,7 +236,7 @@ in LibreSoft research group where I have lived some of my great experiences at t
 growing as a person, meeting wonderful people, travelling and learning far beyond I could have ever imagined.\par
 To my friends and classmates from the university: Eva, Eduardo, Bea, Diego, Olalla, Raúl, Sara, Luismi, Javi, Marta, Dani, Carol,
 Celia, Nuria, Vanessa, Raquel and many, many more. Without your friendship, help and support I would not reached this goal, thank you.\par
-To the people who has helped me to review and improve this thesis: Gregorio, Santi, Valerio, Fernando, Saray, Eva and Sara. Thank you
+To the people who have helped me to review and improve this thesis: Gregorio, Santi, Valerio, Fernando, Saray, Eva and Sara. Thank you
 for your patience and sharing your time and knowledge so generously.\par
 Finally, thank to the people who contributed with their GitHub account to make this study possible:
 Gregorio R., Michel C., Truong H.Q., Eva H., Olalla S., Beatriz C., Diego S.,
@@ -246,19 +246,21 @@ Eduardo D., Javier M., Diego J., Jose M., Alejandro F., Ángel C., Alejandro, Cr
 \chapter*{Summary}
 %\addcontentsline{toc}{chapter}{Summary} % si queremos que aparezca en el �ndice
 \markboth{SUMMARY}{SUMMARY} % encabezado
-In this thesis it is presented a method for extracting and analyzing information from Free / Libre / Open-source
-software (FLOSS) repositories hosted on \emph{GitHub}, a software development platform. Thus far, many studies focused
-in one single project or in a limited data-set when software development is analyzed. The goal of this project to
+In this thesis, a method for extracting and analyzing information from Free / Libre / Open-source
+software (FLOSS) repositories hosted in \emph{GitHub}, a popular software development platform with millions of projects, is presented. Thus far, many studies focused
+in one single project or in a limited dataset when software development is analyzed. The goal of this project is to
 extract and analyse data from all GitHub in a scalable, semi-automated way in order to obtain information about
-the usage of a certain file type, programming language or/and any search that can be expressed into patterns and heuristics.\par
-To perform the data-extraction, the tool starts with a data-set provided by the \emph{GHTorrent} project,
-a database which contains a mirror of data from the \emph{GitHub API}. Then, a series of scripts are
+the usage of a certain file types, programming languages or/and any search that can be expressed into patterns and heuristics.
+
+To perform the data extraction, the tool starts with a dataset provided by the \emph{GHTorrent} project,
+a database which contains a partial mirror of data from the \emph{GitHub API}. Then, a series of scripts are
 used for extracting file-related data from the repositories, identifying interesting projects looking for patterns and/or
 specific file extensions and analyzing those positive results using an external tool called \emph{Perceval},
 which extracts additional metrics from them. Finally, this information is structured into a database where a deeper
-analysis can be performed.\par
-This project was created to be applied to a research case study: the search of \emph{UML} models in FLOSS projects.
-The main goal of this research is to deepen in the knowledge of usage and evolution of UML models,
+analysis can be performed.
+
+This project was created to be applied to a research case study: the search of \emph{UML} models in FLOSS projects, although it has been used succesfully to identify software architecture documents as well.
+With the identification of such artefacts, the knowledge of usage and evolution of UML models can be widened,
 quantifying and analyzing its use in projects hosted in the GitHub platform, tracking them throughout
 the whole projects life-span.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -267,20 +269,22 @@ the whole projects life-span.
 %\addcontentsline{toc}{chapter}{Resumen} % si queremos que aparezca en el �ndice
 \markboth{RESUMEN}{RESUMEN} % encabezado
 En esta memoria se presenta un método para extraer y analizar información de repositorios de software libre y \textit{open-source}
-(FLOSS) alojados en \emph{GitHub}, una plataforma dedicada al desarrollo de software. En el pasado se habían realizado varios estudios
+(FLOSS) alojados en \emph{GitHub}, una plataforma dedicada al desarrollo de software que a día de hoy cuenta con millones de proyectos software. En el pasado se habían realizado varios estudios
 analizando el desarrollo de software, concentrándose en un conjunto muy limitado de proyectos para realizar
 dicho análisis. El objetivo de este proyecto es extraer y analizar datos obtenidos de todo GitHub de una forma escalable
 y semi-automática, con el fin de recopilar información sobre el uso de cierto tipo de ficheros, lenguaje de programación
-y/o cualquier búsqueda que pueda ser expresada en forma de patrones y heurísticos.\par
+y/o cualquier búsqueda que pueda ser expresada en forma de patrones y heurísticos.
+
 Para realizar la extracción de los datos, la herramienta usa un conjunto de datos iniciales proporcionados por el proyecto
 \emph{GHTorrent}, una base de datos que contiene una copia de datos obtenidos de la \emph{API} de GitHub.
 A continuación, se usan una serie de \textit{scripts} para extraer datos relacionados con los ficheros que contienen los
 repositorios, identificar aquellos proyectos de interés a través de patrones y/o extensiones de fichero específicas y
 por último analizar aquellos resultados positivos usando una herramienta externa llamada Perceval, que extrae métricas
 adicionales de dichos resultados. Finalmente, esta información es estructurada en una base de datos donde se puede
-realizar un análisis más profundo.\par
-Este proyecto fue creado para ser aplicado a un caso de estudio: la búsqueda de modelos \emph{UML} en projectos FLOSS.
-La motivación principal de este estudio es profundizar en el conocimiento sobre el uso y la evolución de los modelos UML,
+realizar un análisis más profundo.
+
+Este proyecto fue creado para ser aplicado a un caso de estudio: la búsqueda de modelos \emph{UML} en projectos FLOSS, así como de archivos que describen arquitecturas software.
+La herramienta permite, por tanto, ayudar en el desarrollo de estudios que profundicen en el conocimiento sobre el uso y la evolución de los modelos UML,
 cuantificando y analizando dicho uso en proyectos alojados en la plataforma GitHub y rastreando su evolución a través de
 todo el tiempo de vida de cada proyecto.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -317,115 +321,134 @@ todo el tiempo de vida de cada proyecto.
 % No te olvides de echarle un ojo a la p�gina con los cinco errores de escritura m�s frecuentes\footnote{\url{http://www.tallerdeescritores.com/errores-de-escritura-frecuentes}}.
 % #TODO Ask for resources to back this data:
 GitHub is the most used online code platform in the world. We can extract huge amounts of information from millions of projects
-about how is the software being developed: productivity, issue-tracking methods, developer-to-developer relations, etc. [RGBM06]
-For researchers, GitHub is an endless source of publicly available data for potential studies, and for companies and communities
-is probably the best way to know deeply how its software is evolving over time, so they can use this data to make the right decisions
-for the future (known as data-driven decisions).\par
-I was working as a researcher assistant in \emph{GSyC/LibreSoft}\footnote{\url{http://www.libresoft.es}} department at the Universidad 
+about how software is being developed: productivity, issue-tracking methods, developer-to-developer relations, etc. [RGBM06]
+For researchers, GitHub is an endless source of publicly available data for potential studies, and for companies and communities it
+is probably the best way to know how (its) software is evolving over time, so they can use this data to make the right decisions
+for the future (known as data-driven decisions).
+
+I was working as a researcher assistant in the \emph{GSyC/LibreSoft}\footnote{\url{http://www.libresoft.es}} research group at the Universidad 
 Rey Juan Carlos when I started to deepen into Free/Libre software and the world of metrics.
-Then I had the great luck of start participating in a study that
-Dr. Gregorio Robles was doing with researchers from Chalmers University in Gothenburg, Sweden. The main aim of their research was to
+There, I had the great luck of start participating in a study that
+Dr. Robles was doing with researchers from Chalmers University in Gothenburg, Sweden. The main aim of their research was to
 learn how \emph{UML} models\footnote{\url{http://uml.org/what-is-uml.htm}} are used in public
 \emph{FLOSS}\footnote{Free/Libre and Open Source Software. Complete definition at section~\ref{sec:floss-definition}} projects
-(particularly, projects hosted on GitHub), as most of the previous studies focused only on its industrial use.\\
-Given the large size of GitHub as a platform and its access limitations, this research motivated to build a tool which extracts
-Git data from all the existing repositories on GitHub, then filter those repositories which may include at least one
-\emph{UML} model and finally analyze more in-depth the set of projects that meet this condition.\par
+(particularly, projects hosted in GitHub), as most of the previous studies focused only on its industrial use.
+
+Given the large size of GitHub as a platform and its access limitations, this research required to build a tool which extracts
+Git data from all the existing repositories on GitHub, then filters those repositories which may include at least one
+\emph{UML} model and finally analyzes the set of projects that meet this condition more in-depth.
+
 Since early stages of this research, this tool was designed and built using a modular structure, thought to be reusable
-and adaptable to any kind of files that have to be found but also the way GitHub provides data; hoping to be useful
+and adaptable to any kind of files that have to be found, but also to the way GitHub provides data, with the hope to be useful
 for other researches or any other person who might be interested on extracting this information. Besides, the scale of this project
 presented a personal challenge which provided me the opportunity to extend my knowledge and obtain a valuable point of
 view about research and large-scope projects.
+
 \section{Context}
 \label{sec:context}
-The way people develop software has evolved during these years. There is an extended social perception of developers to
+
+The way people develop software has evolved during the last years. There is an extended social perception of developers to
 being introverted, solitary people, with very few social skills, but this sense is outdated: the paradigm has changed,
 as coding has become a social activity. Developers who work collaborating with others produce better software [resource], as they
 are continuously reading code from other developers, getting feedback about their contributions and consequently
-widening their knowledge with new procedures and ideas.\par
+widening their knowledge with new procedures and ideas.
+
 In the last few years we have seen how this social trend came to software with the
 emergence of social coding platforms, such as GitHub\footnote{\url{https://github.com}},
-BitBucket\footnote{\url{https://bitbucket.org/product}}, GitLab\footnote{\url{https://gitlab.com/}}, etc.\\
+BitBucket\footnote{\url{https://bitbucket.org/product}}, GitLab\footnote{\url{https://gitlab.com/}}, etc.
+
 Social interactions in these platforms are about how software is developed and maintained but also how
-contributions are managed (code review, continuous integration, etc.).\\
+contributions are managed (code review, continuous integration, etc.).
+
 So, for example, on GitHub\footnote{\url{https://github.com}} we can interact to obtain or produce different data:
 \begin{itemize}
     \item \textit{Forking} a repository (create an editable copy of a project).
-    \item Comparing the changes from last \textit{commit} (difference between most recent version and last version of the project).
+    \item Viewing the changes in the last \textit{commit} (i.e., the difference between most recent version and last version of the project).
     \item Contributing to a repository.
     \item Submitting a \textit{Pull Request} (proposal to merge changes in a project).
 \end{itemize}
-These interactions that were mentioned leave traces which remain stored in some computer on Earth and generally
-they are visible to everybody.
+
+These interactions leave traces which remain stored in some computer on Earth and generally are visible to everybody.
 This means we can obtain these data (though not all of it is publicly available) through the Internet using an
-\emph{API}\footnote{See the definition for API in section~\ref{sec:api}}.\\
-Once this information is retrieved, we can analyze it and extract conclusions about it.\par
-To complete the context for this thesis is necessary to situate what UML is and why it is important.
+\emph{API}\footnote{See the definition for API in section~\ref{sec:api}}.
+Once this information is retrieved, we can analyze it and extract conclusions about it.
+
+To complete the context for this thesis, it is necessary to situate what UML is and why it is important.
 The Universal Modeling Language (UML) is a graphic, descriptive language to visualize, specify, construct and document the
-artifacts from a system (mainly; structure, behavior and interaction) containing a great amount of software.
+artifacts from a system (mainly: structure, behavior and interaction) containing a great amount of software.
 UML provides a standard way to write the plans of a system, covering from conceptual aspects like business processes and
-system features to particular aspects like classes from a certain programming language, database schemas and reusable
+system features to particular aspects like classes in a certain programming language, database schemas and reusable
 software components with a higher level of abstraction. Therefore, modeling with UML is considered as one more component
-in a software development process.\par
+in a software development process.
+
 For industrial software, the use of UML is commonly accepted and software engineering researchers in the area of modeling
 have made efforts to collect examples of projects that use modeling and their models. Nonetheless, industrial projects
-are very averse to share their models because of these projects licenses and privacy issues (For instance; its current
-state, new features, etc.).
-This situation hinders the task of creating a models data-set for researchers, who had achieved in summer 2016 a data-set
-containing around 81 models from open source projects. At this moment, there was not much research about the use of UML in open source.
-Furthermore, most open source code platforms do not provide any feature for model management, which made researchers think that UML
-is not very frequent in FLOSS projects.
-Still, there was no quantification of its occurrence.\par
-In this context, a tandem research was born uniting the experience of LibreSoft team researchers (from the Universidad Rey Juan Carlos) about
-FLOSS and software development processes and the experience of Software Engineering division team researchers (from Chalmers University)
+are very averse to share their models because of these projects' licenses and privacy issues (e.g., its current
+state, new features, among others).
+This situation hinders the task of creating a models dataset for researchers. So, in Summer 2016 a dataset
+containing around 81 models from open source projects was probably the one with the larger number of models that could be accessed. At that moment, there was not much research about the use of UML in open source.
+Furthermore, most open source code platforms do not provide funcionality for model management.
+
+In this context, a tandem research was born, merging the experience of LibreSoft team researchers (from the Universidad Rey Juan Carlos) about
+FLOSS and software development processes and the experience of the Software Engineering Division researchers (at Chalmers University)
 about software modeling to obtain quantitative data about the use of UML in open source projects. To make this study a reality, they
-decided to get these projects from GitHub because is the code platform containing the greatest amount of FLOSS projects.
-This was the motivation to create the tool presented in this thesis, to perform a systematic search looking for UML models in
-an automated and scalable way.\\
-As I explain in the ``Results'' section (\ref{sec:case-study-uml}), a total of 93.596 publicly available UML models were identified thank to this research.
-This amount of models compounds a data-set that is two orders of magnitude larger than the previous UML data-sets from previous studies. The results
-obtained with this tool and its subsequent analysis led to several scientific papers published on international Software Engineering conferences,
-as I detail on section~\ref{sec:results}. These published papers are available on appendix~\ref{app:papers}.
+decided to get these projects from GitHub, because it is the code platform containing the greatest amount of FLOSS projects.
+This motivated to create the tool presented in this thesis, that had as aim to perform a systematic search looking for UML models in
+an automated and scalable way.
+
+As I explain in the ``Results'' section (\ref{sec:case-study-uml}), a total of 93,596 publicly available UML models have been identified thanks to this research.
+This amount of models compounds a dataset that is at least two orders of magnitude larger than the previous UML datasets from previous studies. The results
+obtained with this tool and its subsequent analysis led to several scientific papers, where I am a co-author, published in top international Software Engineering conferences, as I detail on section~\ref{sec:results}. The published papers are available in Appendix~\ref{app:papers}.
+
 \section{Free/Libre/Open-Source Software}
 \label{sec:floss-definition}
+
 The tool presented in this thesis is distributed as Free/Libre software. Moreover, in the following sections we are going
 to talk about software and its development process, focusing on Free/Libre and Open-source
-software (\emph{FLOSS}) projects, therefore it is inevitable to describe briefly what this is about.\par
+software (\emph{FLOSS}) projects. Therefore it is inevitable to describe briefly what FLOSS is about.
+
 According to the \textbf{Free Software Foundation}\footnote{\url{https://www.gnu.org/philosophy/free-sw.html}}:
 \begin{displayquote}
     \emph{Free software} means software that respects users' freedom and community. Roughly, it means that the users have the freedom
     to run, copy, distribute, study, change and improve the software. Thus, free software is a matter of liberty, not price. (\ldots)
     (For an extended definition, see section~\ref{sec:freedoms}).\\
 \end{displayquote}
-Due to the connotations which the word \emph{Free} has in English language (mentioned before), there is a definition
+
+Due to the connotations which the word \emph{free} has in English language, there is a definition
 for \emph{Open source} software by the \textbf{Open Source Initiative}\footnote{\url{https://opensource.org/osd}} which
 slightly varies from the \emph{FSF} definition. About this difference, Richard Stallman (founder of the \emph{FSF}) comments:
+
 \begin{displayquote}
 The term \emph{open source} software is used by some people to mean more or less the same category as free software.
 It is not exactly the same class of software: they accept some licenses that we consider too restrictive,
 and there are free software licenses they have not accepted. However, the differences in extension of the
 category are small: nearly all free software is open source, and nearly all open source software is free.
 \end{displayquote}
+
 During my degree, I was fortunate to be taught within \emph{FLOSS} values, as most of my professors plead
 for Free/Libre software as their teaching model, by which I have obtained a distinctive knowledge and perspective
 as a professional but also as an individual.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Structure of the thesis}
 \label{sec:structure}
-In this thesis are presented the main objectives which were marked to build this tool in Chapter~\ref{sec:objectives} ``Objectives'',
+
+In this thesis, the main objectives which were marked to build the tool are presented in Chapter~\ref{sec:objectives} ``Objectives'',
 followed by a brief explanation of the technology which have been used to achieve these objectives in Chapter~\ref{sec:state-art} ``State of the art''.
-Next, in Chapter~\ref{sec:design-implementation} ``Design and implementation'' it is detailed the designing process and the tool architecture, itemizing on each one of its components.
+Next, in Chapter~\ref{sec:design-implementation} ``Design and implementation'' the design process and the tool architecture is detailed, itemizing on each one of its components.
 Thenceforth, the performance and results of the tool are explored in Chapter~\ref{sec:results} ``Results'' by means of two different use cases,
-detailing the obtained results but also taking into account the technical particularities which arose during its development and how they were solved.
+presenting the obtained results but also taking into account the technical particularities which arose during its development and how they were solved.
 Furthermore, some conclusions are presented in Chapter~\ref{sec:conclusions} ``Conclusions'', reviewing whether the marked objectives have been accomplished or not,
-along with a brief discussion about the limitations of this tool and future work.\par
-Additionally, this thesis contains the following annexes:
+along with a brief discussion about the limitations of the tool and future work.
+
+Additionally, the thesis contains following annexes:
 \begin{enumerate}[A.]
   \item Definitions
   \item Main scripts of the tool
   \item User manual
   \item Published papers
 \end{enumerate}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % OBJETIVOS %
@@ -433,47 +456,56 @@ Additionally, this thesis contains the following annexes:
 \cleardoublepage
 \chapter{Objectives}
 \label{sec:objectives}
-This tool was created with the purpose of answering two main research questions:
+
+This tool was created with the purpose to address following two research questions:
 \begin{itemize}
   \item RQ1: How many GitHub repositories contain at least one file with a certain extension or a certain
         pattern in its file-name?
   \item RQ2: What is the history of those files in the life-span of the project?
 \end{itemize}
-Thus far, many studies focused in one single project or in a limited data-set when software development is analyzed,
-whereas the aim of this research was to obtain the whole data-set of repositories hosted on the GitHub platform
+
+Thus far, many studies focused on one single project or in a limited dataset,
+whereas the aim of this research has been to obtain the whole dataset of repositories hosted in the GitHub platform
 in order to obtain quantitative information about the usage of a certain file type, programming language
-or/and any search that can be expressed into patterns and heuristics. Then, store that data in a database
-where it can be analyzed in a deeper way to extract elaborate information about the data-set.\par
+or/and any search that can be expressed into patterns and heuristics. Then, we store that data in a database
+where it can be analyzed in a deeper way to extract elaborate information about the data-set.
+
 To meet these requirements, the tool had to achieve the following main objectives:
 \begin{itemize}
   \item OB1: Extract the whole set of projects hosted in GitHub.
   \item OB2: Collect data from all public projects about their file structure in a scalable, automated way.
   \item OB3: Establish a procedure to filter this extracted data using a determined kind of heuristics and patterns.
-  \newpage
+%  \newpage
   \item OB4: Analyze positive GitHub repositories (with at least one positive result) to obtain enhanced Git data from them.
   \item OB5: Store this enhanced data in a database whose structure allows to query information of interest.
 \end{itemize}
-To accomplish OB1 in a proper way we needed an static, reliable and updated source of GitHub.
+
+To accomplish OB1 in a proper way we needed a static, reliable and updated source of GitHub.
 GitHub allows to obtain its information through its \textit{API},
 but this entails several limitations. To mention the most important ones:
+
 \begin{itemize}
     \item The GitHub API has a maximum rate of 5.000 request per hour with each account.
-    \item GitHub is not static (new repositories are added, existing ones are modified, etc.) which leads to the problem of
+    \item GitHub is not static (e.g., new repositories are added, existing ones are modified) which leads to the problem of
     accessing concurrently to its data.
-    \item There isn't a direct way
+    \item There is no direct way
     of obtaining the amount of repositories in the platform at a certain date using its \textit{API}.
 \end{itemize}
+
 These limitations led to the decision of using the \emph{GHTorrent} project, which offers a queriable, offline \emph{MySQL}
-database with most of the information which the GitHub API can provide.\par
-Although GitHub allows to filter projects by a certain programming language (e.g. \emph{Python}, \emph{C++}, etc.),
-it does not offer a mechanism through which you can identify projects containing files with a certain extension or how many files
-match with some word or pattern in their file-name in a repository. Therefore, to achieve OB2 and OB3 we need to extract the list of files
-from the main branch\footnote{Definition of branch and other Git objects in section~\ref{ssec:git-branch}} of each repository,
-but \emph{GHTorrent} data does not contain file-related information, so it is necessary to define a method to access the GitHub API
+database with most of the information which the GitHub API can provide.
+
+GitHub allows to filter projects by a certain programming language (e.g., \emph{Python}, \emph{C++}),
+and offers a mechanism through which you can identify projects containing files with a certain extension or how many files
+match with some word or pattern in their file-name in a repository. But this filtering is limited to 10,000 projects, which is a relative small number if we consider that it hosts millions of them.
+Therefore, to achieve OB2 and OB3 we had to extract the list of files
+from the main branch\footnote{Definition of branch and other Git objects in section~\ref{ssec:git-branch}} of each repository.
+However, \emph{GHTorrent} data does not contain file-related information, so it is necessary to define a method to access the GitHub API
 in order to retrieve this information so later it can be applied a set of filters to determine which repositories meet the established
-requirements. Once OB1, OB2 and OB3 are achieved, the obtained results will constitute the answer to RQ1.\par
+requirements. Once OB1, OB2 and OB3 are achieved, the obtained results will constitute the answer to RQ1.
+
 OB4 and OB5 have to be completed to answer \emph{RQ2}. Analyzing Git repositories is not a trivial task, as it is crucial
-to retrieve complete and reliable information from them to perform a robust analysis. That is why it was decided to
+to retrieve complete and reliable information from them to perform a robust analysis. That is why we decided to
 use a tool called \emph{Perceval} which belongs to the \emph{GrimoireLab} project, a mature and Free/Libre tool-set for software development
 analytics, to comply with OB4. It should be noted that this tool is not valid to perform OB2 and that is why the direct access to the
 GitHub API is still needed. Lastly, to accomplish OB5 the approach is to store the data obtained with \emph{Perceval} in a database to execute
