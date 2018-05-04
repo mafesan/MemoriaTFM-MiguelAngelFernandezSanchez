@@ -528,7 +528,7 @@ The uniqueness of the structure of this information along the process and its sc
 controlling every stage of the tool in order to ensure the truthfulness of the results, triggered the need of
 creating a customized, modular tool to satisfy every aspect of the study as much as possible.
 
-These are the technologies that were chosen to build this tool. Every technology will be motivated in Chapter~\cite{sec:design-implementation}.
+These are the technologies that were chosen to build this tool. Every technology will be motivated in Chapter~\ref{sec:design-implementation}.
 
 \section{Python}
 \label{sec:python}
@@ -659,77 +659,89 @@ To mention some examples, MySQL is used by Facebook, Twitter, Flickr and YouTube
 \label{sec:design-implementation}
 
 The tool has a modular design, to ease its adaptability to future updates, changes on it dependencies or other needs which may appear.
-To fully understand the functioning of the tool is necessary to be familiar with main \emph{git} objects (commits, branches and trees),
-as they are going to play a key role in this project. In section\ref{sec:git-definitions} there is a complete definition for these \emph{git} concepts.
-It is also important to mark that the research which motivated this tool influenced most of the decisions which were taken during the design phase.\par
+To fully understand the functioning of the tool, it is necessary to be familiar with main \emph{git} objects (commits, branches and trees),
+as they are going to play a key role in this project. In Section~\ref{sec:git-definitions}, a complete definition for these \emph{git} concepts can be found.
+It is also important to mark that the research which motivated this tool influenced most of the decisions which were taken during the design phase.
+
 The tool is divided into several linear sections with a set of \emph{Python} scripts. We decided to code this tool in Python because it was the programming
 language I feel more comfortable with, along with its versatility due to the great amount of compatible packages and modules, followed
-with a great amount of documentation.\par
-The set of scripts which compounds this tool can be grouped into three main phases (See Figure~\ref{fig:arquitectura}).
+with a great amount of documentation.
+
+The set of scripts which compounds this tool can be grouped into three main phases (see Figure~\ref{fig:arquitectura}).
 Before going into detail in each of these stages, let's introduce them briefly:
+
 \begin{enumerate}
   \item \textbf{Preliminary phase}
     \begin{itemize}
       \item \textbf{Extract project list}:
-            In this preliminary phase is where the list of GitHub repositories is retrieved. Using an offline dump of
+            In this preliminary phase is where the list of GitHub repositories is retrieved. Using an off-line dump of
             the \emph{GHTorrent} database, we get the \emph{project list} file containing all GitHub repositories from one of its tables
             and use a filter to choose among projects by their fields, like a major programming language, \textit{forked} or not, etc.
     \end{itemize}
   \item \textbf{Data extraction}
     \begin{itemize}
       \item \textbf{Extract file list}:
-            This is the most critical section, because is where we obtain the main \textit{branch} and the file list
+            This is the most critical process, because it where we obtain the main \textit{branch} and the file list
             (for each repository in the list from last section) querying the GitHub \textit{API}.
       \item \textbf{Filter projects}:
-            It consists on iterating over the extracted file lists applying the corresponding patterns and heuristics.
-            Then, it produces a \emph{list of positive results} file (repositories with at least one match).
+            It consists on iterating over the extracted file lists, applying the corresponding patterns and heuristics.
+            This produces a \emph{list of positive results} file (repositories with at least one match).
     \end{itemize}
   \item \textbf{Data analysis}
     \begin{itemize}
       \item \textbf{Analyze positive projects}:
-            Its function is to execute \emph{Perceval} with every project on the list of positive repositories
+            Its function is to execute \emph{Perceval} with every project on the list of positive repositories,
             building a \emph{projects database} which can be queried to extract information.
     \end{itemize}
 \end{enumerate}
+
 \begin{figure}
   \centering
   \includegraphics[width=15cm, keepaspectratio]{img/generic-tool-diagram-sections}
   \caption{General architecture of the tool}
   \label{fig:arquitectura}
 \end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Preliminary phase}
 \label{sec:preliminary-phase}
+
 Given the scale of GitHub, the main problem we face is that there is not a direct way
-of obtaining the amount of repositories in the platform, neither getting a list of them using its \textit{API}, so it is
-very difficult to have quantitative and reliable data. For example, for building a graph like ~\ref{fig:total-repo-number},
+of obtaining the amount of repositories in the platform, neither getting a list of them using its \textit{API}.
+Thus, it is
+very difficult to have quantitative and reliable data. For example, for building a graph like Figure~\ref{fig:total-repo-number},
 its numbers had to be obtained directly from articles written by the GitHub team itself [\textcolor{red}{Source}]
-and other people's estimations [\textcolor{red}{Source}].\par
-At this point is where \emph{GHTorrent} project has its role in this story, as they provide an offline database dump with most
-of the data which GitHub \textit{API} can provide at a certain date. This great collaborative effort is a huge advantage
+and other people's estimations [\textcolor{red}{Source}].
+
+At this point it is where \emph{GHTorrent} project plays a major role in this project, as they provide an off-line database dump with most
+of the data which the GitHub \textit{API} offers at a certain date. This great collaborative effort is a huge advantage
 for researchers, otherwise it would be practically non-viable retrieving full-scale GitHub data in a systematic way.
-Nevertheless, it is important to mark that \emph{GHTorrent} database dump \underline{does not contain} \textit{Git trees}
-(file-related) information: if this information was included, a major part of this tool (and by extension, this project) wouldn't
-be necessary, as we could query and filter the data of our interest directly from the database which the \emph{GHTorrent} project provides.\\
-If we have a look at how \emph{GHTorrent} database is structured (Figure~\ref{fig:ghtorrent-schema}), we can observe that
+Nevertheless, it is important to mark that the \emph{GHTorrent} database dump \underline{does not contain} \textit{Git trees}
+(i.e., file-related) information: if this information was included, a major part of this tool (and by extension, of this project) would not
+have been necessary, as we could query and filter the data of our interest directly from the database provided by the \emph{GHTorrent} project.
+
+If we have a look at how the \emph{GHTorrent} database is structured (see Figure~\ref{fig:ghtorrent-schema}), we can observe that
 there is almost one table per GitHub object (\textit{users}, \textit{projects}, \textit{pull requests}, \textit{issues}, etc.).
 Looking closer on these table's structure, we realize the table we need is the \emph{Projects} table
 (see Figure~\ref{fig:ghtorrent-schema-detail}), as it contains crucial repository-wise information including every project's name
-and \textit{URL} but also other complementary information which could be used as a primary filter, like \texttt{language} (project's main language,
-code-wise) or \texttt{forked\_from} (Empty if the repository is not a \textit{fork} from another project), etc.\par
-To obtain the actual data, the procedure to follow is:
+and \textit{URL}, but also other complementary information which could be used as a primary filter, like \texttt{language} (project's main language,
+code-wise) or \texttt{forked\_from} (Empty if the repository is not a \textit{fork} from another project), etc.
+
+To obtain the actual data, the procedure to follow is as follows:
 \begin{enumerate}
-  \item Download from \emph{GHTorrent} website a particular \emph{MySQL dump} which is provided as a compressed file in \texttt{tar.gz}
-        format\footnote{To give an estimation of the current file sizes, the last dump available (2018, Mar 1st) sizes 71025 \texttt{MB}}.
+  \item Download from the \emph{GHTorrent} website a particular \emph{MySQL dump}, usually the most recent one, which is provided as a compressed file in \texttt{tar.gz}
+        format\footnote{To give an estimation of the current file sizes, the last available dump (March 1st 2018) has a compressed size of 71,025 \texttt{MB}!}.
   \item Uncompress the \texttt{tar.gz} file, which contains one \emph{CSV} file per table in the database.
-  \item Get the file \texttt{projects.csv}, whose data corresponds to \emph{Projects} table (See an adapted\footnote{The field \emph{url} has been replaced by \emph{owner} to make the table more readable.}
+  \item Get the file \texttt{projects.csv}, whose data corresponds to the \emph{Projects} table (See an adapted\footnote{The field \emph{url} has been replaced by \emph{owner} to make the table more readable.}
   example of this file in Table~\ref{table:projects-table-example}).
   \item Run the Python script \textcolor{red}{[reference to script]} with the corresponding filters to obtain the main
         \emph{project list} file, which will be the input for the next stage.
 \end{enumerate}
+
 Note that the filtering we establish in this phase is going to influence the results of our analysis. To make this task easier,
-I decided to use a configuration file (See figure \textcolor{red}{[reference]}) to set basic filters and parameters. \textcolor{red}{(WIP)}\\
-Finally, we obtain a filtered \emph{project list} file, which keeps the same format as \texttt{projects.csv} from the database dump.
+I decided to use a configuration file (See Figure~\textcolor{red}{[reference]}) to set basic filters and parameters. \textcolor{red}{(WIP)}\\
+Finally, we obtain a filtered \emph{project list} file, which keeps the same format as \texttt{projects.csv} of the database dump.
+
 \begin{figure}
   \centering
   \includegraphics[width=16cm, keepaspectratio]{img/ghtorrent-schema-detail}
@@ -753,14 +765,16 @@ Finally, we obtain a filtered \emph{project list} file, which keeps the same for
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Data extraction}
+
 Once the \emph{project list} file is ready, we can proceed to extract the file list of the main \textit{branch} of each
 repository. To achieve this, we have to query the GitHub \textit{API} several times for each project.
 It is important to mark this, as the GitHub \textit{API} has a limitation of
-5.000\footnote{The numbers (excepting dates) in this thesis follow the Spanish separators notation.}
-queries per hour for every authenticated account, which caused a huge impact in the research and the data-retrieval
-process, as it is detailed in the case of study described in section~\ref{sec:case-study-uml}.\par
-To make authenticated queries to the GitHub \textit{API} we need an \textbf{API token}\footnote{See the definition for API token in subsection~\ref{ssec:api-token}}.
+5,000 queries per hour for every authenticated account, which caused a huge impact in the research and the data retrieval
+process, as it is detailed in the case of study described in Section~\ref{sec:case-study-uml}.
+
+To make authenticated queries to the GitHub \textit{API} we need an \textbf{API token}\footnote{See the definition for API token in Subsection~\ref{ssec:api-token}}.
 For instance, if I want to \textit{fork} a repository into my GitHub account, I could do it either in two ways:
+
 \begin{itemize}
   \item Log-in into my account, visit the repository \emph{URL} and press the \textbf{fork} button on GitHub's web interface.
   \item Send an authenticated \textit{query}\footnote{From now on, every time I refer to a GitHub \textit{API}
@@ -769,7 +783,7 @@ For instance, if I want to \textit{fork} a repository into my GitHub account, I 
   \begin{lstlisting}[language=bash]
   POST https://api.github.com/repos/:owner/:repo/forks?:token \end{lstlisting}
 \end{itemize}
-The script for this phase, \texttt{github-api.py} (See its diagram in Figure~\ref{fig:gh-api-diagram}) has into account
+The script for this phase, \texttt{github-api.py} (See its diagram in Figure~\ref{fig:gh-api-diagram}) takes into account
 this API limitation, ensuring that this limit is not exceeded. It employs three different directories in order to classify its outputs:
 \textbf{master}, \textbf{default} and \textbf{trees}.
 Then, it reads the \emph{project list} file and, per line, executes the following actions:
@@ -795,8 +809,10 @@ Then, it reads the \emph{project list} file and, per line, executes the followin
   GET /repos/:owner/:repo/git/trees/:sha?recursive=1&:token \end{lstlisting}
   This will be saved into the directory \textbf{trees}.
 \end{itemize}
-When this script finishes, we will have (assuming there were no errors) one \texttt{JSON} file per repository,
-with the file-list information for the \textit{tree} objects in each repository.\\
+
+When this script finishes, we will have (assuming there were no errors) a \texttt{JSON} file per repository,
+with the file-list information for the \textit{tree} objects in each repository.
+
 However, the design of this script would not be complete without considering all the possible errors and
 particularities that may appear. Below, it is shown the most relevant setbacks and, if possible, an alternative
 solution for every one of them:
@@ -831,9 +847,11 @@ solution for every one of them:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Data filtering}
 \label{sec:data-filtering}
+
 In this section is where the data we have obtained from the previous stage is filtered according to our search.
 The approach that have been followed to apply filters is to define three types of heuristics, related to
 file extensions and keywords:
+
 \begin{itemize}
   \item \textbf{Level-1} file extensions, those which are a top priority in our search. They are immediately considered
    as positive results.
@@ -841,17 +859,21 @@ file extensions and keywords:
   \item \textbf{Key-words}, specific words or groups of characters which a file-name with a \textit{Level-2} extension
   has to contain to be considered as a positive result.
 \end{itemize}
+
 Let's imagine a basic example where we are interested in projects related with web development. Defining the
 necessary heuristics as in Table~\ref{table:heuristics-table-example}, we will keep any file whose extension
 is on Level-1 list, and those files whose extension is on Level-2 list \textbf{AND} whose file-name contains at least one
-of the words (or group of characters) defined in the key-word list.\\
+of the words (or group of characters) defined in the key-word list.
+
 \begin{itemize}
   \item \texttt{.html} is on \textbf{Level-1} list, so any file with \texttt{html} extension will be a positive result directly.
   \item \texttt{.py} is on \textbf{Level-2} list, so only \texttt{.py} files containing at least one key-word in their file-name
   (i.e. \textit{urls}) will be considered as a positive result.
 \end{itemize}
+
 To complete this example, if we apply this filter to a repository whose file structure is like the one in Figure~\ref{fig:file-structure-example},
-we would obtain the set of positive results showed at Table~\ref{table:heuristics-positive-example}.\par
+we would obtain the set of positive results showed at Table~\ref{table:heuristics-positive-example}.
+
 Now, the next step is applying these filters to the \texttt{JSON} files which have been obtained before.
 Specifically, we are interested only in those files included into the \textbf{trees} directory.
 Each of those files contains the file structure of the last version of its repository,
@@ -865,20 +887,23 @@ where the \textit{tree} object contains under itself all the files (\textit{blob
   \item \textbf{size}: File size in \textit{bytes}. Only \texttt{blob} objects contain this parameter.
   \item \textbf{url}: Link to this object in GitHub \textit{API}.
 \end{itemize}
-There is a simple example of the content of one of these files at Figure~\ref{fig:gh-tree-json}.\par
+
+There is a simple example of the content of one of these files in Figure~\ref{fig:gh-tree-json}.
+
 The corresponding scripts for this phase are \texttt{github-tree.py} and \texttt{hits2urls.py}
-(See a diagram for both of them in Figure~\ref{fig:gh-tree-diagram}):\\
+(See a diagram for both of them in Figure~\ref{fig:gh-tree-diagram}). 
 \texttt{github-tree.py} iterates over all the \texttt{JSON} files in the \textbf{trees} directory,
 executing these simple instructions per file:
+
 \begin{itemize}
   \item Load \texttt{JSON} data into a \emph{Python} \textit{dictionary} (a key-value data structure).
-  \item Obtain the parent \texttt{tree} object (field \texttt{"tree"} in our \textit{dictionary}).
-  \item Check the \texttt{"type"} field for every child object.
-  \item If its type is \texttt{"blob"}, apply the pre-defined patterns and heuristics.
-  \item Provide the positive results printing every matching object's \texttt{"path"} and \texttt{"URL"}.
+  \item Obtain the parent \texttt{tree} object (field \texttt{``tree''} in our \textit{dictionary}).
+  \item Check the \texttt{``type"} field for every child object.
+  \item If its type is \texttt{``blob"}, apply the pre-defined patterns and heuristics.
+  \item Provide the positive results printing every matching object's \texttt{``path"} and \texttt{``URL"}.
 \end{itemize}
 \texttt{hits2urls.py} is a simple script which converts every \texttt{URL} from the last script (links to \texttt{blob} objects
-in the GitHub \textit{API}), to the \texttt{URL} for the actual file which that object is representing to.
+in the GitHub \textit{API}), to the \texttt{URL} for the actual file which that object is representing.
 Here is an example of one \texttt{URL} which belongs to a \texttt{blob} object converted to the \texttt{URL}
 pointing to the actual file (see below lines 1 and 2, respectively):
 \begin{lstlisting}[language=bash]
@@ -931,24 +956,30 @@ web/index.html             & Level-1                     \\ \hline
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Data analysis}
 \label{sec:data-analysis}
-In this section is where the positive results are analyzed deeply to end up building a database to store
+
+In this section, the positive results are analyzed to end up building a database to store
 all the extracted information so it can be queried to perform our desired analysis.
+
 \subsection{Extract extended repository information}
 \label{ssec:extract-perceval}
 To analyze the resulting repositories we take advantage of \textbf{Perceval}, a mature, powerful tool which
 is capable of retrieving data from more than 25 different data sources producing a uniform set of data which can be
-updated along time.\\
-The data sources which Perceval supports are given by its \emph{backends}, and we are using the \emph{Git backend} to
+updated over time.
+
+The data sources which Perceval supports are given by its \emph{backends}. We use the \emph{Git backend} to
 obtain Git-related information from those GitHub repositories with at least one positive result.
 Perceval clones repository by repository and parses every Git event log, producing a \emph{JSON} file
-per repository containing data for every commit and its related Git objects. This tool is written in Python
+per repository containing data for every commit and its related Git objects. This tool is written in the Python
 language and it can be executed via command line or as a Python module, so it can be easily integrated with
-this set of scripts.\\
+this set of scripts.
+
 \subsection{Building the database}
 \label{ssec:build-database}
-Next step is to build a database, which allows to store the extracted data in an optimized way to
-obtain elaborated results by using queries according to our case of study.\\
-As we had used the GHTorrent database, which is a MySQL database, we decided to use a MySQL database
+
+The next step consists in building a database, which allows to store the extracted data in an optimized way to
+obtain elaborated results by using queries according to our case of study.
+
+As we had used the GHTorrent database, which follows a MySQL database schema, we decided to use a MySQL database
 for this purpose too, as it is easier to build and maintain.
 We designed this database to contain five tables; four of them using data from the files which are obtained with
 \textbf{Perceval} and one table from the GHTorrent database, \texttt{USERS} containing information about GitHub user accounts.
@@ -960,14 +991,16 @@ These tables contain the following information:
   \item \texttt{INTERESTING\_FILES}: For each file (positive result); its name, URL, which repository belongs to and which commits this file is included into.
   \item \texttt{USERS}: From GHTorrent, GitHub user account information as login, name, location, company, creation date, etc.
 \end{itemize}
+
 After a first version of this database, it was decided to add an additional table, \textit{FILE\_COMMITS},
 which contains augmented information about each file commit, indicating the commit unique ID, the name of the committed file and the field
-file-type (type of the committed file based on a predefined classification, i.e., source code, documentation, etc.).
-These tables are represented in the complete schema of this database in Figure~\ref{fig:dbschema}.\par
-The dedicated script which converts the analysed data into a database produces one SQL script per table. Then, these
-scripts have to be imported in a MySQL database whose structure has to be specified before.
+file-type (type of the committed file based on a predefined classification, e.g., source code, documentation, etc.).
+These tables are represented in the complete schema of this database in Figure~\ref{fig:dbschema}.
+
+The dedicated script which converts the analysed data into a database, produces one SQL script per table. Then, these
+scripts have to be imported into a MySQL database whose structure has to be specified before.
 Once the database has been built and filled with the data, to produce proper results for our analysis we have to ensure
-that the perform the right queries. For instance, here are some queries we can execute to perform an analysis:
+to perform the correct queries. For instance, here are some queries we can execute to perform an analysis:
 \begin{itemize}
     \item Name of positive repositories with more than 200 commits and whose last commit has been made after July 2, 2017:
     \begin{lstlisting}[language=SQL]
@@ -994,87 +1027,107 @@ that the perform the right queries. For instance, here are some queries we can e
 \cleardoublepage
 \chapter{Results}
 \label{sec:results}
-As I mentioned in section~\ref{sec:intro}, this project was born in a research environment.
-In this current section it is described how the tool behaved in a real environment with all the setbacks
-and limitations that appeared during the whole process, remarking that this ongoing research
+
+As I mentioned in the Introduction (see Chapter~\ref{sec:intro}), this project was born in a research environment.
+In this section, how the tool behaved in a real environment is described, with all the setbacks
+and limitations that appeared during the whole process. We will remark that the ongoing research
 influenced most of the decisions which were took during the design and implementation
-of the tool that we saw in the last section, as well as how to overcome the different drawbacks.\par
-The results presented here led to several scientific papers published on international Software Engineering
-conferences which are highly ranked according to CORE\footnote{\url{http://www.core.edu.au/conference-portal}} portal:
+of the tool that we saw in the last section, as well as how to overcome the different drawbacks.
+
+The results presented here led to several scientific papers published in international Software Engineering
+conferences which are highly ranked according to the CORE\footnote{\url{http://www.core.edu.au/conference-portal}} portal:
 \begin{itemize}
     \item ICSE (International Conference on Software Engineering) - Rank A* (Source\footnote{\url{http://portal.core.edu.au/conf-ranks/1209/}}).
     \item MODELS (International Conference on the Unified Modeling Language) - Rank A (Source\footnote{\url{http://portal.core.edu.au/conf-ranks/1244/}}).
-    \item MSR (International Conference on Mining Software Repositories) - Rank A, before rank C (Source\footnote{\url{http://portal.core.edu.au/conf-ranks/711/}}).
+    \item MSR (International Conference on Mining Software Repositories) - Rank A (Source\footnote{\url{http://portal.core.edu.au/conf-ranks/711/}}).
 \end{itemize}
-The complete published papers are available in appendix~\ref{app:papers}.
-\\This case of study descriptions are focused on the implementation of the technical part of the studies,
-showing an overview of its results taking into account specific details and limitations.
+
+The papers are available in Appendix~\ref{app:papers}.
+
+%This case of study descriptions are focused on the implementation of the technical part of the studies,
+%showing an overview of its results taking into account specific details and limitations.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Case of study: UML models in GitHub projects}
 \label{sec:case-study-uml}
-This methodology was applied for the first time to the study: ”The quest for Open Source projects that use
-UML: Mining GitHub” [HQC + 16 - cite] (The full paper is available in section~\ref{sec:paper-models}).
+
+This methodology was applied for the first time in the study published in the paper ``The quest for Open Source projects that use
+UML: Mining GitHub'' [HQC + 16 - cite] (The full paper is available in Appendix~\ref{sec:paper-models}).
 This research has been a collaborative work between Chalmers and Rey Juan Carlos University in the context
-explained in section~\ref{sec:context}.
+explained in Section~\ref{sec:context}.
 The main goal of this study was to deepen in the knowledge of usage and evolution of UML models in
 Free/Libre/Open Source Software (FLOSS) projects, tracking them throughout the whole projects life-span.
-In addition to the main research questions mentioned in section~\ref{sec:objectives}, some of the specific RQs
+In addition to the main research questions mentioned in Chapter~\ref{sec:objectives}, some of the specific RQs
 of this study were:
+
 \begin{itemize}
   \item RQ1: Are there GitHub projects that use UML? Which are these projects?
   \item RQ2: Are there GitHub projects in which the UML models are also updated?
   \item RQ3: When in the project are new UML models introduced?
   \item RQ4: What is the time span of ``active'' UML creation and modification?
 \end{itemize}
+
 It is important to know if there is some peculiarity in the data we are looking for, for example, UML models can be
 found in many different formats, but they can be classified into two main types: text-based models, which are XML-alike
 files and image-based models (See Figure~\ref{fig:uml-types}). This entails an additional problem as an external validation of the data is
-required in an intermediate step between the data filtering phase and the analysis one, which will be detailed later.\par
-The first two phases of the tool, described in sections~\ref{sec:preliminary-phase} and~\ref{sec:data-extraction} respectively
+required in an intermediate step between the data filtering phase and the analysis one, which will be detailed later.
+
+The first two phases of the tool, described in Sections~\ref{sec:preliminary-phase} and~\ref{sec:data-extraction} respectively
 are, by default, independent from the case of study. However, these phases are not a trivial task because of the amount of
-data that has to be processed with the difficulties and limitations associated with it.\\
-Regarding to the preliminary phase, the GHTorrent data-set used in this study is from February, 2016. At that time, there were
-a total of 26 million repositories (approx.). As the main research that motivated this study was interested in identify UML
+data that has to be processed with the difficulties and limitations associated with it.
+
+Regarding to the preliminary phase, the GHTorrent dataset used in this study is from February 1\textsuperscript{st} 2016. At that time, there were
+a total of 26 million repositories (approx.). As the main research that motivated this study was interested in identifying UML
 models introduced in a project by its owners, we had to filter those projects to discard forked repositories. Applying that
-filter we got 12.847.555 repositories ready to be analyzed.\par
-The greatest challenge was to execute the tool against almost 13 million GitHub repositories, as the GitHub API has a limitation
-of 5.000 requests per hour \& account. As it is explained before, a maximum of three requests are made to obtain the main
+filter we got 12,847,555 repositories ready to be analyzed.
+
+As already noted, the greatest challenge was to execute the tool against almost 13 million GitHub repositories, as the GitHub API has a limitation
+of 5,000 requests per hour \& account. As it is explained before, a maximum of three requests are made to obtain the main
 branch for each repository, as we are not interested in secondary branches for our case of study. Making the calculations about
 how much time would it take to complete this first stage:
+
 \begin{itemize}
-  \item 3 queries for each project = 1.666 projects/hour (max).
-  \item 12.847.555 projects / 1.666 projects per hour = 7.712 h. = 322 days
+  \item 3 queries for each project = 1,666 projects/hour (max).
+  \item 12,847,555 projects / 1,666 projects per hour = 7,712 hours = 322 days
 \end{itemize}
+
 We made an estimation where 322 days would be needed with the best scenario, so we opted for paralleling the process using many
-different GitHub accounts.\\
+different GitHub accounts.
+
 To make this possible, we asked for help to some students and professors so they can temporarily borrow their GitHub account
 token and we obtained 21 account tokens. Finally, it took almost 90 days to complete this task as we were receiving these credentials
-while we were already collecting data. I take this opportunity to thank every person who had the kindness to contribute to this project
-with their GitHub accounts.
+while we were already collecting data\footnote{I take this opportunity to thank every person who had the kindness to contribute to this project
+with their GitHub accounts.}.
 In addition to the GitHub API limitation, we may encounter technical limitations: it is desirable to have a fast and stable Internet
-connection, enough space in the hard drive and also use a powerful computer, as after the data-extraction stage we got 126 GB of compressed
-JSON files, which have to be opened and processed.\par
+connection, enough space in the hard drive and also use a powerful computer, as after the data extraction stage we got 126 GB of compressed
+JSON files, which have to be opened and processed.
+
 To continue with the next step of the data extraction phase, which is to apply the filter to the file-list information
 we had obtained. In this case, we are interested in looking for files whose extension matches with all possible extensions which an
-UML model can be found, as is it showed in Table~\ref{table:heuristics-cs1-example}.\par
+UML model can be found, as is it showed in Table~\ref{table:heuristics-cs1-example}.
+
 As described before, an additional problem arose: from all the identified files with the interesting extensions, how many of those files
 really are a UML model, and how many are not? As the tool has a modular design, it was easy to add an additional phase to verify the data
 which was obtained after the filtering. This verification process was solved by Chalmers team, using heuristics for the XML-alike files
-and image processing and machine learning techniques for image files [HQCS + 14a, HQCS + 14b - \textcolor{red}{FIXME: Citations}].\par
-UML models can be included either in image or text files (See Figure~\ref{fig:uml-types}), therefore our main filter using file extensions
+and image processing and machine learning techniques for image files [HQCS + 14a, HQCS + 14b - \textcolor{red}{FIXME: Citations}].
+
+UML models can be included either in image or text files (see Figure~\ref{fig:uml-types}), therefore our main filter using file extensions
 and character patters in file-names is not enough to completely identify UML files. That is why it was necessary the inclusion of
 an additional phase where all the positive outcomes after applying the first filter (now marked as \textbf{potential files}) need
-to be validated to determine whether they contain a UML model or not. This external validation stage developed by \emph{Chalmers} team
-includes machine-learning and digital image processing techniques which also required manual verification steps, which were very time-consuming.\\
+to be validated to determine whether they contain a UML model or not. This external validation stage developed by the \emph{Chalmers} team
+includes machine-learning and digital image processing techniques which also required manual verification steps, which were very time-consuming.
+
 This handicap led to the decision of shorten the data-set to analyze $\sim$10\% of the total amount of GitHub repositories which resulted
 in 1,240,000 repositories, in order to offer accurately verified results. From those repositories, we obtained 100,702 potential files
 which matched after applying the heuristics filter in Table~\ref{table:heuristics-cs1-example}. These potential files are the input
 of the validation stage whose process and results are summarized on Figure~\ref{fig:validated-files-distribution}: A total of 21,316 UML
-files were validated included in 3,295 different GitHub repositories, which is the answer to RQ1.\par
+files were validated included in 3,295 different GitHub repositories, which is the answer to RQ1.
+
 Next, in the data-analysis phase these projects were processed with Perceval and a database was built using that information.
 Once the database was created it was obtained more elaborated data, for instance, the distribution of positive repositories
-according to how many UML models contained each of them (See Table~\ref{table:validated-repos-table}) but also the answers to the rest
+according to how many UML models contained each of them (see Table~\ref{table:validated-repos-table}) but also the answers to the rest
 of the RQs:
+
 \begin{itemize}
   \item RQ2: Are there GitHub projects in which the UML models are also updated?
   \begin{itemize}
@@ -1090,17 +1143,20 @@ of the RQs:
     In general, the projects work very shortly in UML, usually at the beginning.
   \end{itemize}
 \end{itemize}
-hen the validation process described before was extended to the whole set of potential results, the UML search was finished.
-These complete results were presented in the paper "An extensive dataset of UML models in GitHub" (The full paper is available in section~\ref{sec:paper-msr}),
-which resulted in the identification of 93.596 (See Table~\ref{table:validated-models-table} publicly available UML models
-in GitHub from over 24.125 repositories. Though this amount of repositories only represent 0,19239\% of the total amount of the initial set,
-as I anticipated in the introduction chapter, the identified models constitute a data-set that is two orders of magnitude larger than the
-rest of UML data-sets at the time of this research.\par
+
+Then, the validation process described before was extended to the whole set of potential results, the UML search was finished.
+These complete results were presented in the paper ``An extensive dataset of UML models in GitHub'' (The full paper is available in Appendix~\ref{sec:paper-msr}),
+which resulted in the identification of 93,596 (see Table~\ref{table:validated-models-table} publicly available UML models
+in GitHub from over 24,125 repositories. Though this amount of repositories only represent 0.19239\% of the total amount of the initial set,
+as I anticipated in the Introduction (Chapter~\ref{sec:intro}), the identified models constitute a dataset that is two orders of magnitude larger than the
+rest of UML data-sets at the time of this research.
+
 Applying the data-analysis phase to the complete UML models data-set we ended up with a database with deeper information about these results,
-which broaden the possibilities to enrich different aspects of this research. This derived in the paper "Practices and Perceptions of UML Use
-in Open Source Projects" (The full paper is available in section~\ref{sec:paper-icse}), whose goal of this later research was ``to shed some
+which broaden the possibilities to enrich different aspects of this research. This derived in the paper ``Practices and Perceptions of UML Use
+in Open Source Projects'' (the full paper is available in Appendix~\ref{sec:paper-icse}), whose goal of this later research was ``to shed some
 light into the motivation and benefits of the use of modeling and its use within project teams''. To do so, the applied method was to
-perform a survey among open source developers, focusing on projects that use UML as a representative for software modeling.\\
+perform a survey among open source developers, focusing on projects that use UML as a representative for software modeling.
+
 The constructed database played a pivotal role for this survey, as it was necessary to define which projects and developers met the
 survey conditions executing the right queries to the database. There were two main lines to obtain the survey target:
 \begin{enumerate}
@@ -1112,7 +1168,7 @@ survey conditions executing the right queries to the database. There were two ma
     \item less than 2 contributors, OR
     \item less than 10 commits.
   \end{enumerate}
-  After classifying and filtering short-time projects out, 4.650 UML-projects (out of 24.125) met the requirements.
+  After classifying and filtering short-time projects out, 4,650 UML projects (out of 24,125) met the requirements.
   \item \textbf{Identify developer role in a repository}: It was important to consider the role that the different contributors
   play within the OSS projects with UML models to ask them the appropriate questions, considering a combination of roles in the
   following two dimensions:
@@ -1122,10 +1178,12 @@ survey conditions executing the right queries to the database. There were two ma
   \end{enumerate}
   Therefore, each interview participant had to fulfill one of the following 6 roles: F-1UC, F-NUC, F-UC, NF-1UC, NF-NUC, NF-UC.
 \end{enumerate}
+
 Furthermore, researchers considered the possibility of having duplicate identities in our database, as one contributor can
 use different emails, user-name (for example, changing the user-name or email during the project time).
-The email and the full-name were the primary keys for this check, which resulted in 99.319 distinct contributors out of
-129.276 original ones.
+The email and the full-name were the primary keys for this check, which resulted in 99,319 distinct contributors out of
+129,276 original ones.
+
  \begin{figure}
    \centering
    \includegraphics[width=15cm, keepaspectratio]{img/umls-landscape}
@@ -1147,7 +1205,7 @@ The email and the full-name were the primary keys for this check, which resulted
  \begin{figure}
    \centering
    \includegraphics[width=16cm, keepaspectratio]{img/file-results-models-diagram}
-   \caption{Diagram: Distribution from potential files with UML to validated UML files.}
+   \caption{Diagram: Distribution from potential files with UML to validated UML files. \textcolor{red}{FIXME: Change .-notation to ,-notation in the Figure!}}
    \label{fig:validated-files-distribution}
  \end{figure}
  \begin{table}[]
@@ -1157,8 +1215,8 @@ The email and the full-name were the primary keys for this check, which resulted
    \begin{tabular}{|c|c|}
    \hline
    \textbf{Number of UML models} & \textbf{Number of repositories}     \\ \hline
-   1                             & 1.947                               \\
-   From 2 to 9                   & 1.169                               \\
+   1                             & 1,947                               \\
+   From 2 to 9                   & 1,169                               \\
    From 10 to 99                 & 158                                 \\
    100+                          & 4                                   \\ \hline
    \end{tabular}
@@ -1170,13 +1228,14 @@ The email and the full-name were the primary keys for this check, which resulted
    \begin{tabular}{|c|c|}
    \hline
    \textbf{Type of model}     & \textbf{Number of UML models}     \\ \hline
-   Text-based (.uml, .xmi)    & 35.774                            \\
-   Image-based                & 57.822                            \\ \hline
+   Text-based (.uml, .xmi)    & 35,774                            \\
+   Image-based                & 57,822                            \\ \hline
    \end{tabular}
  \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Case of study: Software Architecture documents \& extended UML models in GitHub projects}
 \label{sec:case-study-sad}
+
 After the derived studies from the first data-set, the second case of study came out when the same research team were
 interested in extend the search looking for models with other less-restrictive extensions but also looking for
 software architecture documents, as sometimes the models from a project are defined inside a document (i.e., a PDF file).\\
