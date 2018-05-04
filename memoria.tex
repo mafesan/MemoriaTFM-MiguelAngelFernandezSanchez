@@ -211,7 +211,7 @@ alcanzarás todo lo que te propongas.\\}
 \end{flushright}
 \begin{flushright}
 \textit{\\To my mother and father:\\
-This thesis wouldn't have been possible\\
+This thesis would not have been possible\\
 without your endless effort and support.}
 \end{flushright}
 \par
@@ -231,10 +231,10 @@ First, I want to thank my parents and the rest of my family. Their constant effo
 along with the values they taught me, made possible for me studying at the university. These words
 are dedicated to them: This is your success, I love you.\par
 I want to thank my tutor Gregorio, for believing in me and giving me the great opportunity of working
-in LibreSoft research group where I've lived some of my great experiences at the university;
+in LibreSoft research group where I have lived some of my great experiences at the university;
 growing as a person, meeting wonderful people, travelling and learning far beyond I could have ever imagined.\par
 To my friends and classmates from the university: Eva, Eduardo, Bea, Diego, Olalla, Raúl, Sara, Luismi, Javi, Marta, Dani, Carol,
-Celia, Nuria, Vanessa, Raquel and many, many more. Without your friendship, help and support I wouldn't reached this goal, thank you.\par
+Celia, Nuria, Vanessa, Raquel and many, many more. Without your friendship, help and support I would not reached this goal, thank you.\par
 To the people who has helped me to review and improve this thesis: Gregorio, Santi, Valerio, Fernando, Saray, Eva and Sara. Thank you
 for your patience and sharing your time and knowledge so generously.\par
 Finally, thank to the people who contributed with their GitHub account to make this study possible:
@@ -411,12 +411,12 @@ as a professional but also as an individual.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Structure of the thesis}
 \label{sec:structure}
-In this thesis are presented the main objectives which were marked to build this tool in chapter~\ref{sec:objectives} ``Objectives'',
-followed by a brief explanation of the technology which have been used to achieve these objectives in chapter~\ref{sec:state-art} ``State of the art''.
-Next, in chapter~\ref{sec:design-implementation} ``Design and implementation'' it is detailed the designing process and the tool architecture, itemizing on each one of its components.
-Thenceforth, the performance and results of the tool are explored in chapter~\ref{sec:results} ``Results'' by means of two different use cases,
+In this thesis are presented the main objectives which were marked to build this tool in Chapter~\ref{sec:objectives} ``Objectives'',
+followed by a brief explanation of the technology which have been used to achieve these objectives in Chapter~\ref{sec:state-art} ``State of the art''.
+Next, in Chapter~\ref{sec:design-implementation} ``Design and implementation'' it is detailed the designing process and the tool architecture, itemizing on each one of its components.
+Thenceforth, the performance and results of the tool are explored in Chapter~\ref{sec:results} ``Results'' by means of two different use cases,
 detailing the obtained results but also taking into account the technical particularities which arose during its development and how they were solved.
-Furthermore, some conclusions are presented in chapter~\ref{sec:conclusions} ``Conclusions'', reviewing whether the marked objectives have been accomplished or not,
+Furthermore, some conclusions are presented in Chapter~\ref{sec:conclusions} ``Conclusions'', reviewing whether the marked objectives have been accomplished or not,
 along with a brief discussion about the limitations of this tool and future work.\par
 Additionally, this thesis contains the following annexes:
 \begin{enumerate}[A.]
@@ -472,9 +472,9 @@ but \emph{GHTorrent} data does not contain file-related information, so it is ne
 in order to retrieve this information so later it can be applied a set of filters to determine which repositories meet the established
 requirements. Once OB1, OB2 and OB3 are achieved, the obtained results will constitute the answer to RQ1.\par
 OB4 and OB5 have to be completed to answer \emph{RQ2}. Analyzing Git repositories is not a trivial task, as it is crucial
-to retrieve complete and reliable information from them to perform a robust analysis. That's why it was decided to
+to retrieve complete and reliable information from them to perform a robust analysis. That is why it was decided to
 use a tool called \emph{Perceval} which belongs to the \emph{GrimoireLab} project, a mature and Free/Libre tool-set for software development
-analytics, to comply with OB4. It should be noted that this tool is not valid to perform OB2 and that's why the direct access to the
+analytics, to comply with OB4. It should be noted that this tool is not valid to perform OB2 and that is why the direct access to the
 GitHub API is still needed. Lastly, to accomplish OB5 the approach is to store the data obtained with \emph{Perceval} in a database to execute
 the necessary queries to obtain answers for RQ2 and any further questions.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -488,7 +488,7 @@ the necessary queries to obtain answers for RQ2 and any further questions.
  % Nota que el ~ a�ade un espacio en blanco, pero no deja que exista un salto de l�nea. Imprescindible ponerlo para las citas.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 There are multiple tools to analyze GitHub repositories. Nonetheless, at the moment when this tool was designed
-there wasn't one single application capable of meeting at once the different and diverse requirements for the
+there was not one single application capable of meeting at once the different and diverse requirements for the
 researcher's needs to complete this study.
 The uniqueness of the structure of this information along the process and its scale, together with the advantage of
 controlling every stage of this tool in order to ensure the truthfulness of the results, triggered the need of
@@ -524,7 +524,7 @@ file over time (See Figure~\ref{fig:info-not-git}).\\
 Instead, \emph{git} thinks of its data more like a series of snapshots of a miniature file-system (See Figure~\ref{fig:info-git}).
 With \emph{git}, every time you commit or save the state of your project, \emph{git} basically takes a picture of what all
 your files look like at that moment and stores a reference to that snapshot. To be efficient, if files have not changed,
-\emph{git} doesn't store the file again, just a link to the previous identical file it has already stored.
+\emph{git} does not store the file again, just a link to the previous identical file it has already stored.
 All this information is stored in a key-value system as \emph{git} objects, with a unique identity for each of them.
 \begin{figure}
   \centering
@@ -644,7 +644,7 @@ Before going into detail in each of these stages, let's introduce them briefly:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Preliminary phase}
 \label{sec:preliminary-phase}
-Given the scale of GitHub, the main problem we face is that there isn't a direct way
+Given the scale of GitHub, the main problem we face is that there is not a direct way
 of obtaining the amount of repositories in the platform, neither getting a list of them using its \textit{API}, so it is
 very difficult to have quantitative and reliable data. For example, for building a graph like ~\ref{fig:total-repo-number},
 its numbers had to be obtained directly from articles written by the GitHub team itself [\textcolor{red}{Source}]
@@ -660,7 +660,7 @@ there is almost one table per GitHub object (\textit{users}, \textit{projects}, 
 Looking closer on these table's structure, we realize the table we need is the \emph{Projects} table
 (see Figure~\ref{fig:ghtorrent-schema-detail}), as it contains crucial repository-wise information including every project's name
 and \textit{URL} but also other complementary information which could be used as a primary filter, like \texttt{language} (project's main language,
-code-wise) or \texttt{forked\_from} (Empty if the repository isn't a \textit{fork} from another project), etc.\par
+code-wise) or \texttt{forked\_from} (Empty if the repository is not a \textit{fork} from another project), etc.\par
 To obtain the actual data, the procedure to follow is:
 \begin{enumerate}
   \item Download from \emph{GHTorrent} website a particular \emph{MySQL dump} which is provided as a compressed file in \texttt{tar.gz}
@@ -741,7 +741,7 @@ Then, it reads the \emph{project list} file and, per line, executes the followin
 \end{itemize}
 When this script finishes, we will have (assuming there were no errors) one \texttt{JSON} file per repository,
 with the file-list information for the \textit{tree} objects in each repository.\\
-However, the design of this script wouldn't be complete without considering all the possible errors and
+However, the design of this script would not be complete without considering all the possible errors and
 particularities that may appear. Below, it is shown the most relevant setbacks and, if possible, an alternative
 solution for every one of them:
 \begin{itemize}
@@ -754,7 +754,7 @@ solution for every one of them:
   use case, so we had to adapt the tool for it. The solution is to \textit{clone} (download) the repository,
   so later the next script can iterate locally over its files and folders.
   \item \textbf{Repository no longer exists}. There are repositories which existed at the time when that particular
-  dump of the GHTorrent database was created, but they don't exist anymore.
+  dump of the GHTorrent database was created, but they do not exist anymore.
   \item \textbf{\textit{Charset}-related errors}. Either the name of the repositories, owners, files, etc. can be written
   using different types of characters (Japanese, for instance) or other unknown characters (using another encoding)
   which sometimes caused encoding-decoding errors.
@@ -1011,10 +1011,10 @@ an additional phase where all the positive outcomes after applying the first fil
 to be validated to determine whether they contain a UML model or not. This external validation stage developed by \emph{Chalmers} team
 includes machine-learning and digital image processing techniques which also required manual verification steps, which were very time-consuming.\\
 This handicap led to the decision of shorten the data-set to analyze $\sim$10\% of the total amount of GitHub repositories which resulted
-in 1.240.000 repositories, in order to offer accurately verified results. From those repositories, we obtained 100.702 potential files
+in 1,240,000 repositories, in order to offer accurately verified results. From those repositories, we obtained 100,702 potential files
 which matched after applying the heuristics filter in Table~\ref{table:heuristics-cs1-example}. These potential files are the input
-of the validation stage whose process and results are summarized on Figure~\ref{fig:validated-files-distribution}: A total of 21.316 UML
-files were validated included in 3.295 different GitHub repositories, which is the answer to RQ1.\par
+of the validation stage whose process and results are summarized on Figure~\ref{fig:validated-files-distribution}: A total of 21,316 UML
+files were validated included in 3,295 different GitHub repositories, which is the answer to RQ1.\par
 Next, in the data-analysis phase these projects were processed with Perceval and a database was built using that information.
 Once the database was created it was obtained more elaborated data, for instance, the distribution of positive repositories
 according to how many UML models contained each of them (See Table~\ref{table:validated-repos-table}) but also the answers to the rest
@@ -1127,11 +1127,11 @@ software architecture documents, as sometimes the models from a project are defi
 Accomplishing this new case of study was substantially easier and faster, as all the JSON files containing file-related information
 from all GitHub projects were already downloaded. Then, with the preliminary and data-extraction phases completed, the procedure to
 follow was to execute the steps from the data-filtering stage using the patterns and heuristics from Table~\ref{table:heuristics-cs2-example}.
-This data-filtering phase resulted in a list of 6.373.748 potential files belonging to 573.854 different GitHub repositories.
-Since these potential results haven't been validated yet, no further phases of the tool were executed.
+This data-filtering phase resulted in a list of 6,373,748 potential files belonging to 573,854 different GitHub repositories.
+Since these potential results have not been validated yet, no further phases of the tool were executed.
 \begin{table}[]
 \centering
-\caption{Example: definition of heuristics for the case of study 2.}
+\caption{Example: Definition of heuristics for the case of study 2.}
 \label{table:heuristics-cs2-example}
 \begin{tabular}{|c|c|}
 \hline
@@ -1157,7 +1157,7 @@ Key-words                  & \textit{xmi}, \textit{uml}, \textit{diagram}, \text
 \label{sec:conclusions}
 During the whole implementation and the later set-up process of this tool with the different use-cases,
 there were found several handicaps, limitations and setbacks which affected how the objectives described
-in chapter~\ref{sec:objectives} were reached. Nonetheless, looking back at the tool and how
+in Chapter~\ref{sec:objectives} were reached. Nonetheless, looking back at the tool and how
 it performed with the different use-cases, along with the obtained results, it is safe to
 say the purpose of this tool was achieved, proving answers to the proposed research questions.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1168,7 +1168,7 @@ we were able to extract the whole set of projects hosted in GitHub at
 a certain date and time thank to the \emph{GHTorrent} project. This is the first threat
 following this approach: during the time where the MySQL dump of \emph{GHTorrent} from GitHub data is created
 and the data extraction phase is executed, the source of information is constantly changing,
-so we may encounter some projects that don't exist anymore, some projects become private
+so we may encounter some projects that do not exist anymore, some projects become private
 and of course, there are new projects that are being created. These limitations are hard
 to avoid but also it is safer to extract the information from an static, reliable and uniform source.\par
 About OB2\footnote{Collect data from all public projects about their file structure in a scalable, automated way.},
@@ -1199,7 +1199,7 @@ the importing process.\par
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Knowledge application}
 \label{sec:knowledge-application}
-During my degree I've learned about important concepts and tools during the different courses,
+During my degree I have learned about important concepts and tools during the different courses,
 but also about how to face new challenges where to implement the acquired knowledge.
 In this project I have applied the learning outcomes from the following courses:
 \begin{enumerate}
@@ -1224,13 +1224,13 @@ In this project I have applied the learning outcomes from the following courses:
 These are some of the learning outcomes I have obtained thank to this project:
 \begin{enumerate}
   \item Fostering of my programming skills, especially in Python. Though I was familiar with
-  this programming language in particular, I've learned about general, complex concepts of programming
+  this programming language in particular, I have learned about general, complex concepts of programming
   as parallelization and concurrency but also specific advanced Python concepts and structures:
   sets (unordered collections of non-duplicated values), list-comprehensions
   (a way to to create lists containing an expression followed by a for clause, then
   zero or more for or if clauses) and other Python \textit{idioms}.
   \item Learning new technologies, specially about databases and SQL language which
-  complements my academic background. I've also learn how to interact with APIs for the first time.
+  complements my academic background. I have also learn how to interact with APIs for the first time.
   \item A great overview about research. Since I started to work as a researcher assistant,
   I was surprised about how little I know about research and its procedures about scientific papers,
   conferences. With this project I was able to learn from the very beginning the stages of the elaboration
@@ -1271,7 +1271,7 @@ I had the great luck to be in the right place at the right moment when I started
 Working on it has brought me a lot of great experiences and outcomes, which are
 extensive to my period working as a researcher assistant in LibreSoft group where I met fantastic people.\par
 I feel fulfilled after having participated in such an important research and see its resulting scientific papers
-presented and published in important conferences. I've obtained more knowledge but also self-confidence to face large-scale
+presented and published in important conferences. I have obtained more knowledge but also self-confidence to face large-scale
 projects, to make presentations in front of an audience and also to foster my English level. Furthermore,
 I had the opportunity of traveling to Gothenburg (Sweden) in June, 2016 to meet the team from Chalmers University
 we were collaborating with. Afterwards, this cooperation provided me the chance to enroll myself to an
