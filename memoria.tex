@@ -334,7 +334,7 @@ learn how \emph{UML} models\footnote{\url{http://uml.org/what-is-uml.htm}} are u
 \emph{FLOSS}\footnote{Free/Libre and Open Source Software. Complete definition at section~\ref{sec:floss-definition}} projects
 (particularly, projects hosted in GitHub), as most of the previous studies focused only on its industrial use.
 
-Given the large size of GitHub as a platform and its access limitations, this research required to build a tool which extracts
+Given the large size of GitHub as a platform and its access limitations~\cite{kalliamvakou2014promises}, this research required to build a tool which extracts
 Git data from all the existing repositories on GitHub, then filters those repositories which may include at least one
 \emph{UML} model and finally analyzes the set of projects that meet this condition more in-depth.
 
@@ -347,9 +347,9 @@ view about research and large-scope projects.
 \section{Context}
 \label{sec:context}
 
-The way people develop software has evolved during the last years. There is an extended social perception of developers to
+The way people develop software has evolved during the last years~\cite{tepper2003rise}. There is an extended social perception of developers to
 being introverted, solitary people, with very few social skills, but this sense is outdated: the paradigm has changed,
-as coding has become a social activity. Developers who work collaborating with others produce better software~\cite{Vasilescu:2014:SDH:2556420.2556833},
+as coding has become a social activity. Developers who work collaborating with others produce better software~\cite{Vasilescu:2014:SDH:2556420.2556833,moreno2016examining},
 as they are continuously reading code from other developers, getting feedback about their contributions and consequently
 widening their knowledge with new procedures and ideas.
 
@@ -375,11 +375,11 @@ Once this information is retrieved, we can analyze it and extract conclusions ab
 
 To complete the context for this thesis, it is necessary to situate what UML is and why it is important.
 The Universal Modeling Language (UML) is a graphic, descriptive language to visualize, specify, construct and document the
-artifacts from a system (mainly: structure, behavior and interaction) containing a great amount of software.
+artifacts from a system (mainly: structure, behavior and interaction) containing a great amount of software~\cite{rumbaugh2004unified}.
 UML provides a standard way to write the plans of a system, covering from conceptual aspects like business processes and
 system features to particular aspects like classes in a certain programming language, database schemas and reusable
 software components with a higher level of abstraction. Therefore, modeling with UML is considered as one more component
-in a software development process.
+in a software development process~\cite{chaudron2012effective}.
 
 For industrial software, the use of UML is commonly accepted and software engineering researchers in the area of modeling
 have made efforts to collect examples of projects that use modeling and their models. Nonetheless, industrial projects
@@ -503,7 +503,7 @@ requirements. Once OB1, OB2 and OB3 are achieved, the obtained results will cons
 
 OB4 and OB5 have to be completed to answer \emph{RQ2}. Analyzing Git repositories is not a trivial task, as it is crucial
 to retrieve complete and reliable information from them to perform a robust analysis. That is why we decided to
-use a tool called \emph{Perceval} which belongs to the \emph{GrimoireLab} project, an evolution from \emph{CVSanalY}\cite{robles2009tools} software.
+use a tool called \emph{Perceval}~\cite{duenas18:perceval} which belongs to the \emph{GrimoireLab} project, an evolution from \emph{CVSanalY}~\cite{robles2009tools} software.
 \emph{GrimoireLab} is a mature and Free/Libre tool-set for software development analytics, used to extract metrics from large, industrial projects but
 also to perform research studies in academia. With such background, \emph{Perceval} tool is suitable to comply with OB4.
 Nonetheless, it should be noted that this tool is not valid to perform OB2 and that's why the direct access to the
@@ -533,7 +533,7 @@ These are the technologies that were chosen to build this tool. Every technology
 \label{sec:python}
 
 \textbf{Python}\footnote{\url{https://www.python.org/}} is an interpreted, object-oriented, high-level, open source
-programming language for general-purpose programming created by Guido van Rossum in 1991. Nowadays, the most
+programming language for general-purpose programming created by Guido van Rossum in 1991~\cite{van2007python}. Nowadays, the most
 recent version is 3.6.4, from December, 2017. Its design is focused on code readability and clear syntax, making
 possible to program using fewer lines of code comparing to other programming languages as \emph{C++} or \emph{Ada}.
 
@@ -549,12 +549,12 @@ like \emph{C++} libraries, \emph{MySQL} databases, etc.
 \section{Git}
 \label{sec:git}
 %source: https://git-scm.com/book/en/v2/Getting-Started-Git-Basics
-\textbf{Git} is an open-source Version Control System (\emph{VCS}), originally developed in 2005 by Linus Torvalds.
+\textbf{Git} is an open-source Version Control System (\emph{VCS}), originally developed in 2005 by Linus Torvalds~\cite{somasundaram2013git}.
 As any \emph{VCS}, \emph{git} is a system that records changes to a file or set of files over time
 so that you can recall specific versions later.
 It is by far, the most used \emph{VCS} in the world\footnote{\url{http://stackoverflow.com/research/developer-survey-2015}}.
 
-The major difference between \emph{git} and any other VCS is the way \emph{git} thinks about its data.
+The major difference between \emph{git} and any other VCS is the way \emph{git} thinks about its data~\cite{ruparelia2010history}.
 Conceptually, most other systems store information as a list of file-based changes. Other systems like \textit{Subversion},
 \textit{Perforce}, \textit{Bazaar}, etc. think of the information they store as a set of files and the changes made to each
 file over time (see Figure~\ref{fig:info-not-git}).
@@ -590,7 +590,7 @@ Each user on GitHub has their own profile, showing its past work and contributio
 other projects via \textit{pull requests}, \textit{forking} (create editable copies into someone's account) other repositories, etc.
 Project revisions can be discussed publicly via \textit{issues} so many people can collaborate together to advance a project
 forward. GitHub is currently the largest host of source code in the world (see Figure~\ref{fig:total-repo-number} for a quantitative
-estimation of its scale evolution across time).
+estimation of its scale evolution across time)~\cite{dabbish2012social}.
 % # TODO: https://growthhackers.com/growth-studies/github, https://blog.github.com/2013-12-23-10-million-repositories/
 \begin{figure}
   \centering
@@ -605,7 +605,7 @@ estimation of its scale evolution across time).
 \section{GHTorrent}
 \label{sec:ghtorrent}
 
-\textbf{GHTorrent} is a project aimed to create a scalable, queriable, off-line mirror of data offered through the GitHub \textit{API}.
+\textbf{GHTorrent} is a project aimed to create a scalable, queriable, off-line mirror of data offered through the GitHub \textit{API}~\cite{Gousi13}.
 
 As they explain in their website\footnote{\url{http://ghtorrent.org/}}, \emph{GHTorrent} monitors the GitHub public event time line.
 For each event, it retrieves its contents and their dependencies, exhaustively. Then, it stores the raw responses to a database whose
@@ -629,7 +629,7 @@ mainly developed by the Spanish company \emph{Bitergia}\footnote{\url{https://bi
 It allows you to retrieve data from many kinds of systems with information related to software development, and produce
 analysis and visualizations with it.
 
-We are focusing on a particular tool of \emph{GrimoireLab} called \textbf{Perceval}. This tool can retrieve data from more
+We are focusing on a particular tool of \emph{GrimoireLab} called \textbf{Perceval}~\cite{duenas18:perceval}. This tool can retrieve data from more
 than 20 different kinds of data sources, from \emph{git} repositories or GitHub projects, to issue trackers such as \emph{Jira}
 or \emph{Bugzilla}, including messaging systems such as \emph{IRC}, \emph{Slack} or mailing lists, or other types of systems such as
 \emph{StackOverflow} or \emph{Jenkins} in a regular and incremental way, allowing to produce uniform sets of information.
@@ -1041,7 +1041,7 @@ conferences which are highly ranked according to the CORE\footnote{\url{http://w
     \item MSR (International Conference on Mining Software Repositories) - Rank A (Source\footnote{\url{http://portal.core.edu.au/conf-ranks/711/}}).
 \end{itemize}
 
-The papers are available in Appendix~\ref{app:papers}.
+The papers~\cite{hebig2016quest,ho2017practices,robles2017extensive} are available in Appendix~\ref{app:papers}.
 
 %This case of study descriptions are focused on the implementation of the technical part of the studies,
 %showing an overview of its results taking into account specific details and limitations.
@@ -1108,7 +1108,7 @@ UML model can be found, as is it showed in Table~\ref{table:heuristics-cs1-examp
 As described before, an additional problem arose: from all the identified files with the interesting extensions, how many of those files
 really are a UML model, and how many are not? As the tool has a modular design, it was easy to add an additional phase to verify the data
 which was obtained after the filtering. This verification process was solved by Chalmers team, using heuristics for the XML-alike files
-and image processing and machine learning techniques for image files~\cite{hoquang2014, ho-quang2014umlclassifier}.
+and image processing and machine learning techniques for image files~\cite{hoquang2014}.
 
 UML models can be included either in image or text files (see Figure~\ref{fig:uml-types}), therefore our main filter using file extensions
 and character patters in file-names is not enough to completely identify UML files. That is why it was necessary the inclusion of
@@ -1408,6 +1408,22 @@ we were collaborating with. Afterwards, this cooperation provided me the chance 
 Erasmus+ traineeship in that university during Summer 2017.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BIBLIOGRAFIA %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage
+% Las siguientes dos instrucciones es todo lo que necesitas
+% para incluir las citas en la memoria
+\bibliographystyle{abbrv}
+\bibliography{memoria}  % memoria.bib es el nombre del fichero que contiene
+% las referencias bibliogr�ficas. Abre ese fichero y mira el formato que tiene,
+% que se conoce como BibTeX. Hay muchos sitios que exportan referencias en
+% formato BibTeX. Prueba a buscar en http://scholar.google.com por referencias
+% y ver�s que lo puedes hacer de manera sencilla.
+% M�s informaci�n:
+% http://texblog.org/2014/04/22/using-google-scholar-to-download-bibtex-citations/
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % APPENDIX %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1487,31 +1503,27 @@ A program is free software if it gives users adequately all of these freedoms. O
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The Quest for OS Projects that use UML: Mining GitHub}
 \label{sec:paper-models}
-This paper was published in the MODELS conference (Saint-Malo, France), in October 2016.
+This paper was published in the MODELS conference (Saint-Malo, France), in October 2016.  The complete references is following:
+
+Hebig, R., Quang, T. H., Chaudron, M. R., Robles, G., \& Fernandez, M. A. (2016, October). The quest for open source projects that use UML: mining GitHub. In Proceedings of the ACM/IEEE 19th International Conference on Model Driven Engineering Languages and Systems (pp. 173-183). ACM.
+
+
 \includepdf[pages=-,pagecommand={},width=1.2\textwidth]{pdf/models.pdf}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{An extensive dataset of UML models in GitHub}
 \label{sec:paper-msr}
-This paper was published in the MSR conference (Buenos Aires, Argentina), in May 2017.
+This paper was published in the MSR conference (Buenos Aires, Argentina), in May 2017. The complete references is following:
+
+Robles, G., Ho-Quang, T., Hebig, R., Chaudron, M. R., \& Fernandez, M. A. (2017, May). An extensive dataset of UML models in GitHub. In Proceedings of the 14th International Conference on Mining Software Repositories (pp. 519-522). IEEE Press.
+
 \includepdf[pages=-,pagecommand={},width=1.2\textwidth]{pdf/msr2017.pdf}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Practices and Perceptions of UML Use in OS Projects}
 \label{sec:paper-icse}
 This paper was published in the ICSE (SEIP track) conference (Buenos Aires, Argentina), in May 2017.
+
+Ho-Quang, T., Hebig, R., Robles, G., Chaudron, M. R., \& Fernandez, M. A. (2017, May). Practices and perceptions of UML use in open source projects. In Software Engineering: Software Engineering in Practice Track (ICSE-SEIP), 2017 IEEE/ACM 39th International Conference on (pp. 203-212). IEEE.
+
 \includepdf[pages=-,pagecommand={},width=1.2\textwidth]{pdf/seip2017.pdf}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% BIBLIOGRAFIA %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\cleardoublepage
-% Las siguientes dos instrucciones es todo lo que necesitas
-% para incluir las citas en la memoria
-\bibliographystyle{abbrv}
-\bibliography{memoria}  % memoria.bib es el nombre del fichero que contiene
-% las referencias bibliogr�ficas. Abre ese fichero y mira el formato que tiene,
-% que se conoce como BibTeX. Hay muchos sitios que exportan referencias en
-% formato BibTeX. Prueba a buscar en http://scholar.google.com por referencias
-% y ver�s que lo puedes hacer de manera sencilla.
-% M�s informaci�n:
-% http://texblog.org/2014/04/22/using-google-scholar-to-download-bibtex-citations/
 \end{document}
