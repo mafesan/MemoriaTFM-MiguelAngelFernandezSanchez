@@ -200,9 +200,10 @@ Fuenlabrada, a \qquad$\;\,$ de \qquad\qquad\qquad\qquad de 2018
 \chapter*{Dedications}
 \pagenumbering{Roman} % para comenzar la numeracion de paginas en numeros romanos
 \begin{flushright}
-\textit{A mi madre y a mi padre:\\
-Esta memoria no hubiera sido posible \\
-sin vuestro incansable esfuerzo y apoyo.}
+\textit{A mi padre y a mi madre:\\
+Gracias por vuestro\\
+incansable esfuerzo y apoyo.\\
+Este es vuestro éxito.}
 \end{flushright}
 \par
 \begin{flushright}
@@ -212,8 +213,9 @@ alcanzarás todo lo que te propongas.\\}
 \end{flushright}
 \begin{flushright}
 \textit{\\To my mother and father:\\
-This thesis would not have been possible\\
-without your endless effort and support.}
+Thank you for you\\
+endless effort and support.\\
+This is your success.}
 \end{flushright}
 \par
 \begin{flushright}
@@ -228,17 +230,21 @@ you will reach all of your goals.}
 %\addcontentsline{toc}{chapter}{Agradecimientos} % si queremos que aparezca en el �ndice
 \markboth{ACKNOWLEDGEMENTS}{ACKNOWLEDGEMENTS} % encabezado
 
-First, I want to thank my parents and the rest of my family. Their constant effort and support
-along with the values they taught me, made possible for me studying at the university. These words
-are dedicated to them: This is your success, I love you.\par
-I want to thank my tutor Gregorio, for believing in me and giving me the great opportunity of working
-in LibreSoft research group where I have lived some of my great experiences at the university;
-growing as a person, meeting wonderful people, travelling and learning far beyond I could have ever imagined.\par
-To my friends and classmates from the university: Eva, Eduardo, Bea, Diego, Olalla, Raúl, Sara, Luismi, Javi, Marta, Dani, Carol,
-Celia, Nuria, Vanessa, Raquel and many, many more. Without your friendship, help and support I would not reached this goal, thank you.\par
-To the people who have helped me to review and improve this thesis: Gregorio, Santi, Valerio, Fernando, Saray, Eva and Sara. Thank you
-for your patience and sharing your time and knowledge so generously.\par
-Finally, thank to the people who contributed with their GitHub account to make this study possible:
+First, I want to dedicate these first words to my parents and the rest of my family. I am grateful for the values
+they taught me about persistence, tolerance and self-sufficiency. Their constant effort and support made possible
+for me studying at the university, which is something I feel really proud of.
+
+I want to thank my tutor Gregorio, for granting me the great opportunity of working
+in \emph{GSyC/LibreSoft} research group where I have lived some of my great experiences at the university;
+growing as a person, meeting wonderful people, travelling and learning far beyond I could have ever imagined.
+
+To my friends and classmates from the university: Eduardo, Eva, Diego, Sara, Raúl, Olalla, Javi, Bea, Dani, Carol, Marta,
+Cristina, Nuria, Raquel and many more. Without your friendship, help and support I would not reached this goal, thank you.
+
+To the people who have helped me to review and improve this thesis: Gregorio, Santiago, Valerio, Fernando, Saray, Eva and Sara. Thank you
+for your patience and sharing your time and knowledge so generously.
+
+Finally, thanks to the people who contributed with their GitHub account to make this study possible:
 Gregorio R., Michel C., Truong H.Q., Eva H., Olalla S., Beatriz C., Diego S.,
 Eduardo D., Javier M., Diego J., Jose M., Alejandro F., Ángel C., Alejandro, Cristina, Fernando, Irene, Nacho, Ana R. y Ronny.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -319,7 +325,6 @@ todo el tiempo de vida de cada proyecto.
 % En este cap�tulo se introduce el proyeto. Deber�a tener informaci�n general sobre
 % el mismo, dando la informaci�n sobre el contexto en el �que se ha desarrollado.
 % No te olvides de echarle un ojo a la p�gina con los cinco errores de escritura m�s frecuentes\footnote{\url{http://www.tallerdeescritores.com/errores-de-escritura-frecuentes}}.
-% #TODO Ask for resources to back this data:
 GitHub is the most used online code platform in the world. We can extract huge amounts of information from millions of projects
 about how software is being developed: productivity, issue-tracking methods, developer-to-developer relations, etc.~\cite{robles2006beyond}
 For researchers, GitHub is an endless source of publicly available data for potential studies, and for companies and communities it
@@ -482,7 +487,7 @@ GitHub allows to obtain its information through its \textit{API},
 but this entails several limitations. To mention the most important ones:
 
 \begin{itemize}
-    \item The GitHub API has a maximum rate of 5.000 request per hour with each account.
+    \item The GitHub API has a maximum rate of 5,000 requests per hour with each account.
     \item GitHub is not static (e.g., new repositories are added, existing ones are modified) which leads to the problem of
     accessing concurrently to its data.
     \item There is no direct way
@@ -548,11 +553,11 @@ like \emph{C++} libraries, \emph{MySQL} databases, etc.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Git}
 \label{sec:git}
-%source: https://git-scm.com/book/en/v2/Getting-Started-Git-Basics
+
 \textbf{Git} is an open-source Version Control System (\emph{VCS}), originally developed in 2005 by Linus Torvalds~\cite{somasundaram2013git}.
 As any \emph{VCS}, \emph{git} is a system that records changes to a file or set of files over time
-so that you can recall specific versions later.
-It is by far, the most used \emph{VCS} in the world\footnote{\url{http://stackoverflow.com/research/developer-survey-2015}}.
+so that you can recall specific versions later. According to last surveys, it is by far the most used \emph{VCS} in the
+world\footnote{\url{https://insights.stackoverflow.com/survey/2018}}.
 
 The major difference between \emph{git} and any other VCS is the way \emph{git} thinks about its data~\cite{ruparelia2010history}.
 Conceptually, most other systems store information as a list of file-based changes. Other systems like \textit{Subversion},
@@ -562,7 +567,7 @@ file over time (see Figure~\ref{fig:info-not-git}).
 \begin{figure}
   \centering
   \includegraphics[width=12cm, keepaspectratio]{img/deltas-not-git}
-  \caption{How other non-\emph{git} \emph{VCS} store information (Source: Git documentation).}
+  \caption{How other non-\emph{git} \emph{VCS} store information~\cite{progit2014book}.}
   \label{fig:info-not-git}
 \end{figure}
 
@@ -575,7 +580,7 @@ All this information is stored in a key-value system as \emph{git} objects, with
 \begin{figure}
   \centering
   \includegraphics[width=12cm, keepaspectratio]{img/snapshots-git}
-  \caption{How \emph{git} structures its information internally (Source: Git documentation).}
+  \caption{How \emph{git} structures its information internally~\cite{progit2014book}.}
   \label{fig:info-git}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -591,16 +596,14 @@ other projects via \textit{pull requests}, \textit{forking} (create editable cop
 Project revisions can be discussed publicly via \textit{issues} so many people can collaborate together to advance a project
 forward. GitHub is currently the largest host of source code in the world (see Figure~\ref{fig:total-repo-number} for a quantitative
 estimation of its scale evolution across time)~\cite{dabbish2012social}.
-% # TODO: https://growthhackers.com/growth-studies/github, https://blog.github.com/2013-12-23-10-million-repositories/
+
 \begin{figure}
   \centering
   \includegraphics[width=14cm, keepaspectratio]{img/number-github-repos}
   \caption{Estimation: Evolution of number of GitHub repositories across time}
   \label{fig:total-repo-number}
 \end{figure}
-% TODO: https://www.quora.com/How-many-repositories-are-there-on-GitHub
-%       https://www.howtogeek.com/180167/htg-explains-what-is-github-and-what-do-geeks-use-it-for/
-%       https://techcrunch.com/2012/07/14/what-exactly-is-github-anyway/
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{GHTorrent}
 \label{sec:ghtorrent}
@@ -666,7 +669,8 @@ The tool is divided into several linear sections with a set of \emph{Python} scr
 language I feel more comfortable with, along with its versatility due to the great amount of compatible packages and modules, followed
 with a great amount of documentation.
 
-The set of scripts which compounds this tool can be grouped into three main phases (see Figure~\ref{fig:arquitectura}).
+The set of scripts which compounds this tool\footnote{This code is publicly available on GitHub: \url{https://github.com/mafesan/2018-tfg-code}}
+can be grouped into three main phases (see Figure~\ref{fig:arquitectura}).
 Before going into detail in each of these stages, let's introduce them briefly:
 
 \begin{enumerate}
@@ -709,9 +713,8 @@ Given the scale of GitHub, the main problem we face is that there is not a direc
 of obtaining the amount of repositories in the platform, neither getting a list of them using its \textit{API}.
 Thus, it is
 very difficult to have quantitative and reliable data. For example, for building a graph like Figure~\ref{fig:total-repo-number},
-its numbers had to be obtained directly from articles written by the GitHub team itself [\textcolor{red}{Source}]
-and other people's estimations [\textcolor{red}{Source}].
-
+some of its numbers had to be obtained directly from articles written by the GitHub team\footnote{\url{https://blog.github.com/2013-12-23-10-million-repositories/}}
+and some others by reading some GitHub-related papers containing quantitative data~\cite{Gousios:2014:LGG:2597073.2597126}.
 At this point it is where \emph{GHTorrent} project plays a major role in this project, as they provide an off-line database dump with most
 of the data which the GitHub \textit{API} offers at a certain date. This great collaborative effort is a huge advantage
 for researchers, otherwise it would be practically non-viable retrieving full-scale GitHub data in a systematic way.
@@ -733,12 +736,11 @@ To obtain the actual data, the procedure to follow is as follows:
   \item Uncompress the \texttt{tar.gz} file, which contains one \emph{CSV} file per table in the database.
   \item Get the file \texttt{projects.csv}, whose data corresponds to the \emph{Projects} table (See an adapted\footnote{The field \emph{url} has been replaced by \emph{owner} to make the table more readable.}
   example of this file in Table~\ref{table:projects-table-example}).
-  \item Run the Python script \textcolor{red}{[reference to script]} with the corresponding filters to obtain the main
+  \item Run the Python script \texttt{input\_projects.py} setting up the corresponding filters and parameters to obtain the main
         \emph{project list} file, which will be the input for the next stage.
 \end{enumerate}
 
-Note that the filtering we establish in this phase is going to influence the results of our analysis. To make this task easier,
-I decided to use a configuration file (See Figure~\textcolor{red}{[reference]}) to set basic filters and parameters. \textcolor{red}{(WIP)}\\
+Note that the filtering we establish in this phase is going to influence the results of our analysis.\\
 Finally, we obtain a filtered \emph{project list} file, which keeps the same format as \texttt{projects.csv} of the database dump.
 
 \begin{figure}
@@ -1455,17 +1457,18 @@ A \emph{git} \textbf{branch} is a pointer to a certain \emph{commit} object. All
 created from this pointer will diverge from the previous commit-history of the repository in two distinct, independent paths.
 Branching is a very common and useful practice, as it allows to isolate different versions of the same files and directories
 (but also different) in the same repository, and later, those branches can be merged into any other branch (See in
-figure~\ref{fig:git-branches-example} a simplified example about the structure of a repository with several branches).
+figure~\ref{fig:git-branches-example}\footnote{Source: \url{https://www.atlassian.com/git/tutorials/using-branches}})
+a simplified example about the structure of a repository with several branches).
 \begin{figure}
   \centering
   \includegraphics[width=12cm, keepaspectratio]{img/git-objs-example}
-  \caption{Interaction among \textbf{commits}, \textbf{trees} and \textbf{blobs} (unique IDs above) (Source: Git documentation).}
+  \caption{Interaction among \textbf{commits}, \textbf{trees} and \textbf{blobs} (unique IDs above)~\cite{progit2014book}.}
   \label{fig:git-objs-example}
 \end{figure}
 \begin{figure}
   \centering
   \includegraphics[width=12cm, keepaspectratio]{img/branches-example-atlassian}
-  \caption{Abstraction of \emph{git} \textbf{branches} structure in a repository (Source: Atlassian).}
+  \caption{Abstraction of \emph{git} \textbf{branches} structure in a repository.}
   \label{fig:git-branches-example}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
