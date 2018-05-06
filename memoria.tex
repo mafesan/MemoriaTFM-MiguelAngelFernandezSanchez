@@ -203,25 +203,13 @@ Fuenlabrada, a \qquad$\;\,$ de \qquad\qquad\qquad\qquad de 2018
 \textit{A mi padre y a mi madre:\\
 Gracias por vuestro\\
 incansable esfuerzo y apoyo.\\
-Este es vuestro éxito.}
-\end{flushright}
-\par
-\begin{flushright}
-\textit{A mi hermana, Ana:\\
-Con esfuerzo y constancia,\\
-alcanzarás todo lo que te propongas.\\}
+Este es vuestro éxito.\\}
 \end{flushright}
 \begin{flushright}
 \textit{\\To my mother and father:\\
-Thank you for you\\
+Thank you for your\\
 endless effort and support.\\
 This is your success.}
-\end{flushright}
-\par
-\begin{flushright}
-\textit{To my sister, Ana:\\
-With effort and persistence,\\
-you will reach all of your goals.}
 \end{flushright}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Agradecimientos
@@ -736,7 +724,7 @@ To obtain the actual data, the procedure to follow is as follows:
   \item Uncompress the \texttt{tar.gz} file, which contains one \emph{CSV} file per table in the database.
   \item Get the file \texttt{projects.csv}, whose data corresponds to the \emph{Projects} table (See an adapted\footnote{The field \emph{url} has been replaced by \emph{owner} to make the table more readable.}
   example of this file in Table~\ref{table:projects-table-example}).
-  \item Run the Python script \texttt{input\_projects.py} setting up the corresponding filters and parameters to obtain the main
+  \item Run the Python script \texttt{get\_project\_list.py} setting up the corresponding filters and parameters to obtain the main
         \emph{project list} file, which will be the input for the next stage.
 \end{enumerate}
 
@@ -1008,6 +996,7 @@ to perform the correct queries. For instance, here are some queries we can execu
     SELECT name FROM repos
     WHERE number_commits > 200
     AND last_commit >= "2017-07-02"; \end{lstlisting}
+    \newpage
     \item Number of repositories with at least one file with \textit{.png} extension:
     \begin{lstlisting}[language=SQL]
     SELECT COUNT(DISTINCT repos.name) FROM interesting_files
