@@ -986,7 +986,7 @@ which contains augmented information about each file commit, indicating the comm
 file-type (type of the committed file based on a predefined classification, e.g., source code, documentation, etc.).
 These tables are represented in the complete schema of this database in Figure~\ref{fig:dbschema}.
 
-The dedicated script which converts the analysed data into a database, \texttt{projects2sql.py}, produces one SQL script
+The dedicated script which converts the analyzed data into a database, \texttt{projects2sql.py}, produces one SQL script
 per table. Then, these scripts have to be imported into a MySQL database whose structure has to be specified before.
 Once the database has been built and filled with the data, we have to ensure to perform the correct queries
 to produce proper results for our analysis. For instance, here are some queries we can execute to perform an analysis:
@@ -1288,7 +1288,7 @@ of the whole data-retrieval process required a huge amount of time and effort. T
 5,000 requests per hour \& account was a huge drawback we tried to avoid contacting to GitHub asking them for a special
 account without limitation in order to perform the study, but the solution they gave us was to create more accounts
 and using them all to perform more requests per hour (and so we did). Furthermore, GitHub API changed during this
-data-retrieval phase including paginated results. That forced us to adapt this tool and re-analyse some of the data
+data-retrieval phase including paginated results. That forced us to adapt this tool and re-analyze some of the data
 that have been already downloaded.
 
 These drawbacks could be avoided in future versions of this tool if \emph{GHTorrent} included git-trees information. It would save a lot of time and resources,
@@ -1296,7 +1296,7 @@ together with having more reliability due to the staticness this data would have
 
 Looking at OB3\footnote{Establish a procedure to filter this extracted data using a determined kind of heuristics and patterns.},
 the positive results can be identified properly. However, due to the different particularities of the data
-we want to analyse, we may want to add more filtering layers to the obtained potential results. Technically,
+we want to analyze, we may want to add more filtering layers to the obtained potential results. Technically,
 the most difficult issue was to handle huge JSON files (some of them sized GBs) and cover the diverse Charset-related
 errors.
 
