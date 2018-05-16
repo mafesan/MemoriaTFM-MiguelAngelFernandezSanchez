@@ -1,5 +1,11 @@
-# Memoria TFG (Working title)
-Memoria del Trabajo Fin de Grado de Miguel Ángel Fernández Sánchez (Grado ISAM, ETSIT, URJC)
+# Memoria Trabajo Fin de Grado
+
+ * Título: Herramienta para Identificar y Extraer Masivamente Artefactos de GitHub
+ * Autor: Miguel Ángel Fernández
+ * Tutor: Dr. Gregorio Robles
+ * Titulación: Grado Ingeniería en Sistemas Audiovisuales y Multimedia, ETSIT, URJC
+ * Curso académico: 2017/18
+ * Formato: LATEX
 
 ## Dependecias e instalación
 
