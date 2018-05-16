@@ -437,6 +437,7 @@ along with a brief discussion about the limitations of the tool and future work.
 Additionally, this thesis contains the following annexes:
 \begin{enumerate}[A.]
   \item Definitions
+  \item Code of the tool
   \item Published papers
 \end{enumerate}
 
@@ -657,7 +658,7 @@ The tool is divided into several linear sections with a set of \emph{Python} scr
 language I feel more comfortable with, along with its versatility due to the great amount of compatible packages and modules, followed
 with a great amount of documentation.
 
-The set of scripts which compounds this tool\footnote{This code is publicly available on GitHub: \url{https://github.com/mafesan/2018-tfg-code}}
+The set of scripts which compounds this tool\footnote{See more details about the code of this tool in appendix~\ref{app:code}.}
 can be grouped into three main phases (see Figure~\ref{fig:arquitectura}).
 Before going into detail in each of these stages, let's introduce them briefly:
 
@@ -1487,6 +1488,35 @@ A program is free software if the program's users have the four essential freedo
 \end{itemize}
 A program is free software if it gives users adequately all of these freedoms. Otherwise, it is \textit{nonfree} or \textit{propietary}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CODE %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Code of the tool}
+\label{app:code}
+The tool presented in this thesis consists on a set of Python scripts and a SQL script to set up the database structure for the
+``Data analysis'' phase.
+The last version of the code of this tool, together with a short execution manual is publicly available on the following GitHub repository:
+\newline \url{https://github.com/mafesan/2018-tfg-code}.
+
+To give an estimation about the magnitude of this tool, in table~\ref{table:sloc} it is presented a software metric generated
+using ``SLOCCount''\footnote{\url{https://www.dwheeler.com/sloccount/}}, a set of tools for counting physical source lines of code (SLOC).
+\begin{table}[!htbp]
+\centering
+\caption{Source Lines of Code (SLOC) for the scripts compounding the tool}
+\label{table:sloc}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Phase}  & \textbf{Script name}   & \textbf{SLOC} \\ \hline
+Preliminary     & get-project-list.py    & 91            \\
+Data extraction & github-api.py          & 126           \\
+Data filtering  & github-tree.py         & 111           \\
+Data filtering  & hits2urls.py           & 107           \\
+Data analysis   & perceval-handler.py    & 109           \\
+Data analysis   & perceval2sql.py        & 228           \\
+Data analysis   & ghtorrent-users2sql.py & 101           \\ \hline
+\multicolumn{2}{|c|}{Total}              & 873           \\ \hline
+\end{tabular}
+\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PAPERS %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
