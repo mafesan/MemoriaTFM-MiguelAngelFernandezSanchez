@@ -1,4 +1,4 @@
-# Memoria Trabajo Fin de Grado
+# Memoria Trabajo Fin de Máster
 
  * Título: -
  * Autor: Miguel Ángel Fernández
