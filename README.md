@@ -1,10 +1,10 @@
 # Memoria Trabajo Fin de Grado
 
- * Título: Herramienta para Identificar y Extraer Masivamente Artefactos de GitHub
+ * Título: -
  * Autor: Miguel Ángel Fernández
- * Tutor: Dr. Gregorio Robles
- * Titulación: Grado Ingeniería en Sistemas Audiovisuales y Multimedia, ETSIT, URJC
- * Curso académico: 2017/18
+ * Tutor: Dr. Felipe Ortega
+ * Titulación: Máster en Data Science, URJC
+ * Curso académico: 2019/20
  * Formato: LATEX
 
 ## Dependecias e instalación
